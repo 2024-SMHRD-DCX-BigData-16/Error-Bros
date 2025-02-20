@@ -12,14 +12,7 @@ public class HugesoController {
 	@Autowired
 	HugesoMapper hugesoMapper;
 	
-	@RequestMapping("/")
-	public String main() {
-		return "Main";
-	}
-	@RequestMapping("/goMain")
-	public String goMain() {
-		return "Main";
-	}
+	
 	@RequestMapping("/showHugeso")
 	public String showHugeso() {
 		
