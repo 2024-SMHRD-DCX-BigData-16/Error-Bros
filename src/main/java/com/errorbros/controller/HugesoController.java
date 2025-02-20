@@ -23,7 +23,7 @@ public class HugesoController {
 	@RequestMapping("/showHugeso")
 	public String showHugeso() {
 		
-		
+		hugesoMapper.showHugeso();
 		return "Hugeso";
 	}
 }
