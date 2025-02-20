@@ -1,5 +1,7 @@
 package com.errorbros.entity;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +16,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MemberDTO {
-	
+
 	@NonNull
 	private String mem_id;
 	@NonNull
@@ -28,10 +30,10 @@ public class MemberDTO {
 	@NonNull
 	private String mem_role;
 	@NonNull
-	private String mem_birthdate; 	// 데이터타입
+	private Date mem_birthdate; // 데이터타입 date
 	@NonNull
-	private String mem_gender;		// 데이터타입
+	private String mem_gender; // 데이터타입 char
 	@NonNull
-	private String joined_at;		// 데이터타입
-	
+	private Timestamp joined_at; // 데이터타입 timestamp
+
 }
