@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.errorbros.entity.MemberDTO;
 import com.errorbros.mapper.MemberMapper;
@@ -29,6 +31,17 @@ public class MemberController {
 		memberMapper.memberInsert(tb_member);
 		model.addAttribute("mem_id", tb_member.getMem_id());
 		return "Main";
+	}
+
+	// 중복된 아이디 확인
+	@RequestMapping("/idCheck")
+	public @ResponseBody boolean idCheck(@RequestParam("inputI") String inputI) {
+		MemberDTO tb_member = MemberMapper.idCheck(inputI);
+		if (tb_member == null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// 로그인

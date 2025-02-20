@@ -10,4 +10,6 @@ public interface MemberMapper {
 
 	public MemberDTO memberLogIn(MemberDTO tb_member);
 
+	public MemberDTO idCheck(String inputI);
+
 }
