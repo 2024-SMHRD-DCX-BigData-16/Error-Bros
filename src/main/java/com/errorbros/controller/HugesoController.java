@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,15 +20,26 @@ public class HugesoController {
 	@Autowired
 	HugesoMapper hugesoMapper;
 
-	// 검색창 입력 값 searchInput을 가져와서 해당 이름을 가진 휴게소 정보 로드와 해당 페이지 열기
-	@RequestMapping("/showHugeso")
+	// 검색창 입력 값 searchInput을 가져와서 해당 이름을 가진 휴게소 정보 로드
+	@PostMapping("/searchHugeso")
+	public String searchHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
+		String hugesoNm = searchInput;
+		System.out.println("휴게소 이름 :" + hugesoNm);
+		HugesoDTO hugesoInfo = hugesoMapper.showHugeso(hugesoNm);
+		System.out.println(hugesoInfo.toString() + "휴게소 정보입니다");
+		session.setAttribute("hugesoInfo", hugesoInfo);
+		return "Hu";
+	}
+
+	// 검색창 입력 값 searchInput을 가져와서 해당 이름을 가진 휴게소 정보 페이지 열기
+	@PostMapping("/showHugeso")
 	public String showHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
 		String hugesoNm = searchInput;
 		System.out.println("휴게소 이름 :" + hugesoNm);
 		HugesoDTO hugesoInfo = hugesoMapper.showHugeso(hugesoNm);
 		System.out.println(hugesoInfo.toString() + "휴게소 정보입니다");
 		session.setAttribute("hugesoInfo", hugesoInfo);
-		return "Hugeso";
+		return "Hu";
 	}
 
 	// 세션 휴게소 정보에 있는 휴게소 인덱스로 해당 휴게소의 메뉴 정보를 불러와 메뉴 페이지로 이동하기
