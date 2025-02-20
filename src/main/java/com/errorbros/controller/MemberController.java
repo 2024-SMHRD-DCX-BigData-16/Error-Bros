@@ -22,12 +22,6 @@ public class MemberController {
 	@Autowired
 	private MemberMapper memberMapper;
 
-	// 메인페이지 이동
-	@RequestMapping("/goMain")
-	public String goMain() {
-		return "Main";
-	}
-
 	// 회원가입
 	@PostMapping("/memberInsert")
 	public String memberInsert(MemberDTO tb_member, Model model, HttpSession session) {

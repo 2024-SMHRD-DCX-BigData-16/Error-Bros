@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.errorbros.entity.HugesoDTO;
+import com.errorbros.entity.MemberDTO;
 import com.errorbros.entity.MenuDTO;
+import com.errorbros.entity.ReviewDTO;
 import com.errorbros.mapper.HugesoMapper;
 
 @Controller
@@ -37,6 +39,27 @@ public class HugesoController {
 		System.out.println(menuInfo.toString());
 		session.setAttribute("hugesoInfo", menuInfo);
 		return "Menu";
+	}
+
+	// 리뷰 작성 기능
+	@RequestMapping("/updateReview")
+	public String updateReview(HttpSession session) {
+		// 휴게소 정보
+		HugesoDTO hugesoDTO = (HugesoDTO) session.getAttribute("hugesoInfo");
+		System.out.println(hugesoDTO.toString() + " 휴게소 정보입니다. ");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginMember");
+		System.out.println(memberDTO.toString() + " 휴게소 정보입니다. ");
+		String reviewCotent = "";
+		double reviewRatings = 0;
+		ReviewDTO ReviewDTO = new ReviewDTO(hugesoDTO.getRestIdx(), memberDTO.getMem_id(), reviewCotent, 0,
+				reviewRatings);
+		int result = hugesoMapper.insertReview(ReviewDTO);
+		if (result > 0) {
+			System.out.println("리뷰 작성 성공");
+		} else {
+			System.out.println("리뷰 작성 실패");
+		}
+		return null;
 	}
 
 }

@@ -15,7 +15,10 @@
 	where rest_idx = #{restIdx}
 </select>
 
-
+<insert id="insertReview" parameterType="com.errorbros.entity.ReviewDTO">
+	INSERT INTO tb_review (rest_idx, mem_id, review_content, review_like, review_ratings, created_at) 
+	VALUES (#{rest_idx}, #{mem_id}, #{review_content}, 0, #{review_ratings}, NOW());
+</insert>
 
 
 

@@ -18,12 +18,12 @@
 	</select>
 	
 	<!-- 아이디 찾기 -->
-	<select id="findId" resultType="MemberDTO">
+	<select id="findId" resultType="com.errorbros.entity.MemberDTO">
 	    SELECT mem_id FROM tb_member WHERE mem_nm = #{mem_nm} AND mem_email = #{mem_email};
 	</select>
 	
 	<!-- 비밀번호 찾기 -->
-	<select id="findPw" resultType="MemberDTO">
+	<select id="findPw" resultType="com.errorbros.entity.MemberDTO">
 	    SELECT mem_pw FROM tb_member WHERE mem_id=#{mem_id} AND mem_nm = #{mem_nm} AND mem_email = #{mem_email};
 	</select>
 	
