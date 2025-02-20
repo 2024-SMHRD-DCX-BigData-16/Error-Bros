@@ -9,7 +9,11 @@
 </select>
 
 
-
+<select id="showMenu" parameterType="int" resultType="com.errorbros.entity.MenuDTO">
+	select *
+	from tb_menu
+	where rest_idx = #{restIdx}
+</select>
 
 
 

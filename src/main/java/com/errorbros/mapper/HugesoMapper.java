@@ -3,10 +3,13 @@ package com.errorbros.mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.errorbros.entity.HugesoDTO;
+import com.errorbros.entity.MenuDTO;
 
 @Mapper
 public interface HugesoMapper {
 
-	public HugesoDTO showHugeso(String hugesoNm);
+	public HugesoDTO showHugeso(String restIdx);
+
+	public MenuDTO showMenu(int restIdx);
 
 }

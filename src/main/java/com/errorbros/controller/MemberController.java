@@ -36,7 +36,7 @@ public class MemberController {
 	// 중복된 아이디 확인
 	@RequestMapping("/idCheck")
 	public @ResponseBody boolean idCheck(@RequestParam("inputI") String inputI) {
-		MemberDTO tb_member = MemberMapper.idCheck(inputI);
+		MemberDTO tb_member = memberMapper.idCheck(inputI);
 		if (tb_member == null) {
 			return true;
 		} else {
