@@ -2,8 +2,14 @@ package com.errorbros.entity;
 
 import java.math.BigDecimal;
 
-//ÈÞ°Ô¼Ò 
-public class HugesoDTO {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class HugesoDTO {//ÈÞ°Ô¼Ò 
 
  // ÈÞ°Ô¼Ò °íÀ¯¹øÈ£ 
  private int restIdx;
