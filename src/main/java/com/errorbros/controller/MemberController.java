@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -155,4 +156,21 @@ public class MemberController {
 		}
 	}
 
+	// admin계정으로 로그인 했을 때 회원 삭제
+
+	@GetMapping("/deleteMember")
+	public String deleteMember(@RequestParam("mem_id") String mem_id) {
+
+		int cnt = memberMapper.deleteMember(mem_id);
+
+		if (cnt > 0) {
+			System.out.println("삭제됨");
+		} else {
+			System.out.println("실패");
+		}
+
+		System.out.println(mem_id);
+
+		return "redirect:/Main"; // 추후 수정
+	}
 }

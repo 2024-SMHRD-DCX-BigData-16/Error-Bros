@@ -27,4 +27,7 @@ public interface MemberMapper {
 	// 회원 정보 수정
 	public int updateMember(MemberDTO tb_member);
 
+	// 관리자가 회원 정보 삭제
+	public int deleteMember(String mem_id);
+
 }

@@ -33,6 +33,10 @@
 		where mem_id=#{mem_id} and mem_pw=#{mem_pw};
 	</update>
 
+	<!-- 관리자 회원 정보 삭제 -->
+	<delete id="deleteMember" parameterType="String">
+		delete from Member where mem_id=#{mem_id};
+	</delete>
 	
 
 </mapper>
