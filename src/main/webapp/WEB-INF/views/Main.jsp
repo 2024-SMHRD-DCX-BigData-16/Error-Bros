@@ -155,8 +155,10 @@
         <div class="hu-text">휴게소 검색</div>
         <div class="search-container">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="휴게소 검색">
-                <button class="search-btn" onclick="showButtons()">검색</button>
+            	<form action="showHugeso" method="post">
+                	<input type="text" name="searchInput" id="searchInput" placeholder="휴게소 검색">
+                	<button type="submit" class="search-btn" onclick="showButtons()">검색</button>
+            	</form>
             </div>
             <!-- 검색 버튼을 누르면 나타나는 버튼들 -->
             <div class="buttons" id="buttons">
