@@ -53,7 +53,6 @@
             color: rgb(199, 126, 17);
             text-align: center;
         }
-        
         /* 카테고리 메뉴 */
         .menu {
             display: flex;
@@ -68,7 +67,7 @@
             color: black;
             font-weight: bold;
         }
-        /* 중앙 error 텍스트 */
+        /* 중앙 휴게소 검색 텍스트 */
         .center-container {
             display: flex;
             flex-direction: column;
@@ -76,36 +75,58 @@
             justify-content: center;
             flex-grow: 1;
         }
-        .error-text {
+        .hu-text {
             font-size: 60px;
             font-weight: bold;
-            color: green; /* 빨간색 */
+            color: green;
             margin-bottom: 20px;
         }
         /* 검색창 스타일 */
         .search-container {
+            position: relative;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .search-box {
             display: flex;
             align-items: center;
-            width: 500px;
+            width: 100%;
             border: 1px solid #dfe1e5;
             border-radius: 25px;
             padding: 10px 15px;
             box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
             background: white;
         }
-        .search-container input {
+        .search-box input {
             flex: 1;
             border: none;
             outline: none;
             font-size: 18px;
             padding: 5px;
         }
-        .search-container .icon {
-            width: 20px;
-            height: 20px;
-            margin-left: 10px;
+        .search-btn {
+            background-color: yellow;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
             cursor: pointer;
         }
+        .buttons {
+            display: none;
+            margin-top: 20px;
+        }
+        .buttons button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .order-btn { background-color: orange; color: white; }
+        .info-btn { background-color: blue; color: white; }
     </style>
 </head>
 <body>
@@ -121,7 +142,6 @@
     <!-- 내비게이션 -->
     <div class="nav">
         <div class="logo">404</div>
-        </div>
     </div>
 
     <!-- 카테고리 메뉴 -->
@@ -130,12 +150,27 @@
         <a href="#">리뷰게시판</a>
     </div>
 
-    <!-- 중앙 error 및 검색창 -->
+    <!-- 중앙 휴게소 검색창 -->
     <div class="center-container">
-        <div class="error-text">휴게소 검색</div>
+        <div class="hu-text">휴게소 검색</div>
         <div class="search-container">
-            <input type="text" placeholder="휴게소 검색">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="휴게소 검색">
+                <button class="search-btn" onclick="showButtons()">검색</button>
+            </div>
+            <!-- 검색 버튼을 누르면 나타나는 버튼들 -->
+            <div class="buttons" id="buttons">
+                <button class="order-btn">음식 주문하기</button>
+                <button class="info-btn">휴게소 정보보기</button>
+            </div>
+        </div>
     </div>
 
+    <script>
+        function showButtons() {
+            document.getElementById("buttons").style.display = "flex";
+        }
+    </script>
 </body>
 </html>
+
