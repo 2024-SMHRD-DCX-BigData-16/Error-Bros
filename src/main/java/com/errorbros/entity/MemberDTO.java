@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -14,18 +13,25 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 public class MemberDTO {
 	
 	@NonNull
 	private String mem_id;
+	@NonNull
 	private String mem_pw;
+	@NonNull
 	private String mem_nm;
+	@NonNull
 	private String mem_phone;
+	@NonNull
 	private String mem_email;
+	@NonNull
 	private String mem_role;
+	@NonNull
 	private String mem_birthdate; 	// 데이터타입
+	@NonNull
 	private String mem_gender;		// 데이터타입
+	@NonNull
 	private String joined_at;		// 데이터타입
 	
 }
