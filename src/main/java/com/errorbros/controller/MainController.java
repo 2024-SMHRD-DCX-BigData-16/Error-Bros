@@ -16,9 +16,9 @@ public class MainController {
 		return "Main";
 	}
 
-	@RequestMapping("/info-btn")
+	@RequestMapping("/goHu")
 	public String gohu() {
 
-		return "hu";
+		return "Hu";
 	}
 }
