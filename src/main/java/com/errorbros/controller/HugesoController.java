@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.errorbros.entity.HugesoDTO;
+import com.errorbros.entity.MemberDTO;
 import com.errorbros.entity.MenuDTO;
 import com.errorbros.mapper.HugesoMapper;
 
@@ -37,6 +38,15 @@ public class HugesoController {
 		System.out.println(menuInfo.toString());
 		session.setAttribute("hugesoInfo", menuInfo);
 		return "Menu";
+	}
+
+	@RequestMapping("/updateReview")
+	public String updateReview(HttpSession session) {
+		// ÈÞ°Ô¼Ò Á¤º¸
+		HugesoDTO hugesoDTO = (HugesoDTO) session.getAttribute("hugesoInfo");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginMember");
+
+		return null;
 	}
 
 }
