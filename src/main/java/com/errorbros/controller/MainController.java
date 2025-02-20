@@ -5,13 +5,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
-	
+
 	@RequestMapping("/")
 	public String main() {
 		return "Main";
 	}
+
 	@RequestMapping("/goMain")
 	public String goMain() {
 		return "Main";
+	}
+
+	@RequestMapping("/info-btn")
+	public String gohu() {
+
+		return "hu";
 	}
 }
