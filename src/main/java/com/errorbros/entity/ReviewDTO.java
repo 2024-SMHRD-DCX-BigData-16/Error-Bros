@@ -1,6 +1,5 @@
 package com.errorbros.entity;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 //府轰 
@@ -22,7 +21,7 @@ public class ReviewDTO {
 	private Integer reviewLike;
 
 	// 府轰 乞痢
-	private BigDecimal reviewRatings;
+	private double reviewRatings;
 
 	// 府轰 累己老磊
 	private Timestamp createdAt;
@@ -67,11 +66,11 @@ public class ReviewDTO {
 		this.reviewLike = reviewLike;
 	}
 
-	public BigDecimal getReviewRatings() {
+	public double getReviewRatings() {
 		return reviewRatings;
 	}
 
-	public void setReviewRatings(BigDecimal reviewRatings) {
+	public void setReviewRatings(double reviewRatings) {
 		this.reviewRatings = reviewRatings;
 	}
 
@@ -93,4 +92,15 @@ public class ReviewDTO {
 		this.reviewRatings = param.getReviewRatings();
 		this.createdAt = param.getCreatedAt();
 	}
+
+	public ReviewDTO(int restIdx, String memId, String reviewContent, int reviewLike, double reviewRatings) {
+		super();
+		this.reviewIdx = reviewIdx;
+		this.restIdx = restIdx;
+		this.memId = memId;
+		this.reviewContent = reviewContent;
+		this.reviewLike = reviewLike;
+		this.reviewRatings = reviewRatings;
+	}
+
 }
