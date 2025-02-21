@@ -3,12 +3,12 @@
 <mapper namespace="com.errorbros.mapper.MemberMapper">
 	
 	<!-- 회원가입 -->
-	<insert id="memberInsert" parameterType="com.errorbros.entity.MemberDTO">
+	<insert id="memberInsert" parameterType="com.errorbros.entity.MemberDTO" >
 		insert into tb_member values(#{mem_id}, #{mem_pw}, #{mem_nm}, #{mem_phone}, #{mem_email}, #{mem_birthdate}, #{mem_gender}, #{mem_role}, #{joined_at});
 	</insert>
 
 	<!-- 로그인 -->
-	<select id="memberLogIn" parameterType="com.errorbros.entity.MemberDTO">
+	<select id="memberLogIn" parameterType="com.errorbros.entity.MemberDTO" resultType="com.errorbros.entity.MemberDTO">
 			select * from tb_member where mem_id=#{mem_id} and mem_pw=#{mem_pw};
 	</select>
 	

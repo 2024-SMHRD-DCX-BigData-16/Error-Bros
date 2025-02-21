@@ -115,9 +115,9 @@
 
     <!-- 상단바 -->
     <div class="top-bar">
-        <a href="#" id="login-link" onclick="toggleLogin()">로그인</a>
+        <a href="goLogin" id="login-link" onclick="toggleLogin()">로그인</a>
         <a href="#">마이페이지</a>
-        <a href="#">회원가입</a>
+        <a href="goJoin">회원가입</a>
         <a href="#">고객문의</a>
     </div>
 
@@ -128,7 +128,7 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="#">휴게소 찾기</a>
+        <a href="goHu">휴게소 찾기</a>
         <a href="#">리뷰게시판</a>
     </div>
 
@@ -136,44 +136,14 @@
     <div class="center-container">
         <div class="login-box" id="login-box">
             <h3>로그인</h3>
-            <input type="text" id="username" placeholder="아이디">
-            <input type="password" id="password" placeholder="비밀번호">
-            <button onclick="login()">로그인</button>
+            <form action="loginMember" method="post">
+	            <input type="text" id="login_id" placeholder="아이디">
+	            <input type="password" id="login_pw" placeholder="비밀번호">
+	            <button type="submit" >로그인</button>
+            </form>
         </div>
     </div>
 
-    <script>
-        async function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            if (!username || !password) {
-                alert('아이디와 비밀번호를 입력하세요.');
-                return;
-            }
-
-
-            if (result.success) {
-                alert('로그인 성공!');
-                document.getElementById('login-link').textContent = '로그아웃';
-                document.getElementById('login-box').style.display = 'none';
-            } else {
-                alert('로그인 실패! 아이디 또는 비밀번호를 확인하세요.');
-            }
-        }
-
-        function toggleLogin() {
-            const loginLink = document.getElementById('login-link');
-            if (loginLink.textContent === '로그아웃') {
-                // 로그아웃 처리
-                loginLink.textContent = '로그인';
-                document.getElementById('login-box').style.display = 'block';
-                alert('로그아웃 되었습니다.');
-            } else {
-                document.getElementById('login-box').style.display = 'block';
-            }
-        }
-    </script>
 </body>
 
 </html>

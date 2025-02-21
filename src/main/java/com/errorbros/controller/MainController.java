@@ -40,4 +40,10 @@ public class MainController {
 		return "JoinResult";
 	}
 
+	@RequestMapping("/goLogin")
+	public String goLogin() {
+
+		return "로그인";
+	}
+
 }

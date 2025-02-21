@@ -1,19 +1,14 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-
-=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
->>>>>>> 86f1619a69df0cdbb26c9eaf4cde562b1a715159
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Search</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -143,11 +138,8 @@
     <div class="top-bar">
         <a href="goLogin">로그인</a>
         <a href="#">마이페이지</a>
-<<<<<<< HEAD
-        <a href="goHuiyuan">회원가입</a>
-=======
+
         <a href="goJoin">회원가입</a>
->>>>>>> 86f1619a69df0cdbb26c9eaf4cde562b1a715159
         <a href="#">고객문의</a>
     </div>
 
