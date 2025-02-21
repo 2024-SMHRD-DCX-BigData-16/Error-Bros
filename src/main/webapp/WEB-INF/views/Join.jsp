@@ -153,21 +153,6 @@
 
     <!-- 회원가입 폼 -->
     <div class="center-container">
-<<<<<<< HEAD
-        <form class="signup-form" id="memberJoin">
-            <h2>회원가입</h2>
-            <input type="text" id="mem_id" placeholder="아이디" required>
-            <input type="password" id="mem_pw" placeholder="비밀번호" required>
-            <input type="text" id="mem_nm" placeholder="이름" required>
-            <input type="text" id="mem_phone" placeholder="전화번호" required>
-            <input type="email" id="mem_email" placeholder="이메일" required>
-            <input type="date" id="mem_birthdate" required>
-            <select id="mem_gender">
-                <option value="M">남성</option>
-                <option value="F">여성</option>
-            </select>
-            <a href="goJoinResult"><button type="submit">가입하기</button></a>
-=======
         <form class="signup-form" name="insertMember" action="insertMember" method="post">
             <h2>회원가입</h2>
             <input type="text" name="mem_id" placeholder="아이디" required>
@@ -182,7 +167,6 @@
                 <option value="F">여성</option>
             </select>
             <button type="submit">가입하기</button>
->>>>>>> b222010f9559e35a4dc6b85fe5d401cfa5808ad5
         </form>
     </div>
 

@@ -19,11 +19,8 @@ public class MainController {
 	@RequestMapping("/goHu")
 	public String gohu() {
 
-<<<<<<< HEAD
-		return "Hu";
-=======
 		return "Main";
->>>>>>> b222010f9559e35a4dc6b85fe5d401cfa5808ad5
+
 	}
 
 	@RequestMapping("/goMap")
