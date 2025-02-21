@@ -114,7 +114,7 @@
         .photo-container {
             flex: 1;
             height: 300px;
-            background: url('img/정안 휴게소.png') no-repeat center/contain;
+            background: ;
             border-radius: 10px;
             background-color: #fff;
         }
@@ -211,7 +211,7 @@
 
     <!-- 휴게소 정보 컨테이너 -->
     <div class="info-container">
-        <div class="info-title">정안 휴게소</div>
+        <div class="info-title">${hugesoInfo.rest_nm }</div>
 
         <!-- 지도 + 사진을 가로로 배치하는 컨테이너 -->
         <div class="map-photo-wrapper">
@@ -222,7 +222,7 @@
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = {
-		        center: new kakao.maps.LatLng(37.57771, 126.96996), // 지도의 중심좌표
+		        center: new kakao.maps.LatLng(${hugesoInfo.lat}, ${hugesoInfo.lon}), // 지도의 중심좌표
 		        level: 3, // 지도의 확대 레벨
 		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
 		    }; 
@@ -243,7 +243,7 @@
 
 		// 지도에 마커를 생성하고 표시한다
 		var marker = new kakao.maps.Marker({
-		    position: new kakao.maps.LatLng(37.57729, 126.97219), // 마커의 좌표
+		    position: new kakao.maps.LatLng(${hugesoInfo.lat}, ${hugesoInfo.lon}), // 마커의 좌표
 		    draggable : true, // 마커를 드래그 가능하도록 설정한다
 		    map: map // 마커를 표시할 지도 객체
 		});
@@ -262,8 +262,8 @@
 
         <!-- 휴게소 정보 -->
         <div class="info-details">
-            <p><strong>주소:</strong> 서울특별시 강남구 ○○로 123</p>
-            <p><strong>편의시설:</strong> 주차장, 화장실, 식당, 편의점, 카페</p>
+            <p><strong>주소:</strong> ${hugesoInfo.rest_addr }</p>
+            <p><strong>편의시설:</strong> ${hugesoInfo.rest_facilities }</p>
         </div>
 
         <!-- 리뷰 섹션 -->

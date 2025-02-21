@@ -17,4 +17,6 @@ public interface HugesoMapper {
 
 	public int insertReview(ReviewDTO reviewDTO);
 
+	public HugesoDTO showHugeso(String rest_idx);
+
 }

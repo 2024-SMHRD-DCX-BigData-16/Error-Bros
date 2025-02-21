@@ -194,7 +194,7 @@
 							${hugeso.rest_nm}        
 						</td>
 						<td>
-							<a href="goHu"><button class="info-btn">휴게소 정보보기</button></a>
+							<a href="showHugeso?rest_idx=${hugeso.rest_idx}"><button class="info-btn">휴게소 정보보기</button></a>
 						</td>
 					</tr>
 			      </c:forEach>
