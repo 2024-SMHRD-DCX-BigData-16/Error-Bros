@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -21,6 +23,7 @@
             height: 100vh;
             background-color: #fff;
         }
+
         /* 상단바 */
         .top-bar {
             background-color: rgb(51, 199, 17);
@@ -32,11 +35,13 @@
             top: 0;
             left: 0;
         }
+
         .top-bar a {
             color: red;
             text-decoration: none;
             margin-left: 15px;
         }
+
         /* 내비게이션 */
         .nav {
             display: flex;
@@ -47,12 +52,14 @@
             width: 100%;
             margin-top: 40px;
         }
+
         .logo {
             font-size: 24px;
             font-weight: bold;
             color: rgb(199, 126, 17);
             text-align: center;
         }
+
         /* 카테고리 메뉴 */
         .menu {
             display: flex;
@@ -61,12 +68,14 @@
             border-top: 1px solid blue;
             width: 100%;
         }
+
         .menu a {
             margin-right: 20px;
             text-decoration: none;
             color: black;
             font-weight: bold;
         }
+
         /* 중앙 휴게소 검색 텍스트 */
         .center-container {
             display: flex;
@@ -75,67 +84,49 @@
             justify-content: center;
             flex-grow: 1;
         }
-        .hu-text {
-            font-size: 60px;
-            font-weight: bold;
-            color: green;
+
+        .welcome-message {
+            font-size: 3em;
+            color: #333;
+            /* 텍스트 색상 변경 */
             margin-bottom: 20px;
+            animation: fadeInUp 1s ease-in-out;
+            /* 애니메이션 추가 */
         }
-        /* 검색창 스타일 */
-        .search-container {
-            position: relative;
-            width: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(20);
+            }
         }
-        .search-box {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            border: 1px solid #dfe1e5;
-            border-radius: 25px;
-            padding: 10px 15px;
-            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
-            background: white;
+
+        .user-info {
+            font-size: 1.5em;
+            color: #666;
+            margin-bottom: 30px;
         }
-        .search-box input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 18px;
-            padding: 5px;
+
+        .additional-info {
+            font-size: 1.2em;
+            color: #999;
+            text-align: center;
         }
-        .search-btn {
-            background-color: yellow;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .buttons {
-            display: none;
-            margin-top: 20px;
-        }
-        .buttons button {
-            padding: 10px 15px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .order-btn { background-color: orange; color: white; }
-        .info-btn { background-color: blue; color: white; }
     </style>
 </head>
+
 <body>
 
     <!-- 상단바 -->
     <div class="top-bar">
-        <a href="goLogin">로그인</a>
+        <a href="#">로그인</a>
         <a href="#">마이페이지</a>
-        <a href="goJoin">회원가입</a>
+        <a href="#">회원가입</a>
         <a href="#">고객문의</a>
     </div>
 
@@ -146,10 +137,28 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="goHu">휴게소 찾기</a>
+        <a href="#">휴게소 찾기</a>
         <a href="#">리뷰게시판</a>
     </div>
-    <h1>${mem_id} 님 가입을 환영합니다</h1>
 
+    <div class="center-container">
+        <div class="welcome-message">
+            환영합니다!
+        </div>
+        <div class="user-info">
+            ${mem_id}님, 404에 오신 것을 환영합니다!
+        </div>
+        <div class="additional-info">
+            <p>이제 404의 다양한 서비스를 이용하실 수 있습니다.</p>
+            <p>
+                <a href="goMain">메인으로 가기</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
 </body>
+
 </html>
