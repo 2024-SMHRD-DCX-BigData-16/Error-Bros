@@ -9,7 +9,7 @@ import com.errorbros.entity.ReviewDTO;
 @Mapper
 public interface HugesoMapper {
 
-	public HugesoDTO showHugeso(String restIdx);
+	public HugesoDTO showHugeso(String restNm);
 
 	public MenuDTO showMenu(int restIdx);
 

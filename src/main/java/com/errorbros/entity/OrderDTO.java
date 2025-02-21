@@ -2,118 +2,34 @@ package com.errorbros.entity;
 
 import java.sql.Timestamp;
 
-//ÁÖ¹® 
+//ï¿½Ö¹ï¿½ 
 public class OrderDTO {
 
-	// ÁÖ¹® °íÀ¯¹øÈ£
+	// ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 	private int orderIdx;
 
-	// ÁÖ¹®ÀÚ ¾ÆÀÌµð
+	// ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
 	private String memId;
 
-	// ÁÖ¹® ÃÑ±Ý¾×
+	// ï¿½Ö¹ï¿½ ï¿½Ñ±Ý¾ï¿½
 	private Integer orderTotalAmount;
 
-	// ÇÒÀÎ ±Ý¾×
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾ï¿½
 	private Integer discountAmount;
 
-	// °áÁ¦ ´ë»ó±Ý¾×
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¾ï¿½
 	private Integer payAmount;
 
-	// °áÁ¦ ¼ö´Ü
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private String payMethod;
 
-	// °áÁ¦ ±Ý¾×
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾ï¿½
 	private Integer paidAmount;
 
-	// ÁÖ¹® ÀÏÀÚ
+	// ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private Timestamp orderedAt;
 
-	// ÁÖ¹® »óÅÂ
+	// ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private String orderStatus;
 
-	public int getOrderIdx() {
-		return orderIdx;
-	}
-
-	public void setOrderIdx(int orderIdx) {
-		this.orderIdx = orderIdx;
-	}
-
-	public String getMemId() {
-		return memId;
-	}
-
-	public void setMemId(String memId) {
-		this.memId = memId;
-	}
-
-	public Integer getOrderTotalAmount() {
-		return orderTotalAmount;
-	}
-
-	public void setOrderTotalAmount(Integer orderTotalAmount) {
-		this.orderTotalAmount = orderTotalAmount;
-	}
-
-	public Integer getDiscountAmount() {
-		return discountAmount;
-	}
-
-	public void setDiscountAmount(Integer discountAmount) {
-		this.discountAmount = discountAmount;
-	}
-
-	public Integer getPayAmount() {
-		return payAmount;
-	}
-
-	public void setPayAmount(Integer payAmount) {
-		this.payAmount = payAmount;
-	}
-
-	public String getPayMethod() {
-		return payMethod;
-	}
-
-	public void setPayMethod(String payMethod) {
-		this.payMethod = payMethod;
-	}
-
-	public Integer getPaidAmount() {
-		return paidAmount;
-	}
-
-	public void setPaidAmount(Integer paidAmount) {
-		this.paidAmount = paidAmount;
-	}
-
-	public Timestamp getOrderedAt() {
-		return orderedAt;
-	}
-
-	public void setOrderedAt(Timestamp orderedAt) {
-		this.orderedAt = orderedAt;
-	}
-
-	public String getOrderStatus() {
-		return orderStatus;
-	}
-
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
-	}
-
-	// tbOrder ¸ðµ¨ º¹»ç
-	public void CopyData(OrderDTO param) {
-		this.orderIdx = param.getOrderIdx();
-		this.memId = param.getMemId();
-		this.orderTotalAmount = param.getOrderTotalAmount();
-		this.discountAmount = param.getDiscountAmount();
-		this.payAmount = param.getPayAmount();
-		this.payMethod = param.getPayMethod();
-		this.paidAmount = param.getPaidAmount();
-		this.orderedAt = param.getOrderedAt();
-		this.orderStatus = param.getOrderStatus();
-	}
 }
