@@ -34,6 +34,10 @@ public class MemberController {
 			System.out.println("회원 가입 실패");
 			return "Join";
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5814baf8a6dfcae7e7613b7ec47a5bc37f0038d2
 	}
 
 	// 아이디 체크
@@ -70,8 +74,12 @@ public class MemberController {
 			session.removeAttribute("tb_member");
 			System.out.println("로그인 실패");
 
+<<<<<<< HEAD
 			return "로그인";
 
+=======
+			return "Login";
+>>>>>>> 5814baf8a6dfcae7e7613b7ec47a5bc37f0038d2
 		} else {
 			// 로그인 성공
 			session.setAttribute("loginMember", loginMember);
