@@ -332,7 +332,10 @@
         </script>
 
         <!-- 음식 주문 버튼 -->
-        <button class="order-btn">음식 주문하기</button>
+        <div class="buttons" id="buttons">
+                <a href="go음식선택"><button class="order-btn">음식 주문하기</button></a>
+
+            </div>
     </div>
 
 </body>
