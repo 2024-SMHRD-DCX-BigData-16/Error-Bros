@@ -19,7 +19,7 @@ public class MemberDTO {// 회원
 	private String mem_pw;
 
 	// 회원 이름
-	private String mem_name;
+	private String mem_nm;
 
 	// 회원 전화번호
 	private String mem_phone;
@@ -56,11 +56,11 @@ public class MemberDTO {// 회원
 	}
 
 	public String getMemName() {
-		return mem_name;
+		return mem_nm;
 	}
 
 	public void setMemName(String memName) {
-		this.mem_name = mem_name;
+		this.mem_nm = mem_nm;
 	}
 
 	public String getMemPhone() {

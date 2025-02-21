@@ -132,18 +132,20 @@
         <a href="#">리뷰게시판</a>
     </div>
 
-    <!-- 로그인 폼 -->
-    <div class="center-container">
-        <div class="login-box" id="login-box">
-            <h3>로그인</h3>
-            <form action="loginMember" method="post">
-	            <input type="text" id="login_id" placeholder="아이디">
-	            <input type="password" id="login_pw" placeholder="비밀번호">
-	            <button type="submit" >로그인</button>
-            </form>
-        </div>
-    </div>
+		<!-- Wrapper -->
+	<div id="wrapper">
+		<!-- Menu -->
+			<nav id="Update">	
+				<ul class="actions vertical">
+					<li><h1>환영합니다!</h1></li>
+					<li>회원가입을 축하합니다.</li>
+					<!-- Q2. 회원가입 한 회원정보 중 이메일을 출력하시오.(request영역 활용) -->
+					<%-- <%String email = (String)request.getAttribute("email")); %> --%>
+					<li>${mem_nm }님 환영합니다.</li>
+					<li><button onclick='location.href="goMain"'>시작하기</button></li>
+				</ul>
+			</nav>			
+	</div>
 
-</body>
-
+	</body>
 </html>

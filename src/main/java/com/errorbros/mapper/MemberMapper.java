@@ -12,7 +12,7 @@ public interface MemberMapper {
 	public void memberInsert(MemberDTO tb_member);
 
 	// 로그인
-	public MemberDTO memberLogIn(MemberDTO tb_member);
+	public MemberDTO memberLogIn(String mem_id, String mem_pw);
 
 	// 아이디 체크
 	public MemberDTO idCheck(String inputI);

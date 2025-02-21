@@ -43,18 +43,22 @@ public class MemberController {
 
 	// 로그인
 	@PostMapping("/loginMember")
-	public String memberJoin(MemberDTO tb_member, Model model, HttpSession session) {
-
-		MemberDTO loginMember = memberMapper.memberLogIn(tb_member);
+	public String memberJoin(@RequestParam("login_id") String mem_id, @RequestParam("login_pw") String mem_pw,
+			Model model, HttpSession session) {
+		System.out.println("아이디 : " + mem_id + ", 비번 : " + mem_pw);
+		MemberDTO loginMember = memberMapper.memberLogIn(mem_id, mem_pw);
+		System.out.println(loginMember.toString() + "로그인 정보");
 
 		if (loginMember == null) {
 			// 로그인 실패
 			session.removeAttribute("tb_member");
-			return "Main";
+			System.out.println("로그인 실패");
+			return "로그인";
 		} else {
 			// 로그인 성공
 			session.setAttribute("loginMember", loginMember);
-			return "Main";
+			System.out.println("로그인 성공 + 페이지 이동");
+			return "LoginSuccess";
 		}
 	}
 
