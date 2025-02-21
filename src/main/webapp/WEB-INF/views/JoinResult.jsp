@@ -146,7 +146,7 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="goHu">휴게소 찾기</a>
+        <a href="goMain">휴게소 찾기</a>
         <a href="#">리뷰게시판</a>
     </div>
     <h1>${mem_id} 님 가입을 환영합니다</h1>

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error Search</title>
+    <title>회원가입</title>
     <style>
         * {
             margin: 0;
@@ -102,13 +102,13 @@
 
         .signup-form h2 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .signup-form input,
         .signup-form select {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -116,54 +116,16 @@
 
         .signup-form button {
             width: 100%;
-            padding: 8px;
-            /* padding 값 증가 */
-            background-color: #007bff;
-            /* 파란색 계열로 변경 */
-            
+            padding: 10px;
+            background-color: gold;
             border: none;
             color: white;
             font-size: 16px;
-            font-weight: 500;
-            /* 폰트 굵기 조절 */
             cursor: pointer;
-            border-radius: 8px;
-            /* 둥근 모서리 적용 */
-            transition: background-color 0.3s ease;
-            /* 호버 효과 부드럽게 적용 */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            /* 그림자 효과 추가 */
         }
 
         .signup-form button:hover {
-            background-color: #0056b3;
-            /* 호버 시 색상 변경 */
-        }
-
-        /* 아이디/이메일 중복 확인 버튼 스타일 */
-        .check-button {
-            width: auto;
-            /* width 자동 조절 */
-            height: auto;
-            /* height 자동 조절 */
-            padding: 8px 16px;
-            /* padding 값 조절 */
-            margin-left: 5px;
-            font-size: 14px;
-            /* 폰트 크기 조절 */
-            background-color: #6c757d;
-            /* 회색 계열로 변경 */
-            border: none;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            /* 호버 효과 부드럽게 적용 */
-        }
-
-        .check-button:hover {
-            background-color: #5a6268;
-            /* 호버 시 색상 변경 */
+            background-color: navy;
         }
     </style>
 </head>
@@ -185,33 +147,26 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="#">휴게소 찾기</a>
-        <a href="#">리뷰게시판</a>
+        <a href="goHu">휴게소 찾기</a>
+        <a href="goReview">리뷰게시판</a>
     </div>
 
     <!-- 회원가입 폼 -->
     <div class="center-container">
-        <form class="signup-form" id="signupForm">
+        <form class="signup-form" name="insertMember" action="insertMember" method="post">
             <h2>회원가입</h2>
-            <input type="text" id="mem_id" placeholder="아이디" required>
-            <button type="button" onclick="checkDuplicateId()">아이디 중복 확인</button><br>
-            <!-- 중복확인 버튼 -->
-            <span id="idMessage"></span><br>
-            <input type="password" id="mem_pw" placeholder="비밀번호" required>
-            <input type="text" id="mem_nm" placeholder="이름" required>
-            <input type="text" id="mem_phone" placeholder="전화번호" required>
-            <input type="email" id="mem_email" placeholder="이메일" required>
-            <button type="button" onclick="checkDuplicateEmail()">이메일 중복 확인</button><br>
-            <!-- 중복확인 버튼 -->
-            <span id="emailMessage"></span><br>
-            <input type="date" id="mem_birthdate" required>
-            <select id="mem_gender">
+            <input type="text" name="mem_id" placeholder="아이디" required>
+            <input type="password" name="mem_pw" placeholder="비밀번호" required>
+            <input type="text" name="mem_nm" placeholder="이름" required>
+            <input type="text" name="mem_phone" placeholder="전화번호" required>
+            <input type="email" name="mem_email" placeholder="이메일" required>
+            <input type="date" name="mem_birthdate" required>
+            <input type="text" name="mem_role" placeholder="회원 역할" required>
+            <select name="mem_gender">
                 <option value="M">남성</option>
                 <option value="F">여성</option>
             </select>
-            <a href="goJoinResult"></a><button type="button" onclick="submitForm()">
-                <i class="fas fa-user-plus"></i> 가입하기
-            </button></a>
+            <button type="submit">가입하기</button>
         </form>
     </div>
 

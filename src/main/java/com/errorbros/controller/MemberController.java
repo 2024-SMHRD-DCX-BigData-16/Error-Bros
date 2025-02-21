@@ -48,6 +48,17 @@ public class MemberController {
 		}
 	}
 
+	// 이메일 체크
+	@RequestMapping("/emailCheck")
+	public @ResponseBody boolean emailCheck(@RequestParam("inputE") String inputE) {
+		MemberDTO tb_member = memberMapper.emailCheck(inputE);
+		if (tb_member == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	// 로그인
 	@PostMapping("/loginMember")
 	public String memberJoin(@RequestParam("login_id") String mem_id, @RequestParam("login_pw") String mem_pw,

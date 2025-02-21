@@ -20,7 +20,6 @@ public class MainController {
 	public String gohu() {
 
 		return "Hu";
-
 	}
 
 	@RequestMapping("/goMap")

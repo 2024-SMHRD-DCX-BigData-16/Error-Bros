@@ -16,6 +16,9 @@ public interface MemberMapper {
 
 	// 아이디 체크
 	public MemberDTO idCheck(String inputI);
+	
+	// 이메일 체크
+	public MemberDTO emailCheck(String inputE);
 
 	// 아이디 찾기
 	public MemberDTO findId(@Param("mem_nm") String memNm, @Param("mem_email") String memEmail);
@@ -26,5 +29,6 @@ public interface MemberMapper {
 
 	// 회원 정보 수정
 	public int updateMember(MemberDTO tb_member);
+	
 
 }

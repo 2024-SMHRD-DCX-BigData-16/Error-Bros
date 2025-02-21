@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 <%@page import="com.errorbros.entity.MemberDTO"%>
-=======
->>>>>>> b222010f9559e35a4dc6b85fe5d401cfa5808ad5
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -199,7 +196,6 @@
 						<td>
 							<a href="goHu"><button class="info-btn">휴게소 정보보기</button></a>
 						</td>
-						
 					</tr>
 			      </c:forEach>
 			      
@@ -207,16 +203,8 @@
 			   </table>
 			</c:otherwise>
             </c:choose>
-           
-            <!-- 검색 버튼을 누르면 나타나는 리스트 -->
-            <div class="buttons" id="buttons">
-                <a href="goMap"><button class="order-btn">음식 주문하기</button></a>
-                <a href="goHu"><button class="info-btn">휴게소 정보보기</button></a>
-            </div>
         </div>
     </div>
-
-    
 </body>
 </html>
 
