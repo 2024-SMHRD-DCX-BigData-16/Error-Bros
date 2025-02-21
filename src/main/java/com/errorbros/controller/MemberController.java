@@ -25,11 +25,6 @@ public class MemberController {
 	@PostMapping("/insertMember")
 	public String memberInsert(MemberDTO tb_member, Model model, HttpSession session) {
 		System.out.println(tb_member.toString() + " 가입 정보");
-<<<<<<< HEAD
-		memberMapper.memberInsert(tb_member);
-		model.addAttribute("mem_id", tb_member.getMem_id());
-		return "Main";
-=======
 		int joinResult = memberMapper.memberInsert(tb_member);
 		System.out.println(joinResult);
 		if (joinResult > 0) {
@@ -39,8 +34,6 @@ public class MemberController {
 			System.out.println("회원 가입 실패");
 			return "Join";
 		}
-
->>>>>>> b222010f9559e35a4dc6b85fe5d401cfa5808ad5
 	}
 
 	// 아이디 체크
@@ -53,7 +46,16 @@ public class MemberController {
 			return false;
 		}
 	}
-
+	// 이메일 체크
+	@RequestMapping("/emailCheck")
+	public @ResponseBody boolean emailCheck(@RequestParam("inputE") String inputE) {
+	  MemberDTO tb_member = memberMapper.emailCheck(inputE);
+	  if (tb_member == null) {
+	    return true;
+	  } else {
+	    return false;
+	  }
+	}
 	// 로그인
 	@PostMapping("/loginMember")
 	public String memberJoin(@RequestParam("login_id") String mem_id, @RequestParam("login_pw") String mem_pw,
@@ -67,19 +69,14 @@ public class MemberController {
 			// 로그인 실패
 			session.removeAttribute("tb_member");
 			System.out.println("로그인 실패");
-<<<<<<< HEAD
+
 			return "로그인";
-=======
-			return "Login";
->>>>>>> b222010f9559e35a4dc6b85fe5d401cfa5808ad5
+
 		} else {
 			// 로그인 성공
 			session.setAttribute("loginMember", loginMember);
 			System.out.println("로그인 성공 + 페이지 이동");
-<<<<<<< HEAD
-=======
 			System.out.println("로그인 정보 : " + loginMember);
->>>>>>> b222010f9559e35a4dc6b85fe5d401cfa5808ad5
 			return "Main";
 		}
 	}
@@ -87,13 +84,8 @@ public class MemberController {
 	// 로그 아웃
 	@RequestMapping("/logOut")
 	public String logOut(HttpSession session) {
-<<<<<<< HEAD
-		session.invalidate(); // 세션 무효화
-	    return "Main"; // 메인 페이지로 리디렉션
-=======
 		session.removeAttribute("loginMember");
 		return "Main";
->>>>>>> b222010f9559e35a4dc6b85fe5d401cfa5808ad5
 	}
 
 	// 아이디 찾기
