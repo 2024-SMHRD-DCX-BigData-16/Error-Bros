@@ -45,5 +45,10 @@ public class MainController {
 
 		return "Login";
 	}
+	
+	@RequestMapping("/goUpdateMember")
+	public String goUpdateMember() {
 
+	     return "UpdateMember";
+	   }
 }
