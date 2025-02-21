@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.errorbros.entity.HugesoDTO;
 import com.errorbros.entity.MemberDTO;
@@ -36,13 +35,16 @@ public class HugesoController {
 //		session.setAttribute("hugesoList", hugesoList);
 //	}
 
-	@ResponseBody
-	@PostMapping("/showHugeso")
-	public List<HugesoDTO> showHugeso(@RequestParam("searchInput") String searchInput) {
+	// 휴게소 정보 로드
+	@PostMapping("/searchHugeso")
+	public String searchHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
 		String restNm = searchInput;
 		System.out.println("휴게소 검색 내용: " + restNm);
-		List<HugesoDTO> hugesoList = hugesoMapper.showHugeso(restNm);
-		return hugesoList; // ✅ 세션 저장 대신 JSON 형태로 반환
+		List<HugesoDTO> hugesoList = hugesoMapper.searchHugeso(restNm);
+		System.out.println(hugesoList.toString());
+		session.setAttribute("hugesoList", hugesoList);
+		session.setAttribute("searchInput", searchInput);
+		return "Main";
 	}
 
 	// 휴게소 메뉴

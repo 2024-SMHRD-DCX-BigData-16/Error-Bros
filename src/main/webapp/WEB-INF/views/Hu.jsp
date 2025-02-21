@@ -194,7 +194,7 @@
     <div class="top-bar">
         <a href="goLogin">로그인</a>
         <a href="#">마이페이지</a>
-        <a href="go">회원가입</a>
+        <a href="goJoin">회원가입</a>
         <a href="#">고객문의</a>
     </div>
 
@@ -205,7 +205,7 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="#">휴게소 찾기</a>
+        <a href="goMain">휴게소 찾기</a>
         <a href="#">리뷰게시판</a>
     </div>
 
