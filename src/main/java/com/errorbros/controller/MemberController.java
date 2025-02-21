@@ -34,10 +34,7 @@ public class MemberController {
 			System.out.println("회원 가입 실패");
 			return "Join";
 		}
-<<<<<<< HEAD
-=======
 
->>>>>>> 3eb6e91f5758682fa90e1444202ffea9e68e59ee
 	}
 
 	// 아이디 체크
@@ -50,11 +47,7 @@ public class MemberController {
 			return false;
 		}
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 3eb6e91f5758682fa90e1444202ffea9e68e59ee
 	// 이메일 체크
 	@RequestMapping("/emailCheck")
 	public @ResponseBody boolean emailCheck(@RequestParam("inputE") String inputE) {
@@ -80,12 +73,7 @@ public class MemberController {
 			session.removeAttribute("tb_member");
 			System.out.println("로그인 실패");
 
-<<<<<<< HEAD
-			return "로그인";
-
-=======
 			return "Login";
->>>>>>> 3eb6e91f5758682fa90e1444202ffea9e68e59ee
 		} else {
 			// 로그인 성공
 			session.setAttribute("loginMember", loginMember);
@@ -155,73 +143,72 @@ public class MemberController {
 //
 //	}
 	@PostMapping("/updateMember")
-	public String updateMember(
-			@RequestParam("mem_pw") String mem_pw, 
-		    @RequestParam("mem_email") String mem_email,
-		    @RequestParam("mem_phone") String mem_phone, 
-		    @RequestParam(value = "mem_birthdate", required = false) Date mem_birthdate, // required = false로 변경
-		    @RequestParam(value = "mem_gender", required = false) String mem_gender, // required = false로 변경
-		    HttpSession session) {
+	public String updateMember(@RequestParam("mem_pw") String mem_pw, @RequestParam("mem_email") String mem_email,
+			@RequestParam("mem_phone") String mem_phone,
+			@RequestParam(value = "mem_birthdate", required = false) Date mem_birthdate, // required = false로 변경
+			@RequestParam(value = "mem_gender", required = false) String mem_gender, // required = false로 변경
+			HttpSession session) {
 
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-	    if (loginMember == null) {
-	        return "redirect:/login";
-	    }
+		if (loginMember == null) {
+			return "redirect:/login";
+		}
 
-	    // 관리자 계정 여부 확인
-	    if (loginMember.getMem_role().equals("admin")) { // "admin"은 관리자 역할을 나타내는 값
-	        MemberDTO member = new MemberDTO();
-	        member.setMem_id(loginMember.getMem_id());
-	        member.setMem_email(mem_email);
-	        member.setMem_phone(mem_phone);
+		// 관리자 계정 여부 확인
+		if (loginMember.getMem_role().equals("admin")) { // "admin"은 관리자 역할을 나타내는 값
+			MemberDTO member = new MemberDTO();
+			member.setMem_id(loginMember.getMem_id());
+			member.setMem_email(mem_email);
+			member.setMem_phone(mem_phone);
 
-	        // 비밀번호 변경 여부 확인 및 처리
-	        if (!mem_pw.equals(loginMember.getMem_pw())) {
-	            member.setMem_pw(mem_pw);
-	        } else {
-	            member.setMem_pw(loginMember.getMem_pw());
-	        }
+			// 비밀번호 변경 여부 확인 및 처리
+			if (!mem_pw.equals(loginMember.getMem_pw())) {
+				member.setMem_pw(mem_pw);
+			} else {
+				member.setMem_pw(loginMember.getMem_pw());
+			}
 
-	        // 관리자 계정일 경우에만 생년월일 및 남녀 정보 수정
-	        member.setMem_birthdate(mem_birthdate);
-	        member.setMem_gender(mem_gender);
+			// 관리자 계정일 경우에만 생년월일 및 남녀 정보 수정
+			member.setMem_birthdate(mem_birthdate);
+			member.setMem_gender(mem_gender);
 
-	        int result = memberMapper.updateMember(member);
+			int result = memberMapper.updateMember(member);
 
-	        if (result > 0) {
-	            loginMember.setMem_email(mem_email);
-	            loginMember.setMem_phone(mem_phone);
-	            loginMember.setMem_birthdate(mem_birthdate);
-	            loginMember.setMem_gender(mem_gender);
-	            session.setAttribute("loginMember", loginMember);
-	            return "Main";
-	        } else {
-	            return "updateMember";
-	        }
-	    } else {
-	        // 관리자 계정이 아닐 경우, 생년월일 및 남녀 정보는 수정하지 않고 다른 정보만 수정
-	        MemberDTO member = new MemberDTO();
-	        member.setMem_id(loginMember.getMem_id());
-	        member.setMem_email(mem_email);
-	        member.setMem_phone(mem_phone);
+			if (result > 0) {
+				loginMember.setMem_email(mem_email);
+				loginMember.setMem_phone(mem_phone);
+				loginMember.setMem_birthdate(mem_birthdate);
+				loginMember.setMem_gender(mem_gender);
+				session.setAttribute("loginMember", loginMember);
+				return "Main";
+			} else {
+				return "updateMember";
+			}
+		} else {
+			// 관리자 계정이 아닐 경우, 생년월일 및 남녀 정보는 수정하지 않고 다른 정보만 수정
+			MemberDTO member = new MemberDTO();
+			member.setMem_id(loginMember.getMem_id());
+			member.setMem_email(mem_email);
+			member.setMem_phone(mem_phone);
 
-	        // 비밀번호 변경 여부 확인 및 처리
-	        if (!mem_pw.equals(loginMember.getMem_pw())) {
-	            member.setMem_pw(mem_pw);
-	        } else {
-	            member.setMem_pw(loginMember.getMem_pw());
-	        }
+			// 비밀번호 변경 여부 확인 및 처리
+			if (!mem_pw.equals(loginMember.getMem_pw())) {
+				member.setMem_pw(mem_pw);
+			} else {
+				member.setMem_pw(loginMember.getMem_pw());
+			}
 
-	        int result = memberMapper.updateMember(member);
+			int result = memberMapper.updateMember(member);
 
-	        if (result > 0) {
-	            loginMember.setMem_email(mem_email);
-	            loginMember.setMem_phone(mem_phone);
-	            session.setAttribute("loginMember", loginMember);
-	            return "Main";
-	        } else {
-	            return "updateMember";
-	        }
+			if (result > 0) {
+				loginMember.setMem_email(mem_email);
+				loginMember.setMem_phone(mem_phone);
+				session.setAttribute("loginMember", loginMember);
+				return "Main";
+			} else {
+				return "updateMember";
+			}
+		}
+
 	}
-
 }
