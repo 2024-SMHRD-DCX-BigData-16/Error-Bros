@@ -162,7 +162,7 @@
             </div>
             <!-- 검색 버튼을 누르면 나타나는 버튼들 -->
             <div class="buttons" id="buttons">
-                <button class="order-btn">음식 주문하기</button>
+                <a href="goMap"><button class="order-btn">음식 주문하기</button></a>
                 <a href="goHu"><button class="info-btn">휴게소 정보보기</button></a>
             </div>
         </div>

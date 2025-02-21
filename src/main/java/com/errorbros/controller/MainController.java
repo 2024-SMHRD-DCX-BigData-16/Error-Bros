@@ -21,4 +21,10 @@ public class MainController {
 
 		return "Hu";
 	}
+
+	@RequestMapping("/goMap")
+	public String goMap() {
+
+		return "Map";
+	}
 }
