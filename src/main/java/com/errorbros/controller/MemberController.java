@@ -34,7 +34,6 @@ public class MemberController {
 			System.out.println("회원 가입 실패");
 			return "Join";
 		}
-
 	}
 
 	// 아이디 체크
@@ -72,7 +71,6 @@ public class MemberController {
 			// 로그인 실패
 			session.removeAttribute("tb_member");
 			System.out.println("로그인 실패");
-
 			return "Login";
 		} else {
 			// 로그인 성공
@@ -211,4 +209,5 @@ public class MemberController {
 		}
 
 	}
+
 }

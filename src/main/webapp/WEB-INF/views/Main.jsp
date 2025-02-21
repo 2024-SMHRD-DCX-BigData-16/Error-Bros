@@ -141,7 +141,7 @@
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
     %>
     <% if (loginMember!= null) { %>
-        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="#">마이페이지</a>
+        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="goUpdateMember">마이페이지</a>
     <% } else { %>
         <a href="goLogin">로그인</a>
         <a href="goJoin">회원가입</a>
