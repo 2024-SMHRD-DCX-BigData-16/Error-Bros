@@ -19,7 +19,7 @@ public class MainController {
 	@RequestMapping("/goHu")
 	public String gohu() {
 
-		return "Hu";
+		return "Main";
 	}
 
 	@RequestMapping("/goMap")

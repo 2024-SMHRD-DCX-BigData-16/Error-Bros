@@ -161,7 +161,7 @@
             <input type="text" name="mem_phone" placeholder="전화번호" required>
             <input type="email" name="mem_email" placeholder="이메일" required>
             <input type="date" name="mem_birthdate" required>
-            <input type="text" name="mem_role" placeholder="이메일" required>
+            <input type="text" name="mem_role" placeholder="회원 역할" required>
             <select name="mem_gender">
                 <option value="M">남성</option>
                 <option value="F">여성</option>

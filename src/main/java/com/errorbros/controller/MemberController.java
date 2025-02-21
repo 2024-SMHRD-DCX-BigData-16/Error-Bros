@@ -61,12 +61,13 @@ public class MemberController {
 			// 로그인 실패
 			session.removeAttribute("tb_member");
 			System.out.println("로그인 실패");
-			return "로그인";
+			return "Login";
 		} else {
 			// 로그인 성공
 			session.setAttribute("loginMember", loginMember);
 			System.out.println("로그인 성공 + 페이지 이동");
-			return "LoginSuccess";
+			System.out.println("로그인 정보 : " + loginMember);
+			return "Main";
 		}
 	}
 
