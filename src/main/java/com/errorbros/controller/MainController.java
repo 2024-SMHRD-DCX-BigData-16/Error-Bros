@@ -31,7 +31,7 @@ public class MainController {
 	@RequestMapping("/goJoin")
 	public String goJoin() {
 
-		return "회원가입";
+		return "Join";
 	}
 
 	@RequestMapping("/goJoinResult")
@@ -43,7 +43,7 @@ public class MainController {
 	@RequestMapping("/goLogin")
 	public String goLogin() {
 
-		return "로그인";
+		return "Login";
 	}
 
 }

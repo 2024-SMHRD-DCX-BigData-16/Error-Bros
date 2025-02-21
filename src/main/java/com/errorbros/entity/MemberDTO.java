@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class MemberDTO {// 회원
 
 	// 회원 아이디
@@ -109,6 +109,12 @@ public class MemberDTO {// 회원
 
 	public void setJoinedAt(Timestamp joinedAt) {
 		this.joined_at = joined_at;
+	}
+
+	public MemberDTO(String mem_id2, String mem_pw2) {
+		this.mem_id = mem_id2;
+		this.mem_pw = mem_pw2;
+
 	}
 
 }

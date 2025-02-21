@@ -1,6 +1,13 @@
 package com.errorbros.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
 //메뉴 
+@Data
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class MenuDTO {
 
 	// 메뉴 고유번호

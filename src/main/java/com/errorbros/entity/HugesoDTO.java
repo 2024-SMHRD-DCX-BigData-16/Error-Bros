@@ -2,11 +2,11 @@ package com.errorbros.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class HugesoDTO {// 휴게소
 
 	// 휴게소 고유번호

@@ -25,9 +25,16 @@ public class MemberController {
 	@PostMapping("/insertMember")
 	public String memberInsert(MemberDTO tb_member, Model model, HttpSession session) {
 		System.out.println(tb_member.toString() + " 가입 정보");
-		memberMapper.memberInsert(tb_member);
-		model.addAttribute("mem_id", tb_member.getMem_id());
-		return "Main";
+		int joinResult = memberMapper.memberInsert(tb_member);
+		System.out.println(joinResult);
+		if (joinResult > 0) {
+			System.out.println("회원가입 성공");
+			return "JoinResult";
+		} else {
+			System.out.println("회원 가입 실패");
+			return "Join";
+		}
+
 	}
 
 	// 아이디 체크
@@ -46,7 +53,9 @@ public class MemberController {
 	public String memberJoin(@RequestParam("login_id") String mem_id, @RequestParam("login_pw") String mem_pw,
 			HttpSession session) {
 		System.out.println("아이디 : " + mem_id + ", 비번 : " + mem_pw);
-		MemberDTO loginMember = memberMapper.memberLogIn(mem_id, mem_pw);
+		MemberDTO loginMember = new MemberDTO(mem_id, mem_pw);
+		System.out.println(loginMember.toString());
+		loginMember = memberMapper.memberLogIn(loginMember);
 		System.out.println(loginMember.toString() + "로그인 정보");
 		if (loginMember.getMem_nm() == null) {
 			// 로그인 실패

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error Search</title>
+    <title>회원가입</title>
     <style>
         * {
             margin: 0;
@@ -22,6 +22,7 @@
             justify-content: center;
             height: 100vh;
             background-color: #fff;
+            margin: 0;
         }
 
         /* 상단바 */
@@ -40,7 +41,6 @@
             color: red;
             text-decoration: none;
             margin-left: 15px;
-            cursor: pointer;
         }
 
         /* 내비게이션 */
@@ -77,7 +77,7 @@
             font-weight: bold;
         }
 
-        /* 중앙 로그인 폼 */
+        /* 중앙 휴게소 검색 텍스트 */
         .center-container {
             display: flex;
             flex-direction: column;
@@ -86,27 +86,46 @@
             flex-grow: 1;
         }
 
-        .login-box {
-            padding: 100px;
-            border: 1px solid #ccc;
+        /* 회원가입 폼 스타일 */
+        .signup-form {
+            width: 150%;
+            /* 화면 크기에 맞춰 조절 */
+            max-width: 500px;
+            /* 최대 크기 제한 */
+            padding: 30px;
+            border: 2px solid #ddd;
             border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
-        .login-box input {
-            display: block;
-            width: 400px;
-            margin: 10px 0;
-            padding: 8px;
+        .signup-form h2 {
+            text-align: center;
+            margin-bottom: 10px;
         }
 
-        .login-box button {
+        .signup-form input,
+        .signup-form select {
             width: 100%;
             padding: 8px;
-            background-color: rgb(51, 199, 17);
-            color: white;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .signup-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: gold;
             border: none;
+            color: white;
+            font-size: 16px;
             cursor: pointer;
+        }
+
+        .signup-form button:hover {
+            background-color: navy;
         }
     </style>
 </head>
@@ -115,9 +134,9 @@
 
     <!-- 상단바 -->
     <div class="top-bar">
-        <a href="goLogin" id="login-link" onclick="toggleLogin()">로그인</a>
+        <a href="#">로그인</a>
         <a href="#">마이페이지</a>
-        <a href="goJoin">회원가입</a>
+        <a href="#">회원가입</a>
         <a href="#">고객문의</a>
     </div>
 
@@ -129,21 +148,29 @@
     <!-- 카테고리 메뉴 -->
     <div class="menu">
         <a href="goHu">휴게소 찾기</a>
-        <a href="#">리뷰게시판</a>
+        <a href="goReview">리뷰게시판</a>
     </div>
 
-    <!-- 로그인 폼 -->
+    <!-- 회원가입 폼 -->
     <div class="center-container">
-        <div class="login-box" id="login-box">
-            <h3>로그인</h3>
-            <form action="loginMember" method="post">
-	            <input type="text" id="login_id" placeholder="아이디">
-	            <input type="password" id="login_pw" placeholder="비밀번호">
-	            <button type="submit" >로그인</button>
-            </form>
-        </div>
+        <form class="signup-form" name="insertMember" action="insertMember" method="post">
+            <h2>회원가입</h2>
+            <input type="text" name="mem_id" placeholder="아이디" required>
+            <input type="password" name="mem_pw" placeholder="비밀번호" required>
+            <input type="text" name="mem_nm" placeholder="이름" required>
+            <input type="text" name="mem_phone" placeholder="전화번호" required>
+            <input type="email" name="mem_email" placeholder="이메일" required>
+            <input type="date" name="mem_birthdate" required>
+            <input type="text" name="mem_role" placeholder="이메일" required>
+            <select name="mem_gender">
+                <option value="M">남성</option>
+                <option value="F">여성</option>
+            </select>
+            <button type="submit">가입하기</button>
+        </form>
     </div>
 
+  
 </body>
 
 </html>
