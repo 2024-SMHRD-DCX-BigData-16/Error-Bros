@@ -9,7 +9,11 @@ import com.errorbros.entity.MemberDTO;
 public interface MemberMapper {
 
 	// 회원 가입
+<<<<<<< HEAD
 	public void memberInsert(MemberDTO tb_member);
+=======
+	public int memberInsert(MemberDTO tb_member);
+>>>>>>> b222010f9559e35a4dc6b85fe5d401cfa5808ad5
 
 	// 로그인
 	public MemberDTO memberLogIn(MemberDTO loginMember);

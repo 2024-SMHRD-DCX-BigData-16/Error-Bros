@@ -4,7 +4,11 @@
 	
 	<!-- 회원가입 -->
 	<insert id="memberInsert" parameterType="com.errorbros.entity.MemberDTO" >
+<<<<<<< HEAD
 		insert into tb_member values(#{mem_id}, #{mem_pw}, #{mem_nm}, #{mem_phone}, #{mem_email}, #{mem_birthdate}, #{mem_gender}, #{mem_role}, #{joined_at});
+=======
+		insert into tb_member values(#{mem_id}, #{mem_pw}, #{mem_nm}, #{mem_phone}, #{mem_email}, #{mem_birthdate}, #{mem_gender}, #{mem_role}, NOW());
+>>>>>>> b222010f9559e35a4dc6b85fe5d401cfa5808ad5
 	</insert>
 
 	<!-- 로그인 -->

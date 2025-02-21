@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <%@page import="com.errorbros.entity.MemberDTO"%>
+=======
+>>>>>>> b222010f9559e35a4dc6b85fe5d401cfa5808ad5
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -137,6 +140,7 @@
 
     <!-- 상단바 -->
     <div class="top-bar">
+<<<<<<< HEAD
     <% 
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
     %>
@@ -149,6 +153,14 @@
     	
     <a href="#">고객문의</a>
 	</div>
+=======
+        <a href="goLogin">로그인</a>
+        <a href="#">마이페이지</a>
+
+        <a href="goJoin">회원가입</a>
+        <a href="#">고객문의</a>
+    </div>
+>>>>>>> b222010f9559e35a4dc6b85fe5d401cfa5808ad5
 
     <!-- 내비게이션 -->
     <div class="nav">
