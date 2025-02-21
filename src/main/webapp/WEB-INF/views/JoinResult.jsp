@@ -1,0 +1,155 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Search</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #fff;
+        }
+        /* 상단바 */
+        .top-bar {
+            background-color: rgb(51, 199, 17);
+            text-align: right;
+            padding: 8px 20px;
+            font-size: 14px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .top-bar a {
+            color: red;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        /* 내비게이션 */
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 20px;
+            position: relative;
+            width: 100%;
+            margin-top: 40px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(199, 126, 17);
+            text-align: center;
+        }
+        /* 카테고리 메뉴 */
+        .menu {
+            display: flex;
+            justify-content: left;
+            padding: 10px 20px;
+            border-top: 1px solid blue;
+            width: 100%;
+        }
+        .menu a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        /* 중앙 휴게소 검색 텍스트 */
+        .center-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        .hu-text {
+            font-size: 60px;
+            font-weight: bold;
+            color: green;
+            margin-bottom: 20px;
+        }
+        /* 검색창 스타일 */
+        .search-container {
+            position: relative;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            border: 1px solid #dfe1e5;
+            border-radius: 25px;
+            padding: 10px 15px;
+            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+            background: white;
+        }
+        .search-box input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 18px;
+            padding: 5px;
+        }
+        .search-btn {
+            background-color: yellow;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons {
+            display: none;
+            margin-top: 20px;
+        }
+        .buttons button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .order-btn { background-color: orange; color: white; }
+        .info-btn { background-color: blue; color: white; }
+    </style>
+</head>
+<body>
+
+    <!-- 상단바 -->
+    <div class="top-bar">
+        <a href="goLogin">로그인</a>
+        <a href="#">마이페이지</a>
+        <a href="goJoin">회원가입</a>
+        <a href="#">고객문의</a>
+    </div>
+
+    <!-- 내비게이션 -->
+    <div class="nav">
+        <div class="logo">404</div>
+    </div>
+
+    <!-- 카테고리 메뉴 -->
+    <div class="menu">
+        <a href="goHu">휴게소 찾기</a>
+        <a href="#">리뷰게시판</a>
+    </div>
+    <h1>${mem_id} 님 가입을 환영합니다</h1>
+
+</body>
+</html>

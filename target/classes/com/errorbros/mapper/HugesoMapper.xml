@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.errorbros.mapper.HugesoMapper">
+
+<select id="showHugeso" parameterType="String" resultType="com.errorbros.entity.HugesoDTO">
+	SELECT rest_idx, rest_nm, rest_addr, lat, lon, rest_facilities, rest_img 
+	FROM tb_restarea
+	where rest_nm like CONCAT('%', #{restNm}, '%')
+</select>
+
+
+<select id="showMenu" parameterType="int" resultType="com.errorbros.entity.MenuDTO">
+	select *
+	from tb_menu
+	where rest_idx = #{restIdx}
+</select>
+
+<insert id="insertReview" parameterType="com.errorbros.entity.ReviewDTO">
+	INSERT INTO tb_review (rest_idx, mem_id, review_content, review_like, review_ratings, created_at) 
+	VALUES (#{rest_idx}, #{mem_id}, #{review_content}, 0, #{review_ratings}, NOW());
+</insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
