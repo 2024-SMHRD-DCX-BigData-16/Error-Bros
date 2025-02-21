@@ -27,4 +27,17 @@ public class MainController {
 
 		return "Map";
 	}
+
+	@RequestMapping("/goJoin")
+	public String goJoin() {
+
+		return "회원가입";
+	}
+
+	@RequestMapping("/goJoinResult")
+	public String goJoinResult() {
+
+		return "JoinResult";
+	}
+
 }

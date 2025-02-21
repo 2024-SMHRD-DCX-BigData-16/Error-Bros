@@ -149,30 +149,7 @@
         <a href="goHu">휴게소 찾기</a>
         <a href="#">리뷰게시판</a>
     </div>
+    <h1>${mem_id} 님 가입을 환영합니다</h1>
 
-    <!-- 중앙 휴게소 검색창 -->
-    <div class="center-container">
-        <div class="hu-text">휴게소 검색</div>
-        <div class="search-container">
-            <div class="search-box">
-            	<form action="showHugeso" method="post">
-                	<input type="text" name="searchInput" id="searchInput" placeholder="휴게소 검색">
-                	<button type="submit" class="search-btn" onclick="showButtons()">검색</button>
-            	</form>
-            </div>
-            <!-- 검색 버튼을 누르면 나타나는 버튼들 -->
-            <div class="buttons" id="buttons">
-                <a href="goMap"><button class="order-btn">음식 주문하기</button></a>
-                <a href="goHu"><button class="info-btn">휴게소 정보보기</button></a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function showButtons() {
-            document.getElementById("buttons").style.display = "flex";
-        }
-    </script>
 </body>
 </html>
-

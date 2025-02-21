@@ -1,5 +1,7 @@
 package com.errorbros.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,26 +22,17 @@ public class HugesoController {
 	@Autowired
 	HugesoMapper hugesoMapper;
 
-	// 휴게소 검색 기능
-	@PostMapping("/searchHugeso")
-	public String searchHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
-		String hugesoNm = searchInput;
-		System.out.println("휴게소 검색 내용" + hugesoNm);
-		HugesoDTO hugesoInfo = hugesoMapper.showHugeso(hugesoNm);
-		System.out.println(hugesoInfo.toString() + "휴게소 내용입니다");
-		session.setAttribute("hugesoInfo", hugesoInfo);
-		return "Hu";
-	}
-
 	// 휴게소 정보 로드
 	@PostMapping("/showHugeso")
 	public String showHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
 		String restNm = searchInput;
 		System.out.println("휴게소 검색 내용" + restNm);
-		HugesoDTO hugesoInfo = hugesoMapper.showHugeso(restNm);
-		System.out.println(hugesoInfo.toString() + "휴게소 검색 내용");
-		session.setAttribute("hugesoInfo", hugesoInfo);
-		return "Hu";
+		List<HugesoDTO> hugesoList = hugesoMapper.showHugeso(restNm);
+		for (HugesoDTO hugesoDTO : hugesoList) {
+			System.out.println(hugesoDTO.toString() + "휴게소 검색 내용");
+		}
+		session.setAttribute("hugesoList", hugesoList);
+		return "Main";
 	}
 
 	// 휴게소 메뉴
@@ -47,7 +40,7 @@ public class HugesoController {
 	@RequestMapping("/showMenu")
 	public String showMenu(HttpSession session) {
 		int restIdx = ((HugesoDTO) session.getAttribute("hugesoInfo")).getRest_idx();
-		System.out.println("�ްԼ� �ε��� :" + restIdx);
+		System.out.println("휴게소 번호" + restIdx);
 		MenuDTO menuInfo = hugesoMapper.showMenu(restIdx);
 		System.out.println(menuInfo.toString());
 		session.setAttribute("hugesoInfo", menuInfo);

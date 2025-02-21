@@ -5,7 +5,7 @@
 <select id="showHugeso" parameterType="String" resultType="com.errorbros.entity.HugesoDTO">
 	SELECT rest_idx, rest_nm, rest_addr, lat, lon, rest_facilities, rest_img 
 	FROM tb_restarea
-	where rest_nm like %#{restNm}%
+	where rest_nm like CONCAT('%', #{restNm}, '%')
 </select>
 
 
