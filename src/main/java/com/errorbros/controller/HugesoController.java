@@ -6,15 +6,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.errorbros.entity.HugesoDTO;
-import com.errorbros.entity.MemberDTO;
 import com.errorbros.entity.MenuDTO;
-import com.errorbros.entity.ReviewDTO;
 import com.errorbros.mapper.HugesoMapper;
 
 @Controller
@@ -36,13 +34,26 @@ public class HugesoController {
 //		session.setAttribute("hugesoList", hugesoList);
 //	}
 
-	@ResponseBody
-	@PostMapping("/showHugeso")
-	public List<HugesoDTO> showHugeso(@RequestParam("searchInput") String searchInput) {
+	// 휴게소 정보 로드
+	@PostMapping("/searchHugeso")
+	public String searchHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
 		String restNm = searchInput;
 		System.out.println("휴게소 검색 내용: " + restNm);
-		List<HugesoDTO> hugesoList = hugesoMapper.showHugeso(restNm);
-		return hugesoList; // ✅ 세션 저장 대신 JSON 형태로 반환
+		List<HugesoDTO> hugesoList = hugesoMapper.searchHugeso(restNm);
+		System.out.println(hugesoList.toString());
+		session.setAttribute("hugesoList", hugesoList);
+		session.setAttribute("searchInput", searchInput);
+		return "Main";
+	}
+
+	// 선택한 휴게소 페이지 열기
+	@GetMapping("/showHugeso")
+	public String showHugeso(@RequestParam("rest_idx") String rest_idx, HttpSession session) {
+		System.out.println("선택한 휴게소 인덱스 : " + rest_idx);
+		HugesoDTO hugeso = hugesoMapper.showHugeso(rest_idx);
+		System.out.println("선택한 휴게소 정보 : " + hugeso.toString());
+		session.setAttribute("hugesoInfo", hugeso);
+		return "Hu";
 	}
 
 	// 휴게소 메뉴
@@ -55,26 +66,6 @@ public class HugesoController {
 		System.out.println(menuInfo.toString());
 		session.setAttribute("hugesoInfo", menuInfo);
 		return "Menu";
-	}
-
-	// 리뷰 업데이트
-	@RequestMapping("/updateReview")
-	public String updateReview(HttpSession session) {
-		HugesoDTO hugesoDTO = (HugesoDTO) session.getAttribute("hugesoInfo");
-		System.out.println(hugesoDTO.toString() + "휴게소 정보");
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginMember");
-		System.out.println(memberDTO.toString() + "로그인 회원 정보");
-		String reviewCotent = "";
-		double reviewRatings = 0;
-		ReviewDTO ReviewDTO = new ReviewDTO(hugesoDTO.getRest_idx(), memberDTO.getMem_id(), reviewCotent, 0,
-				reviewRatings);
-		int result = hugesoMapper.insertReview(ReviewDTO);
-		if (result > 0) {
-			System.out.println("리뷰 업데이트 성공");
-		} else {
-			System.out.println("리뷰 업데이트 실패");
-		}
-		return null;
 	}
 
 }

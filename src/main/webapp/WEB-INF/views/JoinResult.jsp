@@ -137,7 +137,11 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
+<<<<<<< HEAD
         <a href="#">휴게소 찾기</a>
+=======
+        <a href="goMain">휴게소 찾기</a>
+>>>>>>> 3eb6e91f5758682fa90e1444202ffea9e68e59ee
         <a href="#">리뷰게시판</a>
     </div>
 

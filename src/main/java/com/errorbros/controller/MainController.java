@@ -18,12 +18,8 @@ public class MainController {
 
 	@RequestMapping("/goHu")
 	public String gohu() {
-<<<<<<< HEAD
-=======
 
->>>>>>> 5814baf8a6dfcae7e7613b7ec47a5bc37f0038d2
-		return "Main";
-
+		return "Hu";
 	}
 
 	@RequestMapping("/goMap")

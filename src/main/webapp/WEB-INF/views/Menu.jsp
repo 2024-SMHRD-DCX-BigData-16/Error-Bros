@@ -157,9 +157,9 @@
 
     <!-- 상단바 -->
     <div class="top-bar">
-        <a href="#">로그인</a>
+        <a href="goLogin">로그인</a>
         <a href="#">마이페이지</a>
-        <a href="#">회원가입</a>
+        <a href="goJoin">회원가입</a>
         <a href="#">고객문의</a>
     </div>
 

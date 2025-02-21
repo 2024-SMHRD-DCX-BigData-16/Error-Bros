@@ -11,10 +11,12 @@ import com.errorbros.entity.ReviewDTO;
 @Mapper
 public interface HugesoMapper {
 
-	public List<HugesoDTO> showHugeso(String restNm);
+	public List<HugesoDTO> searchHugeso(String restNm);
 
 	public MenuDTO showMenu(int restIdx);
 
 	public int insertReview(ReviewDTO reviewDTO);
+
+	public HugesoDTO showHugeso(String rest_idx);
 
 }
