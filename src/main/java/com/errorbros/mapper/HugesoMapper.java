@@ -1,5 +1,7 @@
 package com.errorbros.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.errorbros.entity.HugesoDTO;
@@ -9,7 +11,7 @@ import com.errorbros.entity.ReviewDTO;
 @Mapper
 public interface HugesoMapper {
 
-	public HugesoDTO showHugeso(String restIdx);
+	public List<HugesoDTO> showHugeso(String restNm);
 
 	public MenuDTO showMenu(int restIdx);
 

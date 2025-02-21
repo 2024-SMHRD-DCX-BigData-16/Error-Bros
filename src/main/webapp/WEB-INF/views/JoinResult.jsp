@@ -1,15 +1,7 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-
-=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
->>>>>>> 86f1619a69df0cdbb26c9eaf4cde562b1a715159
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -143,11 +135,7 @@
     <div class="top-bar">
         <a href="goLogin">로그인</a>
         <a href="#">마이페이지</a>
-<<<<<<< HEAD
-        <a href="goHuiyuan">회원가입</a>
-=======
         <a href="goJoin">회원가입</a>
->>>>>>> 86f1619a69df0cdbb26c9eaf4cde562b1a715159
         <a href="#">고객문의</a>
     </div>
 
@@ -161,30 +149,7 @@
         <a href="goHu">휴게소 찾기</a>
         <a href="#">리뷰게시판</a>
     </div>
+    <h1>${mem_id} 님 가입을 환영합니다</h1>
 
-    <!-- 중앙 휴게소 검색창 -->
-    <div class="center-container">
-        <div class="hu-text">휴게소 검색</div>
-        <div class="search-container">
-            <div class="search-box">
-            	<form action="showHugeso" method="post">
-                	<input type="text" name="searchInput" id="searchInput" placeholder="휴게소 검색">
-                	<button type="submit" class="search-btn" onclick="showButtons()">검색</button>
-            	</form>
-            </div>
-            <!-- 검색 버튼을 누르면 나타나는 버튼들 -->
-            <div class="buttons" id="buttons">
-                <a href="goMap"><button class="order-btn">음식 주문하기</button></a>
-                <a href="goHu"><button class="info-btn">휴게소 정보보기</button></a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function showButtons() {
-            document.getElementById("buttons").style.display = "flex";
-        }
-    </script>
 </body>
 </html>
-

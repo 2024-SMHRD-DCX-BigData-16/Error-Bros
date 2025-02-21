@@ -147,13 +147,13 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="#">휴게소 찾기</a>
-        <a href="#">리뷰게시판</a>
+        <a href="goHu">휴게소 찾기</a>
+        <a href="goReview">리뷰게시판</a>
     </div>
 
     <!-- 회원가입 폼 -->
     <div class="center-container">
-        <form class="signup-form" id="signupForm">
+        <form class="signup-form" id="memberJoin">
             <h2>회원가입</h2>
             <input type="text" id="mem_id" placeholder="아이디" required>
             <input type="password" id="mem_pw" placeholder="비밀번호" required>
@@ -165,34 +165,11 @@
                 <option value="M">남성</option>
                 <option value="F">여성</option>
             </select>
-            <button type="button" onclick="submitForm()">가입하기</button>
+            <a href="goJoinResult"><button type="submit">가입하기</button></a>
         </form>
     </div>
 
-    <script>
-        function submitForm() {
-            let formData = {
-                mem_id: document.getElementById("mem_id").value,
-                mem_pw: document.getElementById("mem_pw").value,
-                mem_nm: document.getElementById("mem_nm").value,
-                mem_phone: document.getElementById("mem_phone").value,
-                mem_email: document.getElementById("mem_email").value,
-                mem_birthdate: document.getElementById("mem_birthdate").value,
-                mem_gender: document.getElementById("mem_gender").value
-            };
-
-            fetch("register.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => response.text())
-                .then(data => alert(data))
-                .catch(error => console.error("Error:", error));
-        }
-    </script>
+  
 </body>
 
 </html>
