@@ -23,17 +23,26 @@ public class HugesoController {
 	@Autowired
 	HugesoMapper hugesoMapper;
 
-	// 휴게소 정보 로드
+//	// 휴게소 정보 로드
+//	@ResponseBody
+//	@PostMapping("/showHugeso")
+//	public void showHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
+//		String restNm = searchInput;
+//		System.out.println("휴게소 검색 내용" + restNm);
+//		List<HugesoDTO> hugesoList = hugesoMapper.showHugeso(restNm);
+//		for (HugesoDTO hugesoDTO : hugesoList) {
+//			System.out.println(hugesoDTO.toString() + "휴게소 검색 내용");
+//		}
+//		session.setAttribute("hugesoList", hugesoList);
+//	}
+
 	@ResponseBody
 	@PostMapping("/showHugeso")
-	public void showHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
+	public List<HugesoDTO> showHugeso(@RequestParam("searchInput") String searchInput) {
 		String restNm = searchInput;
-		System.out.println("휴게소 검색 내용" + restNm);
+		System.out.println("휴게소 검색 내용: " + restNm);
 		List<HugesoDTO> hugesoList = hugesoMapper.showHugeso(restNm);
-		for (HugesoDTO hugesoDTO : hugesoList) {
-			System.out.println(hugesoDTO.toString() + "휴게소 검색 내용");
-		}
-		session.setAttribute("hugesoList", hugesoList);
+		return hugesoList; // ✅ 세션 저장 대신 JSON 형태로 반환
 	}
 
 	// 휴게소 메뉴
