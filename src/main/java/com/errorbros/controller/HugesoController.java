@@ -25,18 +25,18 @@ public class HugesoController {
 	@Autowired
 	HugesoMapper hugesoMapper;
 
-//	// 휴게소 정보 로드
-//	@ResponseBody
-//	@PostMapping("/showHugeso")
-//	public void showHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
-//		String restNm = searchInput;
-//		System.out.println("휴게소 검색 내용" + restNm);
-//		List<HugesoDTO> hugesoList = hugesoMapper.showHugeso(restNm);
-//		for (HugesoDTO hugesoDTO : hugesoList) {
-//			System.out.println(hugesoDTO.toString() + "휴게소 검색 내용");
-//		}
-//		session.setAttribute("hugesoList", hugesoList);
-//	}
+//   // 휴게소 정보 로드
+//   @ResponseBody
+//   @PostMapping("/showHugeso")
+//   public void showHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
+//      String restNm = searchInput;
+//      System.out.println("휴게소 검색 내용" + restNm);
+//      List<HugesoDTO> hugesoList = hugesoMapper.showHugeso(restNm);
+//      for (HugesoDTO hugesoDTO : hugesoList) {
+//         System.out.println(hugesoDTO.toString() + "휴게소 검색 내용");
+//      }
+//      session.setAttribute("hugesoList", hugesoList);
+//   }
 
 	// 휴게소 정보 로드
 	@PostMapping("/searchHugeso")
@@ -77,7 +77,7 @@ public class HugesoController {
 	public String hugesoList(Model model) {
 		List<HugesoDTO> hugesoList = hugesoMapper.getAllHugeso();
 		model.addAttribute("hugesoList", hugesoList);
-		return "hugesoList"; // 휴게소 리스트 JSP 페이지 이름
+		return "showRestAreaList"; // 휴게소 리스트 JSP 페이지 이름
 	}
 
 	// 휴게소 삭제
@@ -95,4 +95,5 @@ public class HugesoController {
 		return result;
 	}
 
+	// 관리용
 }
