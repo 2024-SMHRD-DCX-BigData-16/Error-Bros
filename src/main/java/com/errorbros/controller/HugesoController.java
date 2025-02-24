@@ -25,18 +25,18 @@ public class HugesoController {
 	@Autowired
 	HugesoMapper hugesoMapper;
 
-//	// 휴게소 정보 로드
-//	@ResponseBody
-//	@PostMapping("/showHugeso")
-//	public void showHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
-//		String restNm = searchInput;
-//		System.out.println("휴게소 검색 내용" + restNm);
-//		List<HugesoDTO> hugesoList = hugesoMapper.showHugeso(restNm);
-//		for (HugesoDTO hugesoDTO : hugesoList) {
-//			System.out.println(hugesoDTO.toString() + "휴게소 검색 내용");
-//		}
-//		session.setAttribute("hugesoList", hugesoList);
-//	}
+//   // 휴게소 정보 로드
+//   @ResponseBody
+//   @PostMapping("/showHugeso")
+//   public void showHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
+//      String restNm = searchInput;
+//      System.out.println("휴게소 검색 내용" + restNm);
+//      List<HugesoDTO> hugesoList = hugesoMapper.showHugeso(restNm);
+//      for (HugesoDTO hugesoDTO : hugesoList) {
+//         System.out.println(hugesoDTO.toString() + "휴게소 검색 내용");
+//      }
+//      session.setAttribute("hugesoList", hugesoList);
+//   }
 
 	// 휴게소 정보 로드
 	@PostMapping("/searchHugeso")
@@ -86,7 +86,7 @@ public class HugesoController {
 	public Map<String, Object> deleteRestArea(@RequestParam("rest_idx") int restIdx) {
 		Map<String, Object> result = new HashMap<>();
 		try {
-			hugesoMapper.deleteRestArea(restIdx);
+			hugesoMapper.deleteHugeso(restIdx);
 			result.put("success", true);
 		} catch (Exception e) {
 			result.put("success", false);

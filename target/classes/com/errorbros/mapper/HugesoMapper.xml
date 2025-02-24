@@ -26,17 +26,38 @@
 	VALUES (#{rest_idx}, #{mem_id}, #{review_content}, 0, #{review_ratings}, NOW());
 </insert>
 
+
+    <!-- 모든 휴게소 조회 -->
+    <select id="getAllHugesos" resultType="com.errorbros.entity.HugesoDTO">
+        SELECT * FROM tb_restarea
+    </select>
+
+    <!-- 휴게소 추가 -->
+    <insert id="insertHugeso" parameterType="com.errorbros.entity.HugesoDTO">
+        INSERT INTO tb_restarea (rest_nm, rest_addr, lat, lon, rest_facilities, rest_img) 
+        VALUES (#{rest_nm}, #{rest_addr}, #{lat}, #{lon}, #{rest_facilities}, #{rest_img})
+    </insert>
+
+    <!-- 휴게소 수정 -->
+    <update id="updateHugeso" parameterType="com.errorbros.entity.HugesoDTO">
+        UPDATE tb_restarea 
+        SET rest_nm=#{rest_nm}, rest_addr=#{rest_addr}, lat=#{lat}, lon=#{lon}, 
+            rest_facilities=#{rest_facilities}, rest_img=#{rest_img}
+        WHERE rest_idx=#{rest_idx}
+    </update>
+
+    <!-- 휴게소 삭제 -->
+    <delete id="deleteHugeso" parameterType="int">
+        DELETE FROM tb_restarea WHERE rest_idx=#{rest_idx}
+    </delete>
+
 <!-- 휴게소 테이블 데이터 조회 -->
 	<select id="getAllHugeso" resultType="com.errorbros.entity.HugesoDTO">
     	SELECT * 
     	FROM tb_restarea
 	</select>
 	
-	<!-- 휴게소 삭제 -->
-	<delete id="deleteRestArea" parameterType="int">
-   	 	DELETE FROM tb_restarea WHERE rest_idx = #{rest_idx}
-	</delete>
-
+	
 
 
 
