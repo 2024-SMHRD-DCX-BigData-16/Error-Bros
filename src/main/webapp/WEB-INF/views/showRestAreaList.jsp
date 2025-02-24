@@ -136,7 +136,6 @@
         <h1>휴게소 관리</h1>
         <div>
         	<a href="goaddRestArea"><button class="addrestarea">휴게소 추가</button></a>
-        	<a href="godeleteRestArea"><button class="deleterestarea">휴게소 삭제</button></a>
         </div>
 
         <table class="rest-table">
@@ -159,6 +158,8 @@
                         <td>${hugeso.rest_facilities}</td>
                         <td><button onclick="location.href='reviewList?rest_idx=${hugeso.rest_idx}'">리뷰</button></td>
                         <td><button onclick="location.href='menuList?rest_idx=${hugeso.rest_idx}'">메뉴</button></td>
+                        <td><a href="goUpdateRestArea?rest_idx=${hugeso.rest_idx}"><button class="addrestarea">수정</button></a>
+                         <td><a href="deleteRestArea?rest_idx=${hugeso.rest_idx}"><button >삭제</button></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -166,8 +167,8 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-    </script>
+
+    
 </body>
 
 </html>

@@ -25,13 +25,13 @@ public interface HugesoMapper {
 	// 휴게소 삭제
 //	public void deleteHugeso(int rest_idx);
 
-	HugesoDTO getHugesoId(int rest_idx);
+	public HugesoDTO getHugesoId(int rest_idx);
 
-	List<HugesoDTO> getAllHugesos();
+	public List<HugesoDTO> getAllHugesos();
 
-	void insertHugeso(HugesoDTO restArea);
+	public int insertHugeso(HugesoDTO restArea);
 
-	void updateHugeso(HugesoDTO restArea);
+	public int updateHugeso(HugesoDTO restArea);
 
-	void deleteHugeso(int rest_idx);
+	public int deleteHugeso(int rest_idx);
 }
