@@ -43,5 +43,6 @@
     DELETE FROM tb_member WHERE mem_id = #{mem_id}
 	</delete>
 
+
 </mapper>
 	

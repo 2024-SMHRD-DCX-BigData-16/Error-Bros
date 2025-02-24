@@ -3,6 +3,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,52 +86,29 @@
             flex-grow: 1;
         }
 
-        .admin-panel {
-            display: flex;
-            justify-content: center;
+        /* 기존 스타일 유지 */
+        .rest-table {
+            width: 80%;
             margin-top: 20px;
+            border-collapse: collapse;
         }
 
-        .admin-panel button {
-            margin: 10px;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            /* 더 둥글게 */
-            background-color: #3498db;
-            /* 세련된 파란색 */
-            color: white;
-            font-size: 18px;
-            font-weight: 500;
-            /* 약간 더 두껍게 */
-            cursor: pointer;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            /* 그림자 효과 */
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            /* 클릭 시 효과 추가 */
+        .rest-table th,
+        .rest-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
         }
 
-        .admin-panel button:hover {
-            background-color: #2980b9;
-            /* 약간 더 진한 파란색 */
-            transform: translateY(-2px);
-            /* 위로 살짝 이동 */
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-            /* 그림자 더 진하게 */
-        }
-
-        .admin-panel button:active {
-            transform: translateY(0);
-            /* 클릭 시 원래 위치로 */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            /* 그림자 원래대로 */
+        .rest-table th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 
 <body>
 
-      <!-- 상단바 -->
+       <!-- 상단바 -->
     <div class="top-bar">
     <% 
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
@@ -154,20 +133,41 @@
         <a href="goReview">리뷰게시판</a>
     </div>
 
-
     <div class="center-container">
-        <div class="admin-panel">
-            <div>
-                <button onclick="showMemberList()">회원 관리</button>
-            </div>
-            <div>
-                <button onclick="showRestAreaList()">휴게소 관리</button>
-            </div>
+        <h1>휴게소 관리</h1>
+        <div>
+            <button onclick="location.href='addRestArea.jsp'">휴게소 추가</button>
+            <button onclick="location.href='deleteRestArea.jsp'">휴게소 삭제</button>
         </div>
+
+        <table class="rest-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>이름</th>
+                    <th>주소</th>
+                    <th>편의시설</th>
+                    <th>리뷰</th>
+                    <th>메뉴</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="hugeso" items="${hugesoList}">
+                    <tr>
+                        <td>${hugeso.rest_idx}</td>
+                        <td>${hugeso.rest_nm}</td>
+                        <td>${hugeso.rest_addr}</td>
+                        <td>${hugeso.rest_facilities}</td>
+                        <td><button onclick="location.href='reviewList?rest_idx=${hugeso.rest_idx}'">리뷰</button></td>
+                        <td><button onclick="location.href='menuList?rest_idx=${hugeso.rest_idx}'">메뉴</button></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-
     </script>
 </body>
 

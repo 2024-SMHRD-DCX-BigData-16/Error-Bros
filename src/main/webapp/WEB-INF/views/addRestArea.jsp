@@ -3,6 +3,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,64 +86,45 @@
             flex-grow: 1;
         }
 
-        .admin-panel {
-            display: flex;
-            justify-content: center;
+        .form-container {
+            width: 80%;
             margin-top: 20px;
         }
 
-        .admin-panel button {
-            margin: 10px;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            /* 더 둥글게 */
-            background-color: #3498db;
-            /* 세련된 파란색 */
+        .form-container label,
+        .form-container input,
+        .form-container textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            background-color: #33C711;
             color: white;
-            font-size: 18px;
-            font-weight: 500;
-            /* 약간 더 두껍게 */
+            border: none;
+            padding: 10px 20px;
             cursor: pointer;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            /* 그림자 효과 */
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            /* 클릭 시 효과 추가 */
-        }
-
-        .admin-panel button:hover {
-            background-color: #2980b9;
-            /* 약간 더 진한 파란색 */
-            transform: translateY(-2px);
-            /* 위로 살짝 이동 */
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-            /* 그림자 더 진하게 */
-        }
-
-        .admin-panel button:active {
-            transform: translateY(0);
-            /* 클릭 시 원래 위치로 */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            /* 그림자 원래대로 */
         }
     </style>
 </head>
 
 <body>
 
-      <!-- 상단바 -->
+    <!-- 상단바 -->
     <div class="top-bar">
-    <% 
-        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
-    %>
-    <% if (loginMember!= null) { %>
-        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="goMypage">마이페이지</a>
-    <% } else { %>
-        <a href="goLogin">로그인</a>
-        <a href="goJoin">회원가입</a>
-    <% } %>
-	</div>
-
+        <% MemberDTO loginMember=(MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기 %>
+            <% if (loginMember!=null) { %>
+                <span>
+                    <%= loginMember.getMem_nm() %>님 환영합니다.
+                </span> <a href="logOut">로그아웃</a> <a href="goMypage">마이페이지</a>
+                <% } else { %>
+                    <a href="goLogin">로그인</a>
+                    <a href="goJoin">회원가입</a>
+                    <% } %>
+    </div>
 
     <!-- 내비게이션 -->
     <div class="nav">
@@ -150,19 +133,36 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="goMain">휴게소 찾기</a>
-        <a href="goReview">리뷰게시판</a>
+        <a href="#">휴게소 찾기</a>
+        <a href="#">리뷰게시판</a>
     </div>
 
 
     <div class="center-container">
-        <div class="admin-panel">
-            <div>
-                <button onclick="showMemberList()">회원 관리</button>
-            </div>
-            <div>
-                <button onclick="showRestAreaList()">휴게소 관리</button>
-            </div>
+        <h1>휴게소 추가</h1>
+
+        <div class="form-container">
+            <form action="addRestArea" method="post" enctype="multipart/form-data">
+                <label for="rest_nm">휴게소 이름:</label>
+                <input type="text" id="rest_nm" name="rest_nm" required>
+
+                <label for="rest_addr">주소:</label>
+                <input type="text" id="rest_addr" name="rest_addr" required>
+
+                <label for="lat">위도:</label>
+                <input type="number" step="any" id="lat" name="lat" required>
+
+                <label for="lon">경도:</label>
+                <input type="number" step="any" id="lon" name="lon" required>
+
+                <label for="rest_facilities">편의시설:</label>
+                <textarea id="rest_facilities" name="rest_facilities"></textarea>
+
+                <label for="rest_img">이미지:</label>
+                <input type="file" id="rest_img" name="rest_img">
+
+                <button type="submit">추가</button>
+            </form>
         </div>
     </div>
 

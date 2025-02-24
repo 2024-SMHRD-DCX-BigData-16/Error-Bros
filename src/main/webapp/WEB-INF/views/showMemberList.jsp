@@ -2,7 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,45 +87,21 @@
             flex-grow: 1;
         }
 
-        .admin-panel {
-            display: flex;
-            justify-content: center;
+        .member-table {
+            width: 80%;
             margin-top: 20px;
+            border-collapse: collapse;
         }
 
-        .admin-panel button {
-            margin: 10px;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            /* 더 둥글게 */
-            background-color: #3498db;
-            /* 세련된 파란색 */
-            color: white;
-            font-size: 18px;
-            font-weight: 500;
-            /* 약간 더 두껍게 */
-            cursor: pointer;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            /* 그림자 효과 */
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            /* 클릭 시 효과 추가 */
+        .member-table th,
+        .member-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
         }
 
-        .admin-panel button:hover {
-            background-color: #2980b9;
-            /* 약간 더 진한 파란색 */
-            transform: translateY(-2px);
-            /* 위로 살짝 이동 */
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-            /* 그림자 더 진하게 */
-        }
-
-        .admin-panel button:active {
-            transform: translateY(0);
-            /* 클릭 시 원래 위치로 */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            /* 그림자 원래대로 */
+        .member-table th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
@@ -156,18 +135,62 @@
 
 
     <div class="center-container">
-        <div class="admin-panel">
-            <div>
-                <button onclick="showMemberList()">회원 관리</button>
-            </div>
-            <div>
-                <button onclick="showRestAreaList()">휴게소 관리</button>
-            </div>
-        </div>
+        <h1>멤버 관리</h1>
+        <table class="member-table">
+            <thead>
+                <tr>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>전화번호</th>
+                    <th>이메일</th>
+                    <th>생년월일</th>
+                    <th>성별</th>
+                    <th>수정</th>
+                    <th>삭제</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="member" items="${memberList}"> <%-- JSTL 사용 --%>
+                        <tr>
+                            <td>${member.mem_id}</td>
+                            <td>${member.mem_nm}</td>
+                            <td>${member.mem_phone}</td>
+                            <td>${member.mem_email}</td>
+                            <td>
+                                <fmt:formatDate value="${member.mem_birthdate}" pattern="yyyy-MM-dd" />
+                            </td> <%-- JSTL fmt 사용 --%>
+                                <td>${member.mem_gender}</td>
+                                <td><button
+                                        onclick="location.href='updateMember.jsp?mem_id=${member.mem_id}'">수정</button>
+                                </td>
+                                <td><button onclick="deleteMember('${member.mem_id}')">삭제</button></td>
+                        </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
 
     <script>
-
+        function deleteMember(mem_id) {
+            if (confirm("정말 삭제하시겠습니까?")) {
+                $.ajax({
+                    url: "deleteMember",
+                    type: "POST",
+                    data: { mem_id: mem_id },
+                    success: function(result) {
+                        if (result.success) {
+                            alert("삭제되었습니다.");
+                            location.reload();
+                        } else {
+                            alert("삭제 실패: " + result.message);
+                        }
+                    },
+                    error: function() {
+                        alert("삭제 요청 중 오류 발생");
+                    }
+                });
+            }
+        }
     </script>
 </body>
 

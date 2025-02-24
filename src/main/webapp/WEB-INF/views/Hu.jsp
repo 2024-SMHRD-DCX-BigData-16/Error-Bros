@@ -336,11 +336,11 @@
                 // 초기 3개 로드
                 loadReviews();
             });
-        </script>
+        </script>	
 
         <!-- 음식 주문 버튼 -->
         <div class="buttons" id="buttons">
-                <a href="go음식선택"><button class="order-btn">음식 주문하기</button></a>
+                <a href="goMenu"><button class="order-btn">음식 주문하기</button></a>
 
             </div>
     </div>
