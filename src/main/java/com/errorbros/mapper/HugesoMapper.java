@@ -18,5 +18,10 @@ public interface HugesoMapper {
 	public int insertReview(ReviewDTO reviewDTO);
 
 	public HugesoDTO showHugeso(String rest_idx);
+	
+	// 모든 휴게소 정보 가져오기
+	public List<HugesoDTO> getAllHugeso();
 
+	// 휴게소 삭제
+	public void deleteRestArea(int rest_idx);
 }

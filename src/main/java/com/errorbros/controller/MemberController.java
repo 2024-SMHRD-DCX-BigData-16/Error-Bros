@@ -1,14 +1,15 @@
 package com.errorbros.controller;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -218,6 +219,7 @@ public class MemberController {
 
 	// admin 전체 회원 조회
 	@GetMapping("/list")
+
 	public List<MemberDTO> getAllMembers() {
 		return memberMapper.getAllMembers();
 	}
@@ -243,10 +245,18 @@ public class MemberController {
 	}
 
 	// 회원 삭제
-	@DeleteMapping("/delete/{mem_id}")
-	public String deleteMember(@PathVariable String mem_id) {
-		memberMapper.deleteMember(mem_id);
-		return "회원 삭제 완료";
+	@PostMapping("/deleteMember")
+	@ResponseBody
+	public Map<String, Object> deleteMember(@RequestParam("mem_id") String mem_id) {
+		Map<String, Object> result = new HashMap<>();
+		try {
+			memberMapper.deleteMember(mem_id);
+			result.put("success", true);
+		} catch (Exception e) {
+			result.put("success", false);
+			result.put("message", "삭제 중 오류 발생: " + e.getMessage());
+		}
+		return result;
 	}
 
 }

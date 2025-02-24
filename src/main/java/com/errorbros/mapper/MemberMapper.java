@@ -1,5 +1,7 @@
 package com.errorbros.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -34,12 +36,14 @@ public interface MemberMapper {
 	// 회원 정보 수정
 	public int updateMember(MemberDTO tb_member);
 
+	// 회원 정보 삭제
+
 	// 관리자 회원 관리
 	@Select("SELECT * FROM tb_member WHERE mem_id = #{mem_id}")
 	MemberDTO getMemberById(String mem_id);
 
 	@Select("SELECT * FROM tb_member")
-	java.util.List<MemberDTO> getAllMembers();
+	List<MemberDTO> getAllMembers();
 
 	@Insert("INSERT INTO tb_member (mem_id, mem_nm, mem_pw, mem_email, mem_phone, mem_role, mem_birthdate, mem_gender, joined_at) VALUES (#{mem_id}, #{mem_nm}, #{mem_pw}, #{mem_email}, #{mem_phone}, #{mem_role}, #{mem_birthdate}, #{mem_gender}, #{joined_at}")
 	void insertMember(MemberDTO member);
@@ -49,4 +53,5 @@ public interface MemberMapper {
 
 	@Delete("DELETE FROM tb_members WHERE mem_id=#{mem_id}")
 	void deleteMember(String mem_id);
+
 }

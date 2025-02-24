@@ -1,15 +1,19 @@
 package com.errorbros.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.errorbros.entity.HugesoDTO;
 import com.errorbros.entity.MenuDTO;
@@ -67,5 +71,27 @@ public class HugesoController {
 		session.setAttribute("hugesoInfo", menuInfo);
 		return "Menu";
 	}
-
+	
+	// 휴게소 리스트 출력
+	@GetMapping("/hugesoList")
+	public String hugesoList(Model model) {
+	    List<HugesoDTO> hugesoList = hugesoMapper.getAllHugeso();
+	    model.addAttribute("hugesoList", hugesoList);
+	    return "hugesoList"; // 휴게소 리스트 JSP 페이지 이름
+	}
+	
+	// 휴게소 삭제
+	@PostMapping("/deleteRestArea")
+	@ResponseBody
+	public Map<String, Object> deleteRestArea(@RequestParam("rest_idx") int restIdx) {
+	    Map<String, Object> result = new HashMap<>();
+	    try {
+	        hugesoMapper.deleteRestArea(restIdx);
+	        result.put("success", true);
+	    } catch (Exception e) {
+	        result.put("success", false);
+	        result.put("message", "삭제 중 오류 발생: " + e.getMessage());
+	    }
+	    return result;
+	}
 }
