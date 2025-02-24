@@ -1,3 +1,4 @@
+<%@page import="com.errorbros.entity.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -115,11 +116,17 @@
 
     <!-- 상단바 -->
     <div class="top-bar">
-        <a href="goLogin" id="login-link" onclick="toggleLogin()">로그인</a>
-        <a href="#">마이페이지</a>
+    <% 
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
+    %>
+    <% if (loginMember!= null) { %>
+        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="goMypage">마이페이지</a>
+    <% } else { %>
+        <a href="goLogin">로그인</a>
         <a href="goJoin">회원가입</a>
-        <a href="#">고객문의</a>
-    </div>
+    <% } %>
+	</div>
+
 
     <!-- 내비게이션 -->
     <div class="nav">
@@ -129,7 +136,7 @@
     <!-- 카테고리 메뉴 -->
     <div class="menu">
         <a href="goMain">휴게소 찾기</a>
-        <a href="#">리뷰게시판</a>
+        <a href="goReview">리뷰게시판</a>
     </div>
 
     <!-- 로그인 폼 -->
