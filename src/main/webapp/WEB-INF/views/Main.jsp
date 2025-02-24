@@ -81,6 +81,9 @@
             font-weight: bold;
         }
 
+
+        /* 중앙 휴게소 검색 텍스트 */
+
         .center-container {
             display: flex;
             flex-direction: column;

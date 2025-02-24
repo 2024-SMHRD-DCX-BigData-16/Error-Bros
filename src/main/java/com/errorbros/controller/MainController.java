@@ -22,6 +22,18 @@ public class MainController {
 		return "Hu";
 	}
 
+	@RequestMapping("/goMenu")
+	public String goMenu() {
+
+		return "Menu";
+	}
+
+	@RequestMapping("/goReview")
+	public String goReview() {
+
+		return "Review";
+	}
+
 	@RequestMapping("/goMap")
 	public String goMap() {
 
@@ -45,7 +57,7 @@ public class MainController {
 
 		return "Login";
 	}
-	
+
 	@RequestMapping("/goUpdateMember")
 	public String goUpdateMember() {
 
@@ -57,32 +69,33 @@ public class MainController {
 
 		return "Admin";
 	}
-	
+
 	// 관리자 멤버리스트 보기
 	@RequestMapping("/goshowMemberList")
 	public String goshowMemberList() {
 
 		return "showMemberList";
 	}
-	
+
 	// 관리자 휴게소리스트 보기
 	@RequestMapping("/goshowRestAreaList")
 	public String goshowRestAreaList() {
 
 		return "showRestAreaList";
 	}
-	
+
 	// 관리자 휴게소 추가
-		@RequestMapping("/goaddRestArea")
-		public String goaddRestArea() {
+	@RequestMapping("/goaddRestArea")
+	public String goaddRestArea() {
 
-			return "addRestArea";
-		}
-		
+		return "addRestArea";
+	}
+
 	// 관리자 휴게소 삭제
-		@RequestMapping("/godeleteRestArea")
-		public String godeleteRestArea() {
+	@RequestMapping("/godeleteRestArea")
+	public String godeleteRestArea() {
 
-			return "deleteRestArea";
-		}
+		return "deleteRestArea";
+	}
+
 }

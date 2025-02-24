@@ -32,15 +32,16 @@ public interface MemberMapper {
 	// 회원 정보 수정
 	public int updateMember(MemberDTO tb_member);
 
-	// 회원 정보 삭제
-	public int deleteMember(String mem_id);
-
-	// 관리자 회원 관리
-
+	// 회원 리스트
 	public List<MemberDTO> getAllMembers();
 
+	// 회원 아이디로 회원 정보를 가져오기
 	public MemberDTO getMemberById(String mem_id);
 
+	// 새로운 회원 정보를 추가하는
 	public void insertMember(MemberDTO member);
+
+	// 회원 아이디로 회원 정보를 삭제
+	public void deleteMember(String mem_id);
 
 }
