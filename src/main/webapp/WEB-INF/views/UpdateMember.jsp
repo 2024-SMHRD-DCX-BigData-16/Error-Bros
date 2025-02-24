@@ -130,13 +130,19 @@
 
 <body>
 
-    <!-- 상단바 -->
+       <!-- 상단바 -->
     <div class="top-bar">
-        <a href="#">로그인</a>
-        <a href="#">마이페이지</a>
-        <a href="#">회원가입</a>
-        <a href="#">고객문의</a>
-    </div>
+    <% 
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
+    %>
+    <% if (loginMember!= null) { %>
+        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="goMypage">마이페이지</a>
+    <% } else { %>
+        <a href="goLogin">로그인</a>
+        <a href="goJoin">회원가입</a>
+    <% } %>
+	</div>
+
 
     <!-- 내비게이션 -->
     <div class="nav">
@@ -145,10 +151,9 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="#">휴게소 찾기</a>
-        <a href="#">리뷰게시판</a>
+        <a href="goMain">휴게소 찾기</a>
+        <a href="goReview">리뷰게시판</a>
     </div>
-
 
     <div class="center-container">
         <form class="update-form" name="updateMemberForm" action="updateMember" method="post">
