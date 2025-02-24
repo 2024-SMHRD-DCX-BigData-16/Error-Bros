@@ -70,11 +70,14 @@ public class HugesoController {
 
 	// 휴게소 리스트 출력
 	@GetMapping("/hugesoList")
-	public String hugesoList(HttpSession session) {
-		List<HugesoDTO> hugesoList = hugesoMapper.getAllHugeso();
 
-		session.setAttribute("adminhugesoList", hugesoList);
-		return "showRestAreaList"; // 휴게소 리스트 JSP 페이지 이름
+	public String hugesoList(@RequestParam(defaultValue = "1") int page, HttpSession session) {
+		int totalCount = hugesoMapper.getTotalHugesoCount();
+		List<HugesoDTO> adminhugesoList = hugesoMapper.getHugesoListWithPaging((page - 1) * 10);
+		session.setAttribute("adminhugesoList", adminhugesoList);
+		session.setAttribute("page", page);
+		session.setAttribute("totalCount", totalCount);
+		return "showRestAreaList";
 	}
 
 	// 휴게소 삭제
@@ -97,4 +100,5 @@ public class HugesoController {
 
 		return "UpdateRestArea";
 	}
+
 }

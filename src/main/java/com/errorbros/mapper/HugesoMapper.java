@@ -34,4 +34,8 @@ public interface HugesoMapper {
 	public int updateHugeso(HugesoDTO restArea);
 
 	public int deleteHugeso(int rest_idx);
+	// 페이지 번호를 매개변수로 추가
+	public List<HugesoDTO> getHugesoListWithPaging(int page); 
+	// 전체 휴게소 개수 반환
+	public int getTotalHugesoCount(); 
 }
