@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -246,7 +245,7 @@ public class MemberController {
 	}
 
 	// 회원 수정
-	@PutMapping("/update")
+	@GetMapping("/update")
 	public String updateMember(@RequestBody MemberDTO member) {
 		int cnt = memberMapper.updateMember(member);
 		if (cnt > 0) {
