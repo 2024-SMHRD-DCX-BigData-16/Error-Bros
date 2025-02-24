@@ -71,27 +71,29 @@ public class HugesoController {
 		session.setAttribute("hugesoInfo", menuInfo);
 		return "Menu";
 	}
-	
+
 	// 휴게소 리스트 출력
 	@GetMapping("/hugesoList")
 	public String hugesoList(Model model) {
-	    List<HugesoDTO> hugesoList = hugesoMapper.getAllHugeso();
-	    model.addAttribute("hugesoList", hugesoList);
-	    return "hugesoList"; // 휴게소 리스트 JSP 페이지 이름
+		List<HugesoDTO> hugesoList = hugesoMapper.getAllHugeso();
+		model.addAttribute("hugesoList", hugesoList);
+		return "hugesoList"; // 휴게소 리스트 JSP 페이지 이름
 	}
-	
+
 	// 휴게소 삭제
 	@PostMapping("/deleteRestArea")
 	@ResponseBody
 	public Map<String, Object> deleteRestArea(@RequestParam("rest_idx") int restIdx) {
-	    Map<String, Object> result = new HashMap<>();
-	    try {
-	        hugesoMapper.deleteRestArea(restIdx);
-	        result.put("success", true);
-	    } catch (Exception e) {
-	        result.put("success", false);
-	        result.put("message", "삭제 중 오류 발생: " + e.getMessage());
-	    }
-	    return result;
+		Map<String, Object> result = new HashMap<>();
+		try {
+			hugesoMapper.deleteRestArea(restIdx);
+			result.put("success", true);
+		} catch (Exception e) {
+			result.put("success", false);
+			result.put("message", "삭제 중 오류 발생: " + e.getMessage());
+		}
+		return result;
 	}
+
+	// 관리용
 }

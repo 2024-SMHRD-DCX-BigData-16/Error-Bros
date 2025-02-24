@@ -1,8 +1,9 @@
 <%@page import="com.errorbros.entity.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html lang="ko">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -156,7 +157,7 @@
 
 <body>
 
-      <!-- 상단바 -->
+    <!-- 상단바 -->
     <div class="top-bar">
     <% 
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
@@ -263,6 +264,34 @@
         
     </script>
 
+
+
+
 </body>
+
+<!-- 카카오 페이 기능 -->
+<script type="text/javascript">
+    // 카카오페이 결제 팝업창 연결
+    $(function() {
+        $("#btn-kakao-pay-ready").click(function(e) {
+            // 아래 데이터 외에도 필요한 데이터를 원하는 대로 담고, Controller에서 @RequestBody로 받으면 됨
+            let data = {
+                name: '상품명',    // 카카오페이에 보낼 대표 상품명
+                totalPrice: ${totalPrice.toLocaleString()}// 총 결제금액
+            };
+          
+            $.ajax({
+                type: 'POST',
+                url: '/order/pay/ready',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function(response) {
+                    location.href = response.next_redirect_pc_url;
+                }
+            });
+        });
+    });
+</script>
+
 
 </html>

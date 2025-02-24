@@ -108,8 +108,9 @@
 
 <body>
 
-    <!-- 상단바 -->
+       <!-- 상단바 -->
     <div class="top-bar">
+
         <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
         <% if (loginMember!= null) { %>
             <span><%= loginMember.getMem_nm() %>님 환영합니다.</span>
@@ -127,10 +128,9 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="#">휴게소 찾기</a>
-        <a href="#">리뷰게시판</a>
+        <a href="goMain">휴게소 찾기</a>
+        <a href="goReview">리뷰게시판</a>
     </div>
-
 
     <div class="center-container">
         <h1>휴게소 관리</h1>

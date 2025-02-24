@@ -129,7 +129,7 @@
 
 <body>
 
-    <!-- 상단바 -->
+      <!-- 상단바 -->
     <div class="top-bar">
         <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
         <% if (loginMember!= null) { %>
@@ -141,6 +141,7 @@
             <% } %>
     </div>
 
+
     <!-- 내비게이션 -->
     <div class="nav">
         <div class="logo">404</div>
@@ -148,8 +149,8 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="#">휴게소 찾기</a>
-        <a href="#">리뷰게시판</a>
+        <a href="goMain">휴게소 찾기</a>
+        <a href="goReview">리뷰게시판</a>
     </div>
 
 

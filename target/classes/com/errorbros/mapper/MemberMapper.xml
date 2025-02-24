@@ -42,8 +42,6 @@
 	<delete id="deleteMember" parameterType="String">
     DELETE FROM tb_member WHERE mem_id = #{mem_id}
 	</delete>
-	
-	
 
 </mapper>
 	
