@@ -74,13 +74,11 @@
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
     %>
     <% if (loginMember!= null) { %>
-        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="goUpdateMember">마이페이지</a>
+        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="goMypage">마이페이지</a>
     <% } else { %>
         <a href="goLogin">로그인</a>
         <a href="goJoin">회원가입</a>
     <% } %>
-    	
-    <a href="#">고객문의</a>
 	</div>
 
 
@@ -92,7 +90,7 @@
     <!-- 카테고리 메뉴 -->
     <div class="menu">
         <a href="goMain">휴게소 찾기</a>
-        <a href="#">리뷰게시판</a>
+        <a href="goReview">리뷰게시판</a>
     </div>
 
     <!-- 중앙 휴게소 검색창 -->
