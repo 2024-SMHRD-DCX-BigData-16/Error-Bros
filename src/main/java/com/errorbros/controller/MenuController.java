@@ -37,20 +37,20 @@ public class MenuController {
 	@PostMapping("/insertMenu")
 	public String addMenu(@RequestBody MenuDTO menu) {
 		menuMapper.insertMenu(menu);
-		return "Menu";
+		return "redirect:/Menu";
 	}
 
 	// 메뉴 수정
 	@PutMapping("/updateMenu")
 	public String updateMenu(@RequestBody MenuDTO menu) {
 		menuMapper.updateMenu(menu);
-		return "Menu";
+		return "redirect:/Menu";
 	}
 
 	// 메뉴 삭제
 	@DeleteMapping("/deleteMenu")
 	public String deleteMenu(@PathVariable int menu_idx) {
 		menuMapper.deleteMenu(menu_idx);
-		return "Menu";
+		return "redirect:/Menu";
 	}
 }
