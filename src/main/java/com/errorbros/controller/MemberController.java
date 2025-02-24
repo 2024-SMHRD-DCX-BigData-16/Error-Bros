@@ -1,13 +1,19 @@
 package com.errorbros.controller;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -141,74 +147,106 @@ public class MemberController {
 //
 //	}
 	@PostMapping("/updateMember")
-	public String updateMember(
-			@RequestParam("mem_pw") String mem_pw, 
-		    @RequestParam("mem_email") String mem_email,
-		    @RequestParam("mem_phone") String mem_phone, 
-		    @RequestParam(value = "mem_birthdate", required = false) Date mem_birthdate, // required = false로 변경
-		    @RequestParam(value = "mem_gender", required = false) String mem_gender, // required = false로 변경
-		    HttpSession session) {
+	public String updateMember(@RequestParam("mem_pw") String mem_pw, @RequestParam("mem_email") String mem_email,
+			@RequestParam("mem_phone") String mem_phone,
+			@RequestParam(value = "mem_birthdate", required = false) Date mem_birthdate, // required = false로 변경
+			@RequestParam(value = "mem_gender", required = false) String mem_gender, // required = false로 변경
+			HttpSession session) {
 
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-	    if (loginMember == null) {
-	        return "redirect:/login";
-	    }
+		if (loginMember == null) {
+			return "redirect:/login";
+		}
 
-	    // 관리자 계정 여부 확인
-	    if (loginMember.getMem_role().equals("admin")) { // "admin"은 관리자 역할을 나타내는 값
-	        MemberDTO member = new MemberDTO();
-	        member.setMem_id(loginMember.getMem_id());
-	        member.setMem_email(mem_email);
-	        member.setMem_phone(mem_phone);
+		// 관리자 계정 여부 확인
+		if (loginMember.getMem_role().equals("admin")) { // "admin"은 관리자 역할을 나타내는 값
+			MemberDTO member = new MemberDTO();
+			member.setMem_id(loginMember.getMem_id());
+			member.setMem_email(mem_email);
+			member.setMem_phone(mem_phone);
 
-	        // 비밀번호 변경 여부 확인 및 처리
-	        if (!mem_pw.equals(loginMember.getMem_pw())) {
-	            member.setMem_pw(mem_pw);
-	        } else {
-	            member.setMem_pw(loginMember.getMem_pw());
-	        }
+			// 비밀번호 변경 여부 확인 및 처리
+			if (!mem_pw.equals(loginMember.getMem_pw())) {
+				member.setMem_pw(mem_pw);
+			} else {
+				member.setMem_pw(loginMember.getMem_pw());
+			}
 
-	        // 관리자 계정일 경우에만 생년월일 및 남녀 정보 수정
-	        member.setMem_birthdate(mem_birthdate);
-	        member.setMem_gender(mem_gender);
+			// 관리자 계정일 경우에만 생년월일 및 남녀 정보 수정
+			member.setMem_birthdate(mem_birthdate);
+			member.setMem_gender(mem_gender);
 
-	        int result = memberMapper.updateMember(member);
+			int result = memberMapper.updateMember(member);
 
-	        if (result > 0) {
-	            loginMember.setMem_email(mem_email);
-	            loginMember.setMem_phone(mem_phone);
-	            loginMember.setMem_birthdate(mem_birthdate);
-	            loginMember.setMem_gender(mem_gender);
-	            session.setAttribute("loginMember", loginMember);
-	            return "Main";
-	        } else {
-	            return "updateMember";
-	        }
-	    } else {
-	        // 관리자 계정이 아닐 경우, 생년월일 및 남녀 정보는 수정하지 않고 다른 정보만 수정
-	        MemberDTO member = new MemberDTO();
-	        member.setMem_id(loginMember.getMem_id());
-	        member.setMem_email(mem_email);
-	        member.setMem_phone(mem_phone);
+			if (result > 0) {
+				loginMember.setMem_email(mem_email);
+				loginMember.setMem_phone(mem_phone);
+				loginMember.setMem_birthdate(mem_birthdate);
+				loginMember.setMem_gender(mem_gender);
+				session.setAttribute("loginMember", loginMember);
+				return "Main";
+			} else {
+				return "updateMember";
+			}
+		} else {
+			// 관리자 계정이 아닐 경우, 생년월일 및 남녀 정보는 수정하지 않고 다른 정보만 수정
+			MemberDTO member = new MemberDTO();
+			member.setMem_id(loginMember.getMem_id());
+			member.setMem_email(mem_email);
+			member.setMem_phone(mem_phone);
 
-	        // 비밀번호 변경 여부 확인 및 처리
-	        if (!mem_pw.equals(loginMember.getMem_pw())) {
-	            member.setMem_pw(mem_pw);
-	        } else {
-	            member.setMem_pw(loginMember.getMem_pw());
-	        }
+			// 비밀번호 변경 여부 확인 및 처리
+			if (!mem_pw.equals(loginMember.getMem_pw())) {
+				member.setMem_pw(mem_pw);
+			} else {
+				member.setMem_pw(loginMember.getMem_pw());
+			}
 
-	        int result = memberMapper.updateMember(member);
+			int result = memberMapper.updateMember(member);
 
-	        if (result > 0) {
-	            loginMember.setMem_email(mem_email);
-	            loginMember.setMem_phone(mem_phone);
-	            session.setAttribute("loginMember", loginMember);
-	            return "Main";
-	        } else {
-	            return "updateMember";
-	        }
+			if (result > 0) {
+				loginMember.setMem_email(mem_email);
+				loginMember.setMem_phone(mem_phone);
+				session.setAttribute("loginMember", loginMember);
+				return "Main";
+			} else {
+				return "updateMember";
+			}
+		}
+
 	}
 
+	// admin 전체 회원 조회
+	@GetMapping("/list")
+	public List<MemberDTO> getAllMembers() {
+		return memberMapper.getAllMembers();
 	}
+
+	// 특정 회원 조회
+	@GetMapping("/{mem_id}")
+	public MemberDTO getMember(@PathVariable String mem_id) {
+		return memberMapper.getMemberById(mem_id);
+	}
+
+	// 회원 추가
+	@PostMapping("/add")
+	public String addMember(@RequestBody MemberDTO member) {
+		memberMapper.insertMember(member);
+		return "회원 추가 완료";
+	}
+
+	// 회원 수정
+	@PutMapping("/update")
+	public String updateMember(@RequestBody MemberDTO member) {
+		memberMapper.updateMember(member);
+		return "회원 수정 완료";
+	}
+
+	// 회원 삭제
+	@DeleteMapping("/delete/{mem_id}")
+	public String deleteMember(@PathVariable String mem_id) {
+		memberMapper.deleteMember(mem_id);
+		return "회원 삭제 완료";
+	}
+
 }
