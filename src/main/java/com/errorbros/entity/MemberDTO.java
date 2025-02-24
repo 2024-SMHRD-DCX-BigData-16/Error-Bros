@@ -43,7 +43,7 @@ public class MemberDTO {// 회원
 		return mem_id;
 	}
 
-	public void setMemId(String memId) {
+	public void setMemId(String mem_id) {
 		this.mem_id = mem_id;
 	}
 
@@ -51,7 +51,7 @@ public class MemberDTO {// 회원
 		return mem_pw;
 	}
 
-	public void setMemPw(String memPw) {
+	public void setMemPw(String mem_pw) {
 		this.mem_pw = mem_pw;
 	}
 
@@ -59,7 +59,7 @@ public class MemberDTO {// 회원
 		return mem_nm;
 	}
 
-	public void setMemName(String memName) {
+	public void setMemName(String mem_nm) {
 		this.mem_nm = mem_nm;
 	}
 
@@ -67,7 +67,7 @@ public class MemberDTO {// 회원
 		return mem_phone;
 	}
 
-	public void setMemPhone(String memPhone) {
+	public void setMemPhone(String mem_phone) {
 		this.mem_phone = mem_phone;
 	}
 
@@ -75,7 +75,7 @@ public class MemberDTO {// 회원
 		return mem_email;
 	}
 
-	public void setMemEmail(String memEmail) {
+	public void setMemEmail(String mem_email) {
 		this.mem_email = mem_email;
 	}
 
@@ -83,7 +83,7 @@ public class MemberDTO {// 회원
 		return mem_birthdate;
 	}
 
-	public void setMemBirthdate(Date memBirthdate) {
+	public void setMemBirthdate(Date mem_birthdate) {
 		this.mem_birthdate = mem_birthdate;
 	}
 
@@ -91,7 +91,7 @@ public class MemberDTO {// 회원
 		return mem_gender;
 	}
 
-	public void setMemGender(String memGender) {
+	public void setMemGender(String mem_gender) {
 		this.mem_gender = mem_gender;
 	}
 
@@ -99,7 +99,7 @@ public class MemberDTO {// 회원
 		return mem_role;
 	}
 
-	public void setMemRole(String memRole) {
+	public void setMemRole(String mem_role) {
 		this.mem_role = mem_role;
 	}
 
@@ -107,7 +107,7 @@ public class MemberDTO {// 회원
 		return joined_at;
 	}
 
-	public void setJoinedAt(Timestamp joinedAt) {
+	public void setJoinedAt(Timestamp joined_at) {
 		this.joined_at = joined_at;
 	}
 
