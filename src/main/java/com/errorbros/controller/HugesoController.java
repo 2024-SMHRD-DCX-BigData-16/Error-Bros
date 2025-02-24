@@ -77,7 +77,7 @@ public class HugesoController {
 	public String hugesoList(Model model) {
 		List<HugesoDTO> hugesoList = hugesoMapper.getAllHugeso();
 		model.addAttribute("hugesoList", hugesoList);
-		return "hugesoList"; // 휴게소 리스트 JSP 페이지 이름
+		return "showRestAreaList"; // 휴게소 리스트 JSP 페이지 이름
 	}
 
 	// 휴게소 삭제
