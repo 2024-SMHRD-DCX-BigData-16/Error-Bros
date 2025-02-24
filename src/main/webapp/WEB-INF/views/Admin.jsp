@@ -160,7 +160,7 @@
             <a href="goshowMemberList"><button class="member-list">회원관리</button></a>
             </div>
             <div>
-            <a href="goshowRestAreaList"><button class="show-restarealist">휴게소 관리</button></a>
+            <a href="hugesoList"><button class="show-restarealist">휴게소 관리</button></a>
                 
             </div>
         </div>
