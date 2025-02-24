@@ -45,10 +45,11 @@ public class MainController {
 
 		return "Login";
 	}
-
+	
 	@RequestMapping("/goUpdateMember")
 	public String goUpdateMember() {
 
+<<<<<<< HEAD
 		return "UpdateMember";
 	}
 
@@ -85,4 +86,8 @@ public class MainController {
 
 			return "deleteRestArea";
 		}
+=======
+	     return "UpdateMember";
+	   }
+>>>>>>> 0869e610011517d726299a2ab0515a553f7c9849
 }

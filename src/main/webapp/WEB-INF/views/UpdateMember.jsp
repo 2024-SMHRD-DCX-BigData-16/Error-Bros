@@ -160,8 +160,8 @@
 
             <input type="password" name="mem_pw" placeholder="새 비밀번호" required>
             <input type="password" name="mem_pw_confirm" placeholder="새 비밀번호 확인" required>
-            <input value="${loginMember.mem_phone}" type="text" name="mem_phone" placeholder="전화번호" required>
-            <input value="${loginMember.mem_email}" type="email" id="mem_email" name="mem_email" placeholder="이메일" required>
+            <input type="text" name="mem_phone" placeholder="전화번호" required>
+            <input type="email" id="mem_email" name="mem_email" placeholder="이메일" required>
             <button type="button" onclick="checkDuplicateEmail()" class="check-button">이메일 중복 확인</button><br>
             <span id="emailMessage" class="message"></span><br>
             <input type="date" name="mem_birthdate" required>

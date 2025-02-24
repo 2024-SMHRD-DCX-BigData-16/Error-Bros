@@ -2,6 +2,7 @@ package com.errorbros.controller;
 
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -9,7 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -211,19 +216,47 @@ public class MemberController {
 		}
 
 	}
+
+	// admin 전체 회원 조회
+	@GetMapping("/list")
+
+	public List<MemberDTO> getAllMembers() {
+		return memberMapper.getAllMembers();
+	}
+
+	// 특정 회원 조회
+	@GetMapping("/{mem_id}")
+	public MemberDTO getMember(@PathVariable String mem_id) {
+		return memberMapper.getMemberById(mem_id);
+	}
+
+	// 회원 추가
+	@PostMapping("/add")
+	public String addMember(@RequestBody MemberDTO member) {
+		memberMapper.insertMember(member);
+		return "회원 추가 완료";
+	}
+
+	// 회원 수정
+	@PutMapping("/update")
+	public String updateMember(@RequestBody MemberDTO member) {
+		memberMapper.updateMember(member);
+		return "회원 수정 완료";
+	}
+
+	// 회원 삭제
 	@PostMapping("/deleteMember")
 	@ResponseBody
 	public Map<String, Object> deleteMember(@RequestParam("mem_id") String mem_id) {
-	    Map<String, Object> result = new HashMap<>();
-	    try {
-	        memberMapper.deleteMember(mem_id);
-	        result.put("success", true);
-	    } catch (Exception e) {
-	        result.put("success", false);
-	        result.put("message", "삭제 중 오류 발생: " + e.getMessage());
-	    }
-	    return result;
+		Map<String, Object> result = new HashMap<>();
+		try {
+			memberMapper.deleteMember(mem_id);
+			result.put("success", true);
+		} catch (Exception e) {
+			result.put("success", false);
+			result.put("message", "삭제 중 오류 발생: " + e.getMessage());
+		}
+		return result;
 	}
-	
-	
+
 }
