@@ -159,11 +159,17 @@
 
     <!-- 상단바 -->
     <div class="top-bar">
-        <a href="#">로그인</a>
-        <a href="#">마이페이지</a>
-        <a href="#">회원가입</a>
-        <a href="#">고객문의</a>
-    </div>
+    <% 
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
+    %>
+    <% if (loginMember!= null) { %>
+        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="goMypage">마이페이지</a>
+    <% } else { %>
+        <a href="goLogin">로그인</a>
+        <a href="goJoin">회원가입</a>
+    <% } %>
+	</div>
+
 
     <!-- 내비게이션 -->
     <div class="nav">
@@ -172,8 +178,8 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="#">휴게소 찾기</a>
-        <a href="#">리뷰게시판</a>
+        <a href="goMain">휴게소 찾기</a>
+        <a href="goReview">리뷰게시판</a>
     </div>
 
     <!-- 음식 목록 -->
@@ -258,6 +264,34 @@
         
     </script>
 
+
+
+
 </body>
+
+<!-- 카카오 페이 기능 -->
+<script type="text/javascript">
+    // 카카오페이 결제 팝업창 연결
+    $(function() {
+        $("#btn-kakao-pay-ready").click(function(e) {
+            // 아래 데이터 외에도 필요한 데이터를 원하는 대로 담고, Controller에서 @RequestBody로 받으면 됨
+            let data = {
+                name: '상품명',    // 카카오페이에 보낼 대표 상품명
+                totalPrice: ${totalPrice.toLocaleString()}// 총 결제금액
+            };
+          
+            $.ajax({
+                type: 'POST',
+                url: '/order/pay/ready',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function(response) {
+                    location.href = response.next_redirect_pc_url;
+                }
+            });
+        });
+    });
+</script>
+
 
 </html>

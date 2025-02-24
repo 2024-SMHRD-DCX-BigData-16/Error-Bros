@@ -1,6 +1,8 @@
 package com.errorbros.controller;
 
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -209,19 +211,18 @@ public class MemberController {
 		}
 
 	}
+
 	@PostMapping("/deleteMember")
 	@ResponseBody
 	public Map<String, Object> deleteMember(@RequestParam("mem_id") String mem_id) {
-	    Map<String, Object> result = new HashMap<>();
-	    try {
-	        memberMapper.deleteMember(mem_id);
-	        result.put("success", true);
-	    } catch (Exception e) {
-	        result.put("success", false);
-	        result.put("message", "삭제 중 오류 발생: " + e.getMessage());
-	    }
-	    return result;
+		Map<String, Object> result = new HashMap<>();
+		try {
+			memberMapper.deleteMember(mem_id);
+			result.put("success", true);
+		} catch (Exception e) {
+			result.put("success", false);
+			result.put("message", "삭제 중 오류 발생: " + e.getMessage());
+		}
+		return result;
 	}
-	
-	
 }
