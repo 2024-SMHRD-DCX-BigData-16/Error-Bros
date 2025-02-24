@@ -72,6 +72,7 @@ public class HugesoController {
 	@GetMapping("/hugesoList")
 	public String hugesoList(HttpSession session) {
 		List<HugesoDTO> hugesoList = hugesoMapper.getAllHugeso();
+
 		session.setAttribute("adminhugesoList", hugesoList);
 		return "showRestAreaList"; // 휴게소 리스트 JSP 페이지 이름
 	}
