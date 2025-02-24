@@ -169,7 +169,7 @@
     <!-- 카테고리 메뉴 -->
     <div class="menu">
         <a href="goMain">휴게소 찾기</a>
-        <a href="goReview">리뷰게시판</a>
+        <a href="goreview">리뷰게시판</a>
     </div>
 
     <!-- 중앙 휴게소 검색창 -->
