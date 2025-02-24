@@ -30,5 +30,6 @@ public interface MemberMapper {
 	// 회원 정보 수정
 	public int updateMember(MemberDTO tb_member);
 	
-
+	// 회원 정보 삭제
+	public void deleteMember(String mem_id);
 }
