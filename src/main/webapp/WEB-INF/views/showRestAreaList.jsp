@@ -184,7 +184,7 @@ body {
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="hugeso" items="${hugesoList}">
+                <c:forEach var="hugeso" items="${adminhugesoList}">
                     <tr>
                         <td>${hugeso.rest_idx}</td>
                         <td>${hugeso.rest_nm}</td>
