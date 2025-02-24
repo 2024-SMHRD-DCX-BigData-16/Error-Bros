@@ -72,8 +72,8 @@ public class HugesoController {
 	@GetMapping("/hugesoList")
 	public String hugesoList(@RequestParam(defaultValue = "1") int page, HttpSession session) {
 		int totalCount = hugesoMapper.getTotalHugesoCount();
-		List<HugesoDTO> hugesoList = hugesoMapper.getHugesoListWithPaging((page - 1) * 10);
-		session.setAttribute("hugesoList", hugesoList);
+		List<HugesoDTO> adminhugesoList = hugesoMapper.getHugesoListWithPaging((page - 1) * 10);
+		session.setAttribute("adminhugesoList", adminhugesoList);
 		session.setAttribute("page", page);
 		session.setAttribute("totalCount", totalCount);
 		return "showRestAreaList";
