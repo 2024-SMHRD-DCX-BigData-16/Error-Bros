@@ -42,6 +42,6 @@ public interface MemberMapper {
 	public int insertMember(MemberDTO member);
 
 	// 회원 아이디로 회원 정보를 삭제
-	public void deleteMember(String mem_id);
+	public int deleteMember(String mem_id);
 
 }

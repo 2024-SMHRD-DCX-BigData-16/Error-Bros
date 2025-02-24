@@ -60,5 +60,9 @@
 		insert into tb_member values(#{mem_id}, #{mem_pw}, #{mem_nm}, #{mem_phone}, #{mem_email}, #{mem_birthdate}, #{mem_gender}, #{mem_role}, NOW());
 	</insert>
 	
+	<!-- 맴버 삭제 -->
+	<delete id="deleteMember">
+		delete from tb_member where mem_id=#{mem_id};
+	</delete>
 </mapper>
 	
