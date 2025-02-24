@@ -25,10 +25,6 @@
 	VALUES (#{rest_idx}, #{mem_id}, #{review_content}, 0, #{review_ratings}, NOW());
 </insert>
 
-<!-- 휴게소 고유번호로 조회 -->
-    <select id="getHugesoId" parameterType="int" resultType="com.errorbros.entity.HugesoDTO">
-        SELECT * FROM tb_restarea WHERE rest_idx = #{rest_idx}
-    </select>
 
     <!-- 모든 휴게소 조회 -->
     <select id="getAllHugesos" resultType="com.errorbros.entity.HugesoDTO">
@@ -54,8 +50,12 @@
         DELETE FROM tb_restarea WHERE rest_idx=#{rest_idx}
     </delete>
 
-
-
+<!-- 휴게소 테이블 데이터 조회 -->
+	<select id="getAllHugeso" resultType="com.errorbros.entity.HugesoDTO">
+    	SELECT * FROM tb_restarea
+	</select>
+	
+	
 
 
 
