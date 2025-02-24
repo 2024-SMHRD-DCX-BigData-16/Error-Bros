@@ -12,6 +12,84 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="resources/assets/css/head.css" />
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #fff;
+        }
+
+        /* 상단바 */
+        .top-bar {
+            background-color: rgb(51, 199, 17);
+            text-align: right;
+            padding: 8px 20px;
+            font-size: 14px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .top-bar a {
+            color: red;
+            text-decoration: none;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        /* 내비게이션 */
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 20px;
+            position: relative;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(199, 126, 17);
+            text-align: center;
+        }
+
+        /* 카테고리 메뉴 */
+        .menu {
+            display: flex;
+            justify-content: left;
+            padding: 10px 20px;
+            border-top: 1px solid blue;
+            width: 100%;
+        }
+
+        .menu a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        /* 중앙 로그인 폼 */
+        .center-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        
         .hu-text {
             font-size: 60px;
             font-weight: bold;
@@ -51,6 +129,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        
         .buttons {
             display: none;
             margin-top: 20px;
@@ -70,16 +149,15 @@
 
     <!-- 상단바 -->
     <div class="top-bar">
-    <% 
-        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
-    %>
-    <% if (loginMember!= null) { %>
-        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="goMypage">마이페이지</a>
-    <% } else { %>
-        <a href="goLogin">로그인</a>
-        <a href="goJoin">회원가입</a>
-    <% } %>
-	</div>
+        <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
+        <% if (loginMember!= null) { %>
+            <span><%= loginMember.getMem_nm() %>님 환영합니다.</span>
+            <a href="logOut">로그아웃</a>
+            <a href="goMypage">마이페이지</a>
+            <% if ("admin".equals(loginMember.getMem_id())) { %> <a href="goAdmin">관리하기</a> <% } %> <% } else { %> <a href="goLogin">로그인</a>
+            <a href="goJoin">회원가입</a>
+            <% } %>
+    </div>
 
 
     <!-- 내비게이션 -->

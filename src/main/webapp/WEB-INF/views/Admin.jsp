@@ -131,15 +131,14 @@
 
     <!-- 상단바 -->
     <div class="top-bar">
-        <% MemberDTO loginMember=(MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기 %>
-            <% if (loginMember!=null) { %>
-                <span>
-                    <%= loginMember.getMem_nm() %>님 환영합니다.
-                </span> <a href="logOut">로그아웃</a> <a href="goMypage">마이페이지</a>
-                <% } else { %>
-                    <a href="goLogin">로그인</a>
-                    <a href="goJoin">회원가입</a>
-                    <% } %>
+        <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
+        <% if (loginMember!= null) { %>
+            <span><%= loginMember.getMem_nm() %>님 환영합니다.</span>
+            <a href="logOut">로그아웃</a>
+            <a href="goMypage">마이페이지</a>
+            <% if ("admin".equals(loginMember.getMem_id())) { %> <a href="goAdmin">관리하기</a> <% } %> <% } else { %> <a href="goLogin">로그인</a>
+            <a href="goJoin">회원가입</a>
+            <% } %>
     </div>
 
     <!-- 내비게이션 -->
@@ -157,10 +156,11 @@
     <div class="center-container">
         <div class="admin-panel">
             <div>
-                <button onclick="showMemberList()">회원 관리</button>
+            <a href="goshowMemberList"><button class="member-list">회원관리</button></a>
             </div>
             <div>
-                <button onclick="showRestAreaList()">휴게소 관리</button>
+            <a href="goshowRestAreaList"><button class="show-restarealist">휴게소 관리</button></a>
+                
             </div>
         </div>
     </div>
