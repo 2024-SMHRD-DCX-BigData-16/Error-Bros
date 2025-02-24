@@ -149,7 +149,7 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="member" items="${memberList}"> <%-- JSTL 사용 --%>
+                <c:forEach var="member" items="${allMember}"> <%-- JSTL 사용 --%>
                         <tr>
                             <td>${member.mem_id}</td>
                             <td>${member.mem_nm}</td>
@@ -159,38 +159,14 @@
                                 <fmt:formatDate value="${member.mem_birthdate}" pattern="yyyy-MM-dd" />
                             </td> <%-- JSTL fmt 사용 --%>
                                 <td>${member.mem_gender}</td>
-                                <td><button
-                                        onclick="location.href='updateMember.jsp?mem_id=${member.mem_id}'">수정</button>
-                                </td>
-                                <td><button onclick="deleteMember('${member.mem_id}')">삭제</button></td>
+                                 <td><a href="updateMember?mem_id=${member.mem_id} }"><button>수정</button></a></td>
+                                <td><a href="deleteMember?mem_id=${member.mem_id} }"><button>삭제</button></a></td>
                         </tr>
                 </c:forEach>
             </tbody>
         </table>
     </div>
 
-    <script>
-        function deleteMember(mem_id) {
-            if (confirm("정말 삭제하시겠습니까?")) {
-                $.ajax({
-                    url: "deleteMember",
-                    type: "POST",
-                    data: { mem_id: mem_id },
-                    success: function(result) {
-                        if (result.success) {
-                            alert("삭제되었습니다.");
-                            location.reload();
-                        } else {
-                            alert("삭제 실패: " + result.message);
-                        }
-                    },
-                    error: function() {
-                        alert("삭제 요청 중 오류 발생");
-                    }
-                });
-            }
-        }
-    </script>
 </body>
 
 </html>

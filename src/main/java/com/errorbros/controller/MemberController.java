@@ -1,9 +1,7 @@
 package com.errorbros.controller;
 
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -218,45 +216,58 @@ public class MemberController {
 	}
 
 	// admin 전체 회원 조회
-	@GetMapping("/list")
+	@GetMapping("/goshowMemberList")
 
-	public List<MemberDTO> getAllMembers() {
-		return memberMapper.getAllMembers();
+	public String getAllMembers(HttpSession session) {
+		List<MemberDTO> allMember = memberMapper.getAllMembers();
+		session.setAttribute("allMember", allMember);
+		System.out.println("총 회원수는 : " + allMember.size());
+		return "showMemberList";
 	}
 
 	// 특정 회원 조회
 	@GetMapping("/{mem_id}")
 	public MemberDTO getMember(@PathVariable String mem_id) {
-		return memberMapper.getMemberById(mem_id);
+		MemberDTO member = memberMapper.getMemberById(mem_id);
+		System.out.println(member.toString());
+		return member;
 	}
 
 	// 회원 추가
 	@PostMapping("/add")
 	public String addMember(@RequestBody MemberDTO member) {
-		memberMapper.insertMember(member);
-		return "회원 추가 완료";
+		int cnt = memberMapper.insertMember(member);
+		if (cnt > 0) {
+			System.out.println("회원 추가 완료");
+		} else {
+			System.out.println("회원 추가 실패");
+		}
+		return "redirect:/Admin";
 	}
 
 	// 회원 수정
 	@PutMapping("/update")
 	public String updateMember(@RequestBody MemberDTO member) {
-		memberMapper.updateMember(member);
-		return "회원 수정 완료";
+		int cnt = memberMapper.updateMember(member);
+		if (cnt > 0) {
+			System.out.println("회원정보 수정");
+		} else {
+			System.out.println("회원 정보 수정 실패");
+		}
+		return "redirect:/Admin";
 	}
 
 	// 회원 삭제
-	@PostMapping("/deleteMember")
-	@ResponseBody
-	public Map<String, Object> deleteMember(@RequestParam("mem_id") String mem_id) {
-		Map<String, Object> result = new HashMap<>();
-		try {
-			memberMapper.deleteMember(mem_id);
-			result.put("success", true);
-		} catch (Exception e) {
-			result.put("success", false);
-			result.put("message", "삭제 중 오류 발생: " + e.getMessage());
+	@GetMapping("/deleteMember")
+	public String deleteMember(@RequestParam("mem_id") String mem_id) {
+		int cnt = memberMapper.deleteMember(mem_id);
+		if (cnt > 0) {
+			System.out.println("삭제 되었습니다");
+		} else {
+			System.out.println("삭제 실패");
+
 		}
-		return result;
+		return "redirect:/showMemberList";
 	}
 
 }
