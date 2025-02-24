@@ -218,30 +218,45 @@ public class MemberController {
 	}
 
 	// admin 전체 회원 조회
-	@GetMapping("/list")
+	@GetMapping("/goshowMemberList")
 
-	public List<MemberDTO> getAllMembers() {
-		return memberMapper.getAllMembers();
+	public String getAllMembers(HttpSession session) {
+		List<MemberDTO> allMember = memberMapper.getAllMembers();
+		session.setAttribute("allMember", allMember);
+		System.out.println("총 회원수는 : " + allMember.size());
+		return "showMemberList";
 	}
 
 	// 특정 회원 조회
 	@GetMapping("/{mem_id}")
 	public MemberDTO getMember(@PathVariable String mem_id) {
-		return memberMapper.getMemberById(mem_id);
+		MemberDTO member = memberMapper.getMemberById(mem_id);
+		System.out.println(member.toString());
+		return member;
 	}
 
 	// 회원 추가
 	@PostMapping("/add")
 	public String addMember(@RequestBody MemberDTO member) {
-		memberMapper.insertMember(member);
-		return "회원 추가 완료";
+		int cnt = memberMapper.insertMember(member);
+		if (cnt > 0) {
+			System.out.println("회원 추가 완료");
+		} else {
+			System.out.println("회원 추가 실패");
+		}
+		return "redirect:/Admin";
 	}
 
 	// 회원 수정
 	@PutMapping("/update")
 	public String updateMember(@RequestBody MemberDTO member) {
-		memberMapper.updateMember(member);
-		return "회원 수정 완료";
+		int cnt = memberMapper.updateMember(member);
+		if (cnt > 0) {
+			System.out.println("회원정보 수정");
+		} else {
+			System.out.println("회원 정보 수정 실패");
+		}
+		return "redirect:/Admin";
 	}
 
 	// 회원 삭제

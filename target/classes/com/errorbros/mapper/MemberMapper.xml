@@ -42,6 +42,23 @@
 	<delete id="deleteMember" parameterType="String">
     DELETE FROM tb_member WHERE mem_id = #{mem_id}
 	</delete>
-
+	
+	<!-- 관리자용 -->
+	<!-- 전체 회원 리스트 불러오기 -->
+	
+	<select id="getAllMembers" parameterType="com.errorbros.entity.MemberDTO" resultType="com.errorbros.entity.MemberDTO">
+			select * 
+			from tb_member ;
+	</select>
+	
+	<select id="getMemberById" parameterType="com.errorbros.entity.MemberDTO" resultType="com.errorbros.entity.MemberDTO">
+			select * from tb_member where mem_id=#{mem_id};
+	</select>
+	
+	<!-- 관리자 기능 - 회원 추가 -->
+	<insert id="insertMember" parameterType="com.errorbros.entity.MemberDTO" >
+		insert into tb_member values(#{mem_id}, #{mem_pw}, #{mem_nm}, #{mem_phone}, #{mem_email}, #{mem_birthdate}, #{mem_gender}, #{mem_role}, NOW());
+	</insert>
+	
 </mapper>
 	

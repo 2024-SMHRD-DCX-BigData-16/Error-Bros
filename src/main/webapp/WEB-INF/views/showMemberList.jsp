@@ -149,7 +149,7 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="member" items="${memberList}"> <%-- JSTL 사용 --%>
+                <c:forEach var="member" items="${allMember}"> <%-- JSTL 사용 --%>
                         <tr>
                             <td>${member.mem_id}</td>
                             <td>${member.mem_nm}</td>
