@@ -49,7 +49,6 @@ public class MainController {
 	@RequestMapping("/goUpdateMember")
 	public String goUpdateMember() {
 
-<<<<<<< HEAD
 		return "UpdateMember";
 	}
 
@@ -84,10 +83,6 @@ public class MainController {
 		@RequestMapping("/godeleteRestArea")
 		public String godeleteRestArea() {
 
-			return "deleteRestArea";
+		return "deleteRestArea";
 		}
-=======
-	     return "UpdateMember";
-	   }
->>>>>>> 0869e610011517d726299a2ab0515a553f7c9849
-}
+}	  

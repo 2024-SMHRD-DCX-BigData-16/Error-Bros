@@ -16,10 +16,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 0869e610011517d726299a2ab0515a553f7c9849
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -29,10 +26,7 @@
             height: 100vh;
             background-color: #fff;
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 0869e610011517d726299a2ab0515a553f7c9849
         /* 상단바 */
         .top-bar {
             background-color: rgb(51, 199, 17);
@@ -44,21 +38,15 @@
             top: 0;
             left: 0;
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 0869e610011517d726299a2ab0515a553f7c9849
         .top-bar a {
             color: red;
             text-decoration: none;
             margin-left: 15px;
-<<<<<<< HEAD
             cursor: pointer;
         }
 
-=======
-        }
->>>>>>> 0869e610011517d726299a2ab0515a553f7c9849
+
         /* 내비게이션 */
         .nav {
             display: flex;
@@ -69,20 +57,14 @@
             width: 100%;
             margin-top: 40px;
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 0869e610011517d726299a2ab0515a553f7c9849
         .logo {
             font-size: 24px;
             font-weight: bold;
             color: rgb(199, 126, 17);
             text-align: center;
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 0869e610011517d726299a2ab0515a553f7c9849
         /* 카테고리 메뉴 */
         .menu {
             display: flex;
@@ -91,22 +73,16 @@
             border-top: 1px solid blue;
             width: 100%;
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 0869e610011517d726299a2ab0515a553f7c9849
         .menu a {
             margin-right: 20px;
             text-decoration: none;
             color: black;
             font-weight: bold;
         }
-<<<<<<< HEAD
 
-        /* 중앙 로그인 폼 */
-=======
         /* 중앙 휴게소 검색 텍스트 */
->>>>>>> 0869e610011517d726299a2ab0515a553f7c9849
+
         .center-container {
             display: flex;
             flex-direction: column;
@@ -114,10 +90,7 @@
             justify-content: center;
             flex-grow: 1;
         }
-<<<<<<< HEAD
-        
-=======
->>>>>>> 0869e610011517d726299a2ab0515a553f7c9849
+
         .hu-text {
             font-size: 60px;
             font-weight: bold;
