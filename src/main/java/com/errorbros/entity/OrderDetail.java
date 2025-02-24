@@ -1,57 +1,25 @@
 package com.errorbros.entity;
 
-//ÁÖ¹®»ó¼¼ 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+//ï¿½Ö¹ï¿½ï¿½ï¿½ 
+@Data
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class OrderDetail {
 
-	// ÁÖ»ó °íÀ¯¹øÈ£
+	// ï¿½Ö»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 	private int detailIdx;
 
-	// ÁÖ¹® °íÀ¯¹øÈ£
+	// ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 	private int orderIdx;
 
-	// ¸Þ´º °íÀ¯¹øÈ£
+	// ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 	private int menuIdx;
 
-	// ÁÖ¹® ¼ö·®
+	// ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private Integer orderCnt;
 
-	public int getDetailIdx() {
-		return detailIdx;
-	}
-
-	public void setDetailIdx(int detailIdx) {
-		this.detailIdx = detailIdx;
-	}
-
-	public int getOrderIdx() {
-		return orderIdx;
-	}
-
-	public void setOrderIdx(int orderIdx) {
-		this.orderIdx = orderIdx;
-	}
-
-	public int getMenuIdx() {
-		return menuIdx;
-	}
-
-	public void setMenuIdx(int menuIdx) {
-		this.menuIdx = menuIdx;
-	}
-
-	public Integer getOrderCnt() {
-		return orderCnt;
-	}
-
-	public void setOrderCnt(Integer orderCnt) {
-		this.orderCnt = orderCnt;
-	}
-
-	// tbOrderDetail ¸ðµ¨ º¹»ç
-	public void CopyData(OrderDetail param) {
-		this.detailIdx = param.getDetailIdx();
-		this.orderIdx = param.getOrderIdx();
-		this.menuIdx = param.getMenuIdx();
-		this.orderCnt = param.getOrderCnt();
-	}
 }

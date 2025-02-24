@@ -1,102 +1,33 @@
 package com.errorbros.entity;
 
-import java.math.BigDecimal;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
-public class HugesoDTO {//ÈŞ°Ô¼Ò 
+@RequiredArgsConstructor
+public class HugesoDTO {// íœ´ê²Œì†Œ
 
- // ÈŞ°Ô¼Ò °íÀ¯¹øÈ£ 
- private int restIdx;
+	// íœ´ê²Œì†Œ ê³ ìœ ë²ˆí˜¸
+	private int rest_idx;
 
- // ÈŞ°Ô¼Ò ¸í 
- private String restNm;
+	// íœ´ê²Œì†Œ ëª…
+	private String rest_nm;
 
- // ÈŞ°Ô¼Ò ÁÖ¼Ò 
- private String restAddr;
+	// íœ´ê²Œì†Œ ì£¼ì†Œ
+	private String rest_addr;
 
- // À§µµ 
- private BigDecimal lat;
+	// ìœ„ë„
+	private double lat;
 
- // °æµµ 
- private BigDecimal lon;
+	// ê²½ë„
+	private double lon;
 
- // ÈŞ°Ô¼Ò ÆíÀÇ½Ã¼³ 
- private String restFacilities;
+	// íœ´ê²Œì†Œ í¸ì˜ì‹œì„¤
+	private String rest_facilities;
 
- // ÈŞ°Ô¼Ò »çÁø 
- private String restImg;
+	// íœ´ê²Œì†Œ ì‚¬ì§„
+	private String rest_img;
 
- public int getRestIdx() {
-     return restIdx;
- }
-
- public void setRestIdx(int restIdx) {
-     this.restIdx = restIdx;
- }
-
- public String getRestNm() {
-     return restNm;
- }
-
- public void setRestNm(String restNm) {
-     this.restNm = restNm;
- }
-
- public String getRestAddr() {
-     return restAddr;
- }
-
- public void setRestAddr(String restAddr) {
-     this.restAddr = restAddr;
- }
-
- public BigDecimal getLat() {
-     return lat;
- }
-
- public void setLat(BigDecimal lat) {
-     this.lat = lat;
- }
-
- public BigDecimal getLon() {
-     return lon;
- }
-
- public void setLon(BigDecimal lon) {
-     this.lon = lon;
- }
-
- public String getRestFacilities() {
-     return restFacilities;
- }
-
- public void setRestFacilities(String restFacilities) {
-     this.restFacilities = restFacilities;
- }
-
- public String getRestImg() {
-     return restImg;
- }
-
- public void setRestImg(String restImg) {
-     this.restImg = restImg;
- }
-
- // tbRestarea ¸ğµ¨ º¹»ç
- public void CopyData(HugesoDTO param)
- {
-     this.restIdx = param.getRestIdx();
-     this.restNm = param.getRestNm();
-     this.restAddr = param.getRestAddr();
-     this.lat = param.getLat();
-     this.lon = param.getLon();
-     this.restFacilities = param.getRestFacilities();
-     this.restImg = param.getRestImg();
- }
 }

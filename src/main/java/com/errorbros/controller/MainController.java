@@ -21,4 +21,34 @@ public class MainController {
 
 		return "Hu";
 	}
+
+	@RequestMapping("/goMap")
+	public String goMap() {
+
+		return "Map";
+	}
+
+	@RequestMapping("/goJoin")
+	public String goJoin() {
+
+		return "Join";
+	}
+
+	@RequestMapping("/goJoinResult")
+	public String goJoinResult() {
+
+		return "JoinResult";
+	}
+
+	@RequestMapping("/goLogin")
+	public String goLogin() {
+
+		return "Login";
+	}
+	
+	@RequestMapping("/goUpdateMember")
+	public String goUpdateMember() {
+
+	     return "UpdateMember";
+	   }
 }

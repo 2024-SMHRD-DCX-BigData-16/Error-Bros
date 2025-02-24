@@ -2,28 +2,35 @@ package com.errorbros.entity;
 
 import java.sql.Timestamp;
 
-//¸®ºä 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+//ï¿½ï¿½ï¿½ï¿½ 
+@Data
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class ReviewDTO {
 
-	// ¸®ºä °íÀ¯¹øÈ£
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 	private int reviewIdx;
 
-	// ÈÞ°Ô¼Ò °íÀ¯¹øÈ£
+	// ï¿½Þ°Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 	private int restIdx;
 
-	// È¸¿ø ¾ÆÀÌµð
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
 	private String memId;
 
-	// ¸®ºä ³»¿ë
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private String reviewContent;
 
-	// ¸®ºä ÁÁ¾Æ¿ä
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¿ï¿½
 	private Integer reviewLike;
 
-	// ¸®ºä ÆòÁ¡
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private double reviewRatings;
 
-	// ¸®ºä ÀÛ¼ºÀÏÀÚ
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	private Timestamp createdAt;
 
 	public int getReviewIdx() {
@@ -82,7 +89,7 @@ public class ReviewDTO {
 		this.createdAt = createdAt;
 	}
 
-	// tbReview ¸ðµ¨ º¹»ç
+	// tbReview ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void CopyData(ReviewDTO param) {
 		this.reviewIdx = param.getReviewIdx();
 		this.restIdx = param.getRestIdx();

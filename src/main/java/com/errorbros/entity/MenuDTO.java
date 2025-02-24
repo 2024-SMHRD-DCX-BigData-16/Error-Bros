@@ -1,82 +1,79 @@
 package com.errorbros.entity;
 
-// ¸Þ´º 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+//ë©”ë‰´ 
+@Data
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class MenuDTO {
 
-	// ¸Þ´º °íÀ¯¹øÈ£
-	private int menuIdx;
+	// ë©”ë‰´ ê³ ìœ ë²ˆí˜¸
+	private int menu_idx;
 
-	// ÈÞ°Ô¼Ò °íÀ¯¹øÈ£
-	private int restIdx;
+	// íœ´ê²Œì†Œ ê³ ìœ ë²ˆí˜¸
+	private int rest_idx;
 
-	// ¸Þ´º ¸í
-	private String menuNm;
+	// ë©”ë‰´ ëª…
+	private String menu_nm;
 
-	// ¸Þ´º ±¸ºÐ
-	private String menuType;
+	// ë©”ë‰´ êµ¬ë¶„
+	private String menu_type;
 
-	// ¸Þ´º °¡°Ý
-	private Integer menuPrice;
+	// ë©”ë‰´ ê°€ê²©
+	private Integer menu_price;
 
-	// ¸Þ´º »çÁø
-	private String menuImg;
+	// ë©”ë‰´ ì‚¬ì§„
+	private String menu_img;
 
 	public int getMenuIdx() {
-		return menuIdx;
+		return menu_idx;
 	}
 
 	public void setMenuIdx(int menuIdx) {
-		this.menuIdx = menuIdx;
+		this.menu_idx = menu_idx;
 	}
 
 	public int getRestIdx() {
-		return restIdx;
+		return rest_idx;
 	}
 
 	public void setRestIdx(int restIdx) {
-		this.restIdx = restIdx;
+		this.rest_idx = rest_idx;
 	}
 
 	public String getMenuNm() {
-		return menuNm;
+		return menu_nm;
 	}
 
 	public void setMenuNm(String menuNm) {
-		this.menuNm = menuNm;
+		this.menu_nm = menu_nm;
 	}
 
 	public String getMenuType() {
-		return menuType;
+		return menu_type;
 	}
 
 	public void setMenuType(String menuType) {
-		this.menuType = menuType;
+		this.menu_type = menu_type;
 	}
 
 	public Integer getMenuPrice() {
-		return menuPrice;
+		return menu_price;
 	}
 
 	public void setMenuPrice(Integer menuPrice) {
-		this.menuPrice = menuPrice;
+		this.menu_price = menu_price;
 	}
 
 	public String getMenuImg() {
-		return menuImg;
+		return menu_img;
 	}
 
 	public void setMenuImg(String menuImg) {
-		this.menuImg = menuImg;
+		this.menu_img = menu_img;
 	}
 
-	// tbMenu ¸ðµ¨ º¹»ç
-	public void CopyData(MenuDTO param) {
-		this.menuIdx = param.getMenuIdx();
-		this.restIdx = param.getRestIdx();
-		this.menuNm = param.getMenuNm();
-		this.menuType = param.getMenuType();
-		this.menuPrice = param.getMenuPrice();
-		this.menuImg = param.getMenuImg();
-
-	}
 }

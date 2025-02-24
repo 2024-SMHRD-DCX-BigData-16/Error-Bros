@@ -1,11 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html lang="ko">
+<%@page import="com.errorbros.entity.MemberDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Search</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -133,11 +137,19 @@
 
     <!-- 상단바 -->
     <div class="top-bar">
-        <a href="#">로그인</a>
-        <a href="#">마이페이지</a>
-        <a href="#">회원가입</a>
-        <a href="#">고객문의</a>
-    </div>
+    <% 
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
+    %>
+    <% if (loginMember!= null) { %>
+        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="goUpdateMember">마이페이지</a>
+    <% } else { %>
+        <a href="goLogin">로그인</a>
+        <a href="goJoin">회원가입</a>
+    <% } %>
+    	
+    <a href="#">고객문의</a>
+	</div>
+
 
     <!-- 내비게이션 -->
     <div class="nav">
@@ -146,7 +158,7 @@
 
     <!-- 카테고리 메뉴 -->
     <div class="menu">
-        <a href="#">휴게소 찾기</a>
+        <a href="goMain">휴게소 찾기</a>
         <a href="#">리뷰게시판</a>
     </div>
 
@@ -154,25 +166,45 @@
     <div class="center-container">
         <div class="hu-text">휴게소 검색</div>
         <div class="search-container">
-            <div class="search-box">
-            	<form action="showHugeso" method="post">
-                	<input type="text" name="searchInput" id="searchInput" placeholder="휴게소 검색">
-                	<button type="submit" class="search-btn" onclick="showButtons()">검색</button>
-            	</form>
-            </div>
-            <!-- 검색 버튼을 누르면 나타나는 버튼들 -->
-            <div class="buttons" id="buttons">
-                <button class="order-btn">음식 주문하기</button>
-                <a href="goHu"><button class="info-btn">휴게소 정보보기</button></a>
-            </div>
+        <c:choose>
+			<c:when test="${empty sessionScope.hugesoList }">            
+				<div class="search-box">
+	           	<form action="searchHugeso" method="post">
+	               	<input type="text" name="searchInput" id="searchInput" placeholder="휴게소 검색">
+	               	<button type="submit" class="search-btn" onclick="showButtons()">검색</button>
+	           	</form>
+	           </div>
+			</c:when>
+         	<c:otherwise>
+			  <div class="search-box">
+	           	<form action="searchHugeso" method="post">
+	               	<input type="text" name="searchInput" id="searchInput" placeholder="휴게소 검색" value="${sessionScope.searchInput}">
+	               	<button type="submit" class="search-btn" onclick="showButtons()">검색</button>
+	           	</form>
+	           </div>
+			      <c:forEach items="${hugesoList }" var="hugeso" varStatus="status">
+					<!-- 검색 버튼을 누르면 나타나는 리스트 -->
+					<table>
+					<tr>
+						<th>휴게소 이름</th>
+						<th><a href="goMap"><button class="order-btn">음식 주문하기</button></a></th>
+					</tr>
+					<tr>
+						<td>
+							${hugeso.rest_nm}        
+						</td>
+						<td>
+							<a href="showHugeso?rest_idx=${hugeso.rest_idx}"><button class="info-btn">휴게소 정보보기</button></a>
+						</td>
+					</tr>
+			      </c:forEach>
+			      
+					</table>
+			   </table>
+			</c:otherwise>
+            </c:choose>
         </div>
     </div>
-
-    <script>
-        function showButtons() {
-            document.getElementById("buttons").style.display = "flex";
-        }
-    </script>
 </body>
 </html>
 

@@ -1,17 +1,18 @@
 package com.errorbros.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.errorbros.entity.HugesoDTO;
-import com.errorbros.entity.MemberDTO;
 import com.errorbros.entity.MenuDTO;
-import com.errorbros.entity.ReviewDTO;
 import com.errorbros.mapper.HugesoMapper;
 
 @Controller
@@ -20,58 +21,51 @@ public class HugesoController {
 	@Autowired
 	HugesoMapper hugesoMapper;
 
-	// °Ë»öÃ¢ ÀÔ·Â °ª searchInputÀ» °¡Á®¿Í¼­ ÇØ´ç ÀÌ¸§À» °¡Áø ÈÞ°Ô¼Ò Á¤º¸ ·Îµå
+//	// íœ´ê²Œì†Œ ì •ë³´ ë¡œë“œ
+//	@ResponseBody
+//	@PostMapping("/showHugeso")
+//	public void showHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
+//		String restNm = searchInput;
+//		System.out.println("íœ´ê²Œì†Œ ê²€ìƒ‰ ë‚´ìš©" + restNm);
+//		List<HugesoDTO> hugesoList = hugesoMapper.showHugeso(restNm);
+//		for (HugesoDTO hugesoDTO : hugesoList) {
+//			System.out.println(hugesoDTO.toString() + "íœ´ê²Œì†Œ ê²€ìƒ‰ ë‚´ìš©");
+//		}
+//		session.setAttribute("hugesoList", hugesoList);
+//	}
+
+	// íœ´ê²Œì†Œ ì •ë³´ ë¡œë“œ
 	@PostMapping("/searchHugeso")
 	public String searchHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
-		String hugesoNm = searchInput;
-		System.out.println("ÈÞ°Ô¼Ò ÀÌ¸§ :" + hugesoNm);
-		HugesoDTO hugesoInfo = hugesoMapper.showHugeso(hugesoNm);
-		System.out.println(hugesoInfo.toString() + "ÈÞ°Ô¼Ò Á¤º¸ÀÔ´Ï´Ù");
-		session.setAttribute("hugesoInfo", hugesoInfo);
+		String restNm = searchInput;
+		System.out.println("íœ´ê²Œì†Œ ê²€ìƒ‰ ë‚´ìš©: " + restNm);
+		List<HugesoDTO> hugesoList = hugesoMapper.searchHugeso(restNm);
+		System.out.println(hugesoList.toString());
+		session.setAttribute("hugesoList", hugesoList);
+		session.setAttribute("searchInput", searchInput);
+		return "Main";
+	}
+
+	// ì„ íƒí•œ íœ´ê²Œì†Œ íŽ˜ì´ì§€ ì—´ê¸°
+	@GetMapping("/showHugeso")
+	public String showHugeso(@RequestParam("rest_idx") String rest_idx, HttpSession session) {
+		System.out.println("ì„ íƒí•œ íœ´ê²Œì†Œ ì¸ë±ìŠ¤ : " + rest_idx);
+		HugesoDTO hugeso = hugesoMapper.showHugeso(rest_idx);
+		System.out.println("ì„ íƒí•œ íœ´ê²Œì†Œ ì •ë³´ : " + hugeso.toString());
+		session.setAttribute("hugesoInfo", hugeso);
 		return "Hu";
 	}
 
-	// °Ë»öÃ¢ ÀÔ·Â °ª searchInputÀ» °¡Á®¿Í¼­ ÇØ´ç ÀÌ¸§À» °¡Áø ÈÞ°Ô¼Ò Á¤º¸ ÆäÀÌÁö ¿­±â
-	@PostMapping("/showHugeso")
-	public String showHugeso(@RequestParam("searchInput") String searchInput, HttpSession session) {
-		String hugesoNm = searchInput;
-		System.out.println("ÈÞ°Ô¼Ò ÀÌ¸§ :" + hugesoNm);
-		HugesoDTO hugesoInfo = hugesoMapper.showHugeso(hugesoNm);
-		System.out.println(hugesoInfo.toString() + "ÈÞ°Ô¼Ò Á¤º¸ÀÔ´Ï´Ù");
-		session.setAttribute("hugesoInfo", hugesoInfo);
-		return "Hu";
-	}
-
-	// ¼¼¼Ç ÈÞ°Ô¼Ò Á¤º¸¿¡ ÀÖ´Â ÈÞ°Ô¼Ò ÀÎµ¦½º·Î ÇØ´ç ÈÞ°Ô¼ÒÀÇ ¸Þ´º Á¤º¸¸¦ ºÒ·¯¿Í ¸Þ´º ÆäÀÌÁö·Î ÀÌµ¿ÇÏ±â
+	// íœ´ê²Œì†Œ ë©”ë‰´
+	// ë©”ë‰´ ë¶ˆëŸ¬ì™€ì„œ ì„¸ì…˜ ì €ìž¥ í›„ ë©”ë‰´íŽ˜ì´ì§€ë¡œ
 	@RequestMapping("/showMenu")
 	public String showMenu(HttpSession session) {
-		int restIdx = ((HugesoDTO) session.getAttribute("hugesoInfo")).getRestIdx();
-		System.out.println("ÈÞ°Ô¼Ò ÀÎµ¦½º :" + restIdx);
+		int restIdx = ((HugesoDTO) session.getAttribute("hugesoInfo")).getRest_idx();
+		System.out.println("íœ´ê²Œì†Œ ë²ˆí˜¸" + restIdx);
 		MenuDTO menuInfo = hugesoMapper.showMenu(restIdx);
 		System.out.println(menuInfo.toString());
 		session.setAttribute("hugesoInfo", menuInfo);
 		return "Menu";
-	}
-
-	// ¸®ºä ÀÛ¼º ±â´É
-	@RequestMapping("/updateReview")
-	public String updateReview(HttpSession session) {
-		// ÈÞ°Ô¼Ò Á¤º¸
-		HugesoDTO hugesoDTO = (HugesoDTO) session.getAttribute("hugesoInfo");
-		System.out.println(hugesoDTO.toString() + " ÈÞ°Ô¼Ò Á¤º¸ÀÔ´Ï´Ù. ");
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginMember");
-		System.out.println(memberDTO.toString() + " ÈÞ°Ô¼Ò Á¤º¸ÀÔ´Ï´Ù. ");
-		String reviewCotent = "";
-		double reviewRatings = 0;
-		ReviewDTO ReviewDTO = new ReviewDTO(hugesoDTO.getRestIdx(), memberDTO.getMem_id(), reviewCotent, 0,
-				reviewRatings);
-		int result = hugesoMapper.insertReview(ReviewDTO);
-		if (result > 0) {
-			System.out.println("¸®ºä ÀÛ¼º ¼º°ø");
-		} else {
-			System.out.println("¸®ºä ÀÛ¼º ½ÇÆÐ");
-		}
-		return null;
 	}
 
 }

@@ -3,18 +3,23 @@
 <mapper namespace="com.errorbros.mapper.MemberMapper">
 	
 	<!-- 회원가입 -->
-	<insert id="memberInsert" parameterType="com.errorbros.entity.MemberDTO">
-		insert into tb_member values(#{mem_id}, #{mem_pw}, #{mem_nm}, #{mem_phone}, #{mem_email}, #{mem_birthdate}, #{mem_gender}, #{mem_role}, #{joined_at});
+	<insert id="memberInsert" parameterType="com.errorbros.entity.MemberDTO" >
+		insert into tb_member values(#{mem_id}, #{mem_pw}, #{mem_nm}, #{mem_phone}, #{mem_email}, #{mem_birthdate}, #{mem_gender}, #{mem_role}, NOW());
 	</insert>
 
 	<!-- 로그인 -->
-	<select id="memberLogIn" parameterType="com.errorbros.entity.MemberDTO">
+	<select id="memberLogIn" parameterType="com.errorbros.entity.MemberDTO" resultType="com.errorbros.entity.MemberDTO">
 			select * from tb_member where mem_id=#{mem_id} and mem_pw=#{mem_pw};
 	</select>
 	
 	<!-- 중복아이디 확인 -->
 	<select id="idCheck" parameterType="String" resultType="com.errorbros.entity.MemberDTO">
 		select * from tb_member where mem_id=#{mem_id};
+	</select>
+	
+	<!-- 중복이메일 확인 -->
+	<select id="emailCheck" parameterType="String" resultType="com.errorbros.entity.MemberDTO">
+  		select * from tb_member where mem_email=#{mem_email};
 	</select>
 	
 	<!-- 아이디 찾기 -->
@@ -33,10 +38,6 @@
 		where mem_id=#{mem_id} and mem_pw=#{mem_pw};
 	</update>
 
-	<!-- 관리자 회원 정보 삭제 -->
-	<delete id="deleteMember" parameterType="String">
-		delete from Member where mem_id=#{mem_id};
-	</delete>
 	
 
 </mapper>
