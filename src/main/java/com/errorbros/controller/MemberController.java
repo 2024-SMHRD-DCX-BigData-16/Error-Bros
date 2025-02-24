@@ -66,6 +66,15 @@ public class MemberController {
 	public String memberJoin(@RequestParam("login_id") String mem_id, @RequestParam("login_pw") String mem_pw,
 			HttpSession session) {
 		System.out.println("아이디 : " + mem_id + ", 비번 : " + mem_pw);
+		try {
+			MemberDTO loginMember = new MemberDTO(mem_id, mem_pw);
+			System.out.println(loginMember.toString());
+			loginMember = memberMapper.memberLogIn(loginMember);
+			System.out.println(loginMember.toString() + "로그인 정보");
+		} catch (Exception e) {
+			System.out.println("로그인 실패");
+			return "Login";
+		}
 		MemberDTO loginMember = new MemberDTO(mem_id, mem_pw);
 		System.out.println(loginMember.toString());
 		loginMember = memberMapper.memberLogIn(loginMember);

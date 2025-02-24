@@ -1,4 +1,6 @@
 <%@page import="com.errorbros.entity.MemberDTO"%>
+<%@ page import="com.errorbros.entity.HugesoDTO"%>
+<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -174,45 +176,32 @@ body {
 
 <body>
 
-	<!-- 상단바 -->
-	<div class="top-bar">
-		<%
-		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-		%>
-		<%
-		if (loginMember != null) {
-		%>
-		<span><%=loginMember.getMem_nm()%>님 환영합니다.</span> <a href="logOut">로그아웃</a>
-		<a href="goMypage">마이페이지</a>
-		<%
-		if ("admin".equals(loginMember.getMem_id())) {
-		%>
-		<a href="goAdmin">관리하기</a>
-		<%
-		}
-		%>
-		<%
-		} else {
-		%>
-		<a href="goLogin">로그인</a> <a href="goJoin">회원가입</a>
-		<%
-		}
-		%>
-	</div>
+   <!-- 상단바 -->
+    <div class="top-bar">
+        <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
+        <% if (loginMember!= null) { %>
+            <span><%= loginMember.getMem_nm() %>님 환영합니다.</span>
+            <a href="logOut">로그아웃</a>
+            <a href="goMypage">마이페이지</a>
+            <% if ("admin".equals(loginMember.getMem_id())) { %> <a href="goAdmin">관리하기</a> <% } %> <% } else { %> <a href="goLogin">로그인</a>
+            <a href="goJoin">회원가입</a>
+            <% } %>
+    </div>
 
-	<!-- 내비게이션 -->
-	<div class="nav">
-		<div class="logo">404</div>
-	</div>
 
-	<!-- 카테고리 메뉴 -->
-	<div class="menu">
-		<a href="#">휴게소 찾기</a> <a href="#">리뷰게시판</a>
-	</div>
+    <!-- 내비게이션 -->
+    <div class="nav">
+        <div class="logo">404</div>
+    </div>
 
+    <!-- 카테고리 메뉴 -->
+    <div class="menu">
+        <a href="goMain">휴게소 찾기</a>
+        <a href="goReview">리뷰게시판</a>
+    </div>
 
 	<div class="center-container">
-		<h1>휴게소 추가</h1>
+		<h1>휴게소 정보 수정</h1>
 
 		<div class="form-container">
 			<div class="review-wrapper" id="review-wrapper">
@@ -221,34 +210,43 @@ body {
 					<table class="input-table">
 						<tr>
 							<td><label for="rest_nm">휴게소 이름:</label></td>
-							<td><input type="text" id="rest_nm" name="rest_nm" required></td>
+							<td><input type="text" id="rest_nm" name="rest_nm" value="${selectedHugesoDTO.rest_nm }" required></td> 
 						</tr>
 						<tr>
 							<td><label for="rest_addr">주소:</label></td>
 							<td><input type="text" id="rest_addr" name="rest_addr"
-								required></td>
+								value="${selectedHugesoDTO.rest_addr }" required> 
 						</tr>
 						<tr>
 							<td><label for="lat">위도:</label></td>
 							<td><input type="number" step="any" id="lat" name="lat"
-								required></td>
+								value="${selectedHugesoDTO.lat }" required> 
 						</tr>
 						<tr>
 							<td><label for="lon">경도:</label></td>
 							<td><input type="number" step="any" id="lon" name="lon"
-								required></td>
+								value="${selectedHugesoDTO.lon }" required> 
+						</tr>
+						<tr>
+							<td><label for="parking_lot">주차장 수:</label></td>
+							<td><input type="number" step="1" id="parking_lot" name="parking_lot"
+								value="${selectedHugesoDTO.parking_lot }" required>
 						</tr>
 						<tr>
 							<td><label for="rest_facilities">편의시설:</label></td>
-							<td><textarea id="rest_facilities" name="rest_facilities"></textarea></td>
+							<td><textarea id="rest_facilities" name="rest_facilities">${selectedHugesoDTO.rest_facilities }</textarea> 
+						</tr>
+						<tr>
+							<td><label for="rest_phone">휴게소 연락처:</label></td>
+							<td><input type="text" name="rest_phone" id="rest_phone" value="${selectedHugesoDTO.rest_phone }" required></td> 
 						</tr>
 						<tr>
 							<td><label for="rest_img">이미지:</label></td>
-							<td><input type="file" id="rest_img" name="rest_img"></td>
+							<td><input type="file" id="rest_img" name="rest_img"> </td>
 						</tr>
 						<tr>
 							<td colspan="2" style="text-align: center;">
-								<button type="submit">추가</button>
+								<button type="submit">수정</button> 
 							</td>
 						</tr>
 					</table>
@@ -258,6 +256,7 @@ body {
 	</div>
 
 	<script>
+	
 		// "추가" 버튼 기능 구현 
 		document
 				.querySelector('.form-container button[type="submit"]')

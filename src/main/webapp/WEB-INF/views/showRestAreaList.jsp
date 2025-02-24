@@ -167,7 +167,7 @@ body {
 	<div class="center-container">
         <h1>휴게소 관리</h1>
         <div>
-            <a href="goaddRestArea"><button class="addrestarea">휴게소 추가</button></a>
+            <a href="goAddRestArea"><button class="addRestArea">휴게소 추가</button></a>
         </div>
 
         <table class="rest-table">

@@ -93,12 +93,28 @@ public class HugesoController {
 		return "redirect:/hugesoList";
 	}
 
-	// 관리자 휴게소 수정
-	@RequestMapping("/goUpdateRestArea")
-	public String goUpdateRestArea(@RequestParam("rest_idx") int rest_idx) {
-
+	// 관리자 휴게소 수정페이지 이동+ 해당 휴게소 정보 session 저장
+	@GetMapping("/goUpdateRestArea")
+	public String goUpdateRestArea(@RequestParam("rest_idx") int rest_idx, HttpSession session) {
+		session.removeAttribute("selectedHugesoDTO");
+		System.out.println("선택한 휴게소 인덱스 : " + rest_idx);
+		HugesoDTO selectedHugesoDTO = hugesoMapper.showHugeso(rest_idx + "");
+		System.out.println("선택된 휴게소 정보 : " + selectedHugesoDTO);
+		session.setAttribute("selectedHugesoDTO", selectedHugesoDTO);
 		return "UpdateRestArea";
 	}
 
-	
+	// 관리자 휴게소 추가
+	@RequestMapping("/addRestArea")
+	public String addRestArea(@RequestParam("newHugeso") HugesoDTO newHugeso) {
+		System.out.println("추가할 휴게소 요청 정보 : " + newHugeso);
+		int cnt = hugesoMapper.insertHugeso(newHugeso);
+		if (cnt > 0) {
+			System.out.println("휴게소 추가 됨 : " + newHugeso);
+		} else {
+			System.out.println("휴게소 추가 실패 : " + newHugeso);
+		}
+		return "showRestAreaList";
+	}
+
 }
