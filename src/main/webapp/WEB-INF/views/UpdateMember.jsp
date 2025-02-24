@@ -10,73 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Search</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #fff;
-        }
-
-        /* 상단바 */
-        .top-bar {
-            background-color: rgb(51, 199, 17);
-            text-align: right;
-            padding: 8px 20px;
-            font-size: 14px;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
-
-        .top-bar a {
-            color: red;
-            text-decoration: none;
-            margin-left: 15px;
-        }
-
-        /* 내비게이션 */
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 20px;
-            position: relative;
-            width: 100%;
-            margin-top: 40px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: rgb(199, 126, 17);
-            text-align: center;
-        }
-
-        /* 카테고리 메뉴 */
-        .menu {
-            display: flex;
-            justify-content: left;
-            padding: 10px 20px;
-            border-top: 1px solid blue;
-            width: 100%;
-        }
-
-        .menu a {
-            margin-right: 20px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
 
         .center-container {
             display: flex;
@@ -130,18 +63,17 @@
 
 <body>
 
-       <!-- 상단바 -->
+    <!-- 상단바 -->
     <div class="top-bar">
-    <% 
-        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
-    %>
-    <% if (loginMember!= null) { %>
-        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="goMypage">마이페이지</a>
-    <% } else { %>
-        <a href="goLogin">로그인</a>
-        <a href="goJoin">회원가입</a>
-    <% } %>
-	</div>
+        <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
+        <% if (loginMember!= null) { %>
+            <span><%= loginMember.getMem_nm() %>님 환영합니다.</span>
+            <a href="logOut">로그아웃</a>
+            <a href="goMypage">마이페이지</a>
+            <% if ("admin".equals(loginMember.getMem_id())) { %> <a href="goAdmin">관리하기</a> <% } %> <% } else { %> <a href="goLogin">로그인</a>
+            <a href="goJoin">회원가입</a>
+            <% } %>
+    </div>
 
 
     <!-- 내비게이션 -->
@@ -161,8 +93,8 @@
 
             <input type="password" name="mem_pw" placeholder="새 비밀번호" required>
             <input type="password" name="mem_pw_confirm" placeholder="새 비밀번호 확인" required>
-            <input value="${loginMember.mem_phone}" type="text" name="mem_phone" placeholder="전화번호" required>
-            <input value="${loginMember.mem_email}" type="email" id="mem_email" name="mem_email" placeholder="이메일" required>
+            <input type="text" name="mem_phone" placeholder="전화번호" required>
+            <input type="email" id="mem_email" name="mem_email" placeholder="이메일" required>
             <button type="button" onclick="checkDuplicateEmail()" class="check-button">이메일 중복 확인</button><br>
             <span id="emailMessage" class="message"></span><br>
             <input type="date" name="mem_birthdate" required>

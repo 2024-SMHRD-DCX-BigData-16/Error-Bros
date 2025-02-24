@@ -37,12 +37,37 @@
 		update tb_member set mem_pw = #{mem_pw}, mem_phone = #{mem_phone} mem_email=#{mem_email}, mem_birthdate=#{mem_birthdate}, mem_gender=#{mem_gender} 
 		where mem_id=#{mem_id} and mem_pw=#{mem_pw};
 	</update>
+	
+
+
+	<!-- 관리자 admin -->
+	<!-- 전체 회원정보 조회 -->
+    <select id="getAllMembers" resultType="com.errorbros.entity.MemberDTO">
+        SELECT * FROM tb_member
+    </select>
+	
+	<!-- 특정 회원정보 조회 -->
+	<select id="getMemberById" parameterType="String" resultType="com.errorbros.entity.MemberDTO">
+        SELECT * FROM tb_member WHERE mem_id = #{mem_id}
+    </select>
+    
+	<!-- 회원정보 넣어버리기 -->
+    <insert id="insertMember" parameterType="com.errorbros.entity.MemberDTO">
+        INSERT INTO tb_member (mem_id, mem_nm, mem_pw, mem_email, mem_phone, mem_role, mem_birthdate, mem_gender, joined_at)
+        VALUES (#{mem_id}, #{mem_nm}, #{mem_pw}, #{mem_email}, #{mem_phone}, #{mem_role}, #{mem_birthdate}, #{mem_gender}, #{joined_at})
+    </insert>
+	
+	<!-- 회원정보 업데이트 -->
+    <update id="adminUpdateMember" parameterType="com.errorbros.entity.MemberDTO">
+        UPDATE tb_member 
+        SET mem_id=#{mem_id}, mem_nm=#{mem_nm}, mem_pw=#{mem_pw}, mem_email=#{mem_email}, mem_phone=#{mem_phone}, mem_role=#{mem_role}, mem_birthdate=#{mem_birthdate}, mem_gender=#{mem_gender}, joined_at=#{joined_at}
+        WHERE mem_id=#{mem_id}
+    </update>
 
 	<!-- 회원정보삭제 -->
 	<delete id="deleteMember" parameterType="String">
     DELETE FROM tb_member WHERE mem_id = #{mem_id}
 	</delete>
-
 
 </mapper>
 	

@@ -25,9 +25,7 @@
 	VALUES (#{rest_idx}, #{mem_id}, #{review_content}, 0, #{review_ratings}, NOW());
 </insert>
 
-
-	
-	<!-- 휴게소 테이블 데이터 조회 -->
+<!-- 휴게소 테이블 데이터 조회 -->
 	<select id="getAllHugeso" resultType="com.errorbros.entity.HugesoDTO">
     	SELECT * FROM tb_restarea
 	</select>
