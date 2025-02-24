@@ -24,10 +24,18 @@ public class HugesoDTO {// 휴게소
 	// 경도
 	private double lon;
 
+	// 주차장
+	private int parking_lot;
+
 	// 휴게소 편의시설
 	private String rest_facilities;
 
+	// 휴게소 전화번호
+	private String rest_phone;
+
 	// 휴게소 사진
 	private String rest_img;
+
+	//
 
 }
