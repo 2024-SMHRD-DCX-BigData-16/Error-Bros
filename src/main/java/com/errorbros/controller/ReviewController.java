@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -53,15 +52,28 @@ public class ReviewController {
 		return "AdminReviewList";
 	}
 
+<<<<<<< HEAD
 
 	// 메뉴 삭제
 	@PostMapping("/deleteReview")
 	public String deleteReview(@RequestParam("reviewIdx") int reviewIdx) {
 		int result = hugesoMapper.deleteReview(reviewIdx);
+=======
+	// 리뷰 삭제
+	@GetMapping("/deleteReview")
+	public String deleteReview(@RequestParam("rest_idx") int rest_idx, @RequestParam("review_idx") int review_idx) {
+		System.out.println("삭제하려는 휴게소 인덱스 : " + rest_idx);
+		System.out.println("삭제하려는 리뷰 인덱스 : " + review_idx);
+		int result = hugesoMapper.deleteReview(review_idx);
+		System.out.println("삭제한 리뷰 개수 : " + result);
+>>>>>>> c904c2b0482571951d90fdc358467d86aa16fb35
 		if (result > 0) {
-			return "success";
+			System.out.println("리뷰삭제 성공");
+			return "redirect:/goAdminReviewList?rest_idx=" + rest_idx;
 		} else {
-			return "fail";
+			System.out.println("리뷰삭제 실패");
+			return "redirect:/goAdminReviewList?rest_idx=" + rest_idx;
+
 		}
 	}
 
