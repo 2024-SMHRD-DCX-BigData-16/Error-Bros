@@ -17,6 +17,7 @@ public interface HugesoMapper {
 
 	public int insertReview(ReviewDTO reviewDTO);
 
+	// 해당 인덱스 휴게소 정보 불러오기
 	public HugesoDTO showHugeso(String rest_idx);
 
 	// 모든 휴게소 정보 가져오기
@@ -25,8 +26,6 @@ public interface HugesoMapper {
 	// 휴게소 삭제
 //	public void deleteHugeso(int rest_idx);
 
-	public HugesoDTO getHugesoId(int rest_idx);
-
 	public List<HugesoDTO> getAllHugesos();
 
 	public int insertHugeso(HugesoDTO restArea);
@@ -34,8 +33,10 @@ public interface HugesoMapper {
 	public int updateHugeso(HugesoDTO restArea);
 
 	public int deleteHugeso(int rest_idx);
+
 	// 페이지 번호를 매개변수로 추가
-	public List<HugesoDTO> getHugesoListWithPaging(int page); 
+	public List<HugesoDTO> getHugesoListWithPaging(int page);
+
 	// 전체 휴게소 개수 반환
-	public int getTotalHugesoCount(); 
+	public int getTotalHugesoCount();
 }

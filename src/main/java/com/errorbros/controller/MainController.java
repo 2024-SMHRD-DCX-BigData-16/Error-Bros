@@ -89,10 +89,10 @@ public class MainController {
 	}
 
 	// 관리자 휴게소 추가
-	@RequestMapping("/goaddRestArea")
-	public String goaddRestArea() {
+	@RequestMapping("/goAddRestArea")
+	public String goAddRestArea() {
 
-		return "addRestArea";
+		return "AddRestArea";
 	}
 
 	// 관리자 휴게소 삭제

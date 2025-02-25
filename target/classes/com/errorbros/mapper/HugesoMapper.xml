@@ -45,12 +45,10 @@
 	<!-- 휴게소 추가 -->
 	<insert id="insertHugeso"
 		parameterType="com.errorbros.entity.HugesoDTO">
-		INSERT INTO tb_restarea (rest_nm, rest_addr, lat, lon,
-		rest_facilities,
-		rest_img)
-		VALUES (#{rest_nm}, #{rest_addr}, #{lat},
-		#{lon}, #{rest_facilities},
-		#{rest_img})
+		INSERT INTO tb_restarea (rest_nm, rest_addr, lat, lon, parking_lot, 
+		rest_facilities, rest_phone, rest_img)
+		VALUES (#{rest_nm}, #{rest_addr}, #{lat}, #{lon}, #{parking_lot}, 
+		#{rest_facilities}, #{rest_phone}, #{rest_img})
 	</insert>
 
 	<!-- 휴게소 수정 -->
@@ -58,8 +56,8 @@
 		parameterType="com.errorbros.entity.HugesoDTO">
 		UPDATE tb_restarea
 		SET rest_nm=#{rest_nm},
-		rest_addr=#{rest_addr}, lat=#{lat}, lon=#{lon},
-		rest_facilities=#{rest_facilities}, rest_img=#{rest_img}
+		rest_addr=#{rest_addr}, lat=#{lat}, lon=#{lon},parking_lot=#{parking_lot}
+		rest_facilities=#{rest_facilities},rest_phone=#{rest_phone} rest_img=#{rest_img}
 		WHERE
 		rest_idx=#{rest_idx}
 	</update>
