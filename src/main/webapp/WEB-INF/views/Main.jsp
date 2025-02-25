@@ -272,9 +272,18 @@ body {
 						</tbody>
 					</table>
 					<div class="pagination">
-						<c:forEach begin="1" end="${totalPages}" var="page">
-							<a href="#" class="page-link" data-page="${page}">${page}</a>
+						<c:if test="${page > 1}">
+							<a href="hugesoList?page=${page - 1}">이전</a>
+						</c:if>
+
+						<c:forEach var="i" begin="1" end="${(totalCount + 9) / 10}">
+							<a href="hugesoList?page=${i}"
+								${page == i ? 'class="active"' : ''}>${i}</a>
 						</c:forEach>
+
+						<c:if test="${page < (totalCount + 9) / 10}">
+							<a href="hugesoList?page=${page + 1}">다음</a>
+						</c:if>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -283,19 +292,19 @@ body {
 			</c:choose>
 		</div>
 	</div>
-        <div class="pagination">
-            <c:if test="${page > 1}">
-                <a href="hugesoList?page=${page - 1}">이전</a>
-            </c:if>
+	<div class="pagination">
+		<c:if test="${page > 1}">
+			<a href="hugesoList?page=${page - 1}">이전</a>
+		</c:if>
 
-            <c:forEach var="i" begin="1" end="${(totalCount + 9) / 10}">
-                <a href="hugesoList?page=${i}" ${page == i ? 'class="active"' : ''}>${i}</a>
-            </c:forEach>
+		<c:forEach var="i" begin="1" end="${(totalCount + 9) / 10}">
+			<a href="hugesoList?page=${i}" ${page == i ? 'class="active"' : ''}>${i}</a>
+		</c:forEach>
 
-            <c:if test="${page < (totalCount + 9) / 10}">
-                <a href="hugesoList?page=${page + 1}">다음</a>
-            </c:if>
-        </div>
+		<c:if test="${page < (totalCount + 9) / 10}">
+			<a href="hugesoList?page=${page + 1}">다음</a>
+		</c:if>
+	</div>
 	<script>
 		$(document).ready(function() {
 			// 페이지네이션 기능
