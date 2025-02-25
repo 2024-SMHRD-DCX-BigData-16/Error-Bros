@@ -190,7 +190,7 @@ body {
                         <td>${hugeso.rest_nm}</td>
                         <td>${hugeso.rest_addr}</td>
                         <td>${hugeso.rest_facilities}</td>
-                        <td><button onclick="location.href='AdminReviewList?rest_idx=${hugeso.rest_idx}'">리뷰 관리</button></td>
+                        <td><a href="goAdminReviewList?rest_idx=${hugeso.rest_idx}"><button class="AdminReview">리뷰 관리</button></a></td>
                         <td><a href="goAdminMenu?rest_idx=${hugeso.rest_idx}"><button class="AdminMenu">메뉴 관리</button></a></td>
                         <td><a href="goUpdateRestArea?rest_idx=${hugeso.rest_idx}"><button class="addrestarea">수정</button></a></td>
                         <td><a href="deleteRestArea?rest_idx=${hugeso.rest_idx}"><button >삭제</button></td>

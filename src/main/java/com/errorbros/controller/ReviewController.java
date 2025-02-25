@@ -23,17 +23,16 @@ public class ReviewController {
 	@Autowired
 	HugesoMapper hugesoMapper;
 
-	// 리뷰 업데이트
-	@RequestMapping("/updateReview")
-	public String updateReview(HttpSession session) {
+	// 리뷰 작성
+	@RequestMapping("/insertReview")
+	public String insertReview(HttpSession session) {
 		HugesoDTO hugesoDTO = (HugesoDTO) session.getAttribute("hugesoInfo");
 		System.out.println(hugesoDTO.toString() + "휴게소 정보");
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginMember");
 		System.out.println(memberDTO.toString() + "로그인 회원 정보");
 		String reviewCotent = "";
 		double reviewRatings = 0;
-		ReviewDTO ReviewDTO = new ReviewDTO(hugesoDTO.getRest_idx(), memberDTO.getMem_id(), reviewCotent, 0,
-				reviewRatings);
+		ReviewDTO ReviewDTO = null;
 		int result = hugesoMapper.insertReview(ReviewDTO);
 		if (result > 0) {
 			System.out.println("리뷰 업데이트 성공");
@@ -44,18 +43,20 @@ public class ReviewController {
 	}
 
 	// 리뷰 목록 조회
-	@GetMapping("/AdminReviewList")
+	@GetMapping("/goAdminReviewList")
 	public String reviewList(@RequestParam("rest_idx") int rest_idx, Model model) {
+		System.out.println("리뷰 보려는 휴게소 인덱스" + rest_idx);
 		List<ReviewDTO> AdminReviewList = hugesoMapper.getReviewsByRestIdx(rest_idx); // Mapper에 추가해야 함
+		System.out.println("리뷰 개수 : " + AdminReviewList.size());
+		model.addAttribute("rest_idx", rest_idx);
 		model.addAttribute("AdminReviewList", AdminReviewList);
-		model.addAttribute("rest_idx", rest_idx); 
-		return "AdminReviewList"; 
+		return "AdminReviewList";
 	}
 
 	// 메뉴 삭제
 	@PostMapping("/deleteReview")
 	public String deleteReview(@RequestParam("reviewIdx") int reviewIdx) {
-		int result = hugesoMapper.deleteReview(reviewIdx); 
+		int result = hugesoMapper.deleteReview(reviewIdx);
 		if (result > 0) {
 			return "success";
 		} else {

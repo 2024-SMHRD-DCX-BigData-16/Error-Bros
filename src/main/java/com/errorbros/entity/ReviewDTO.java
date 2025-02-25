@@ -1,6 +1,6 @@
 package com.errorbros.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,102 +12,24 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ReviewDTO {
 
+	// 리뷰 인덱스
+	private int review_idx;
 	// ���� ������ȣ
-	private int reviewIdx;
+	private int rest_idx;
 
 	// �ްԼ� ������ȣ
-	private int restIdx;
+	private String mem_id;
 
 	// ȸ�� ���̵�
-	private String memId;
+	private String review_content;
 
 	// ���� ����
-	private String reviewContent;
+	private String review_like;
 
 	// ���� ���ƿ�
-	private Integer reviewLike;
+	private Integer review_ratings;
 
 	// ���� ����
-	private double reviewRatings;
-
-	// ���� �ۼ�����
-	private Timestamp createdAt;
-
-	public int getReviewIdx() {
-		return reviewIdx;
-	}
-
-	public void setReviewIdx(int reviewIdx) {
-		this.reviewIdx = reviewIdx;
-	}
-
-	public int getRestIdx() {
-		return restIdx;
-	}
-
-	public void setRestIdx(int restIdx) {
-		this.restIdx = restIdx;
-	}
-
-	public String getMemId() {
-		return memId;
-	}
-
-	public void setMemId(String memId) {
-		this.memId = memId;
-	}
-
-	public String getReviewContent() {
-		return reviewContent;
-	}
-
-	public void setReviewContent(String reviewContent) {
-		this.reviewContent = reviewContent;
-	}
-
-	public Integer getReviewLike() {
-		return reviewLike;
-	}
-
-	public void setReviewLike(Integer reviewLike) {
-		this.reviewLike = reviewLike;
-	}
-
-	public double getReviewRatings() {
-		return reviewRatings;
-	}
-
-	public void setReviewRatings(double reviewRatings) {
-		this.reviewRatings = reviewRatings;
-	}
-
-	public Timestamp getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Timestamp createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	// tbReview �� ����
-	public void CopyData(ReviewDTO param) {
-		this.reviewIdx = param.getReviewIdx();
-		this.restIdx = param.getRestIdx();
-		this.memId = param.getMemId();
-		this.reviewContent = param.getReviewContent();
-		this.reviewLike = param.getReviewLike();
-		this.reviewRatings = param.getReviewRatings();
-		this.createdAt = param.getCreatedAt();
-	}
-
-	public ReviewDTO(int restIdx, String memId, String reviewContent, int reviewLike, double reviewRatings) {
-		super();
-		this.reviewIdx = reviewIdx;
-		this.restIdx = restIdx;
-		this.memId = memId;
-		this.reviewContent = reviewContent;
-		this.reviewLike = reviewLike;
-		this.reviewRatings = reviewRatings;
-	}
+	private LocalDateTime created_at;
 
 }

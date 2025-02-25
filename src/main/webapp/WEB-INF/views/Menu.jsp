@@ -192,22 +192,21 @@ body {
 		%>
 	</div>
 
-	<!-- 내비게이션 -->
-	<div class="nav">
-		<div class="logo">404</div>
-	</div>
+<<<<<<< HEAD
+    <!-- 내비게이션 -->
+    <div class="nav">
+        <div class="logo">404</div>
+    </div>
 
-	<!-- 카테고리 메뉴 -->
-	<div class="menu">
-		<a href="goMain">휴게소 찾기</a> <a href="goReview">리뷰게시판</a>
-		<%
-		if (loginMember != null && "admin".equals(loginMember.getMem_id())) {
-		%>
-		<a href="addMenu" style="position: absolute; right: 20px;">메뉴 추가하기</a>
-		<%
-		}
-		%>
-	</div>
+    <!-- 카테고리 메뉴 -->
+    <div class="menu">
+        <a href="goMain">휴게소 찾기</a>
+        <a href="goReview">리뷰게시판</a>
+        <% if (loginMember != null && "admin".equals(loginMember.getMem_id())) {
+        	String rest_idx= (String)request.getParameter("rest_idx");%>
+            <a href="addMenu?rest_idx=${param.rest_idx}" style="position: absolute; right: 20px;">메뉴 추가하기</a>
+        <% } %>
+    </div>
 
     <!-- 음식 목록 -->
     <div class="food-container" id="foodContainer">

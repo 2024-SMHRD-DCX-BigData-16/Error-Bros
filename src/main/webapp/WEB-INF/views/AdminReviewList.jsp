@@ -177,29 +177,33 @@ th {
 		<table>
 			<thead>
 				<tr>
-					<th>리뷰 번호</th>
+					<th>리뷰 인덱스</th>
+					<th>휴게소 인덱스</th>
 					<th>회원 아이디</th>
 					<th>리뷰 내용</th>
-					<th>평점</th>
+					<th>리뷰 좋아요</th>
+					<th>리뷰 평점</th>
 					<th>작성일</th>
 					<th>리뷰 삭제</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="review" items="${reviewList}">
-					<tr>
-						<td>${review.reviewIdx}</td>
-						<td>${review.memId}</td>
-						<td>${review.reviewContent}</td>
-						<td>${review.reviewRatings}</td>
-						<td>${review.createdAt}</td>
+				<c:forEach var="review" items="${AdminReviewList}">
+					<tr>					
+						<td>${review.review_idx}</td>
+						<td>${review.rest_idx}</td>
+						<td>${review.mem_id}</td>
+						<td>${review.review_content}</td>
+						<td>${review.review_like}</td>
+						<td>${review.review_ratings}</td>
+						<td>${review.created_at}</td>
 						<td>
-							<button onclick="deleteReview(${review.reviewIdx})">삭제</button>
+							<button onclick="deleteReview(${review.review_idx})">삭제</button>
 						</td>
 						<%-- 삭제 버튼 추가 --%>
 					</tr>
 				</c:forEach>
-				<c:if test="${empty reviewList}">
+				<c:if test="${empty AdminReviewList}">
 					<tr>
 						<td colspan="5">작성된 리뷰가 없습니다.</td>
 					</tr>
