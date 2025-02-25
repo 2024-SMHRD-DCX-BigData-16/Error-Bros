@@ -117,6 +117,16 @@
             border-radius: 3px;
         }
 
+		.food-item button.admin-btn {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
         /* 음식 주문 버튼 */
         .order-btn {
             background-color: blue;
@@ -159,17 +169,17 @@
 
     <!-- 상단바 -->
     <div class="top-bar">
-    <% 
-        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); // 세션에서 로그인 정보 가져오기
-    %>
-    <% if (loginMember!= null) { %>
-        <span><%= loginMember.getMem_nm() %>님 환영합니다.</span> <a href="logOut">로그아웃</a> <a href="goMypage">마이페이지</a>
-    <% } else { %>
-        <a href="goLogin">로그인</a>
-        <a href="goJoin">회원가입</a>
-    <% } %>
-	</div>
-
+        <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
+        <% if (loginMember!= null) { %>
+            <span><%= loginMember.getMem_nm() %>님 환영합니다.</span>
+            <a href="logOut">로그아웃</a>
+            <a href="goMypage">마이페이지</a>
+            <% if ("admin".equals(loginMember.getMem_id())) { %> <a href="goAdmin">관리하기</a> <% } %>
+        <% } else { %>
+            <a href="goLogin">로그인</a>
+            <a href="goJoin">회원가입</a>
+        <% } %>
+    </div>
 
     <!-- 내비게이션 -->
     <div class="nav">
@@ -180,90 +190,33 @@
     <div class="menu">
         <a href="goMain">휴게소 찾기</a>
         <a href="goReview">리뷰게시판</a>
+        <% if (loginMember != null && "admin".equals(loginMember.getMem_id())) { %>
+            <a href="addMenu" style="position: absolute; right: 20px;">메뉴 추가하기</a>
+        <% } %>
     </div>
+
 
     <!-- 음식 목록 -->
     <div class="food-container" id="foodContainer">
-        <!-- 음식 아이템들이 추가될 자리 -->
+        <c:forEach var="menu" items="${menuList}">
+            <div class="food-item">
+                <p><strong>${menu.menu_nm}</strong></p>
+                <img src="${menu.menu_img}" alt="${menu.menu_nm}" />
+                <p>${menu.menuPrice}원</p>
+                <button onclick="selectFood('${menu.menu_nm}', ${menu.menu_price}, this)"
+                    style="background-color: blue; color: white;">선택</button>
+                <% if (loginMember!= null && "admin".equals(loginMember.getMem_id())) { %>
+                <button class="admin-btn" onclick="location.href='editMenu/${menu.menu_idx}'">수정</button>
+                <button class="admin-btn" onclick="location.href='deleteMenu/${menu.menu_idx}'">삭제</button>
+                <% } %>
+            </div>
+        </c:forEach>
     </div>
 
-    <!-- 음식 주문 버튼 -->
     <div class="order-container">
         <span class="total-price">총 가격: 0원</span>
         <button class="order-btn" onclick="placeOrder()">음식 주문하기</button>
     </div>
-
-    <script>
-        
-        let selectedFoods = [];
-
-        // 더미 데이터 (실제 백엔드 없이 테스트용)
-        const dummyFoods = [
-            { name: "보리비빔밥", price: 9000, image: "img/비빔.png" },
-            { name: "포크커틀렛", price: 6500 },
-            { name: "왕돈까스", price: 11000 },
-            { name: "칼국수", price: 8000 },
-            { name: "우동", price: 7000 }
-        ];
-
-        // 음식 데이터를 화면에 표시
-        function loadFoods() {
-            const foodContainer = document.getElementById("foodContainer");
-            foodContainer.innerHTML = ""; // 기존 목록 초기화
-
-            dummyFoods.forEach(food => {
-                let foodItem = document.createElement("div");
-                foodItem.classList.add("food-item");
-
-                foodItem.innerHTML = `
-                <p><strong>${food.name}</strong></p>
-                <img src="${food.image}" alt="${food.name}" />
-                    <p>${food.price}원</p>
-                    <button onclick="selectFood('${food.name}', ${food.price}, this)" style="background-color: blue; color: white;">선택</button>
-        `;
-
-            foodContainer.appendChild(foodItem);
-            });
-        }
-
-        function selectFood(name, price, button) {
-            let foodIndex = selectedFoods.findIndex(food => food.name === name);
-
-            if (foodIndex === -1) {
-                // 선택되지 않은 경우: 리스트에 추가 + 색 변경
-                selectedFoods.push({ name, price });
-                button.style.backgroundColor = "gray";
-                button.textContent = "선택됨"; // 버튼 텍스트 변경
-            } else {
-                // 이미 선택된 경우: 리스트에서 제거 + 색 원래대로 복구
-                selectedFoods.splice(foodIndex, 1);
-                button.style.backgroundColor = "blue";
-                button.textContent = "선택"; // 버튼 텍스트 원래대로 변경
-            }
-
-            updateTotalPrice();
-        }
-
-        function updateTotalPrice() {
-            let totalPrice = selectedFoods.reduce((sum, food) => sum + food.price, 0);
-            document.querySelector(".total-price").textContent = `총 가격: ${totalPrice.toLocaleString()}원`;
-        }
-
-        function placeOrder() {
-            if (selectedFoods.length === 0) {
-                alert("음식을 선택해주세요!");
-                return;
-            }
-
-            let queryString = selectedFoods.map(food => `name=${food.name}&price=${food.price}`).join("&");
-            window.location.href = `payment.html?${queryString}`;
-        }
-
-        // 페이지 로드 시 음식 데이터 불러오기
-        document.addEventListener("DOMContentLoaded", loadFoods);
-        
-    </script>
-
 
 
 

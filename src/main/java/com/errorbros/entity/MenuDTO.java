@@ -32,7 +32,7 @@ public class MenuDTO {
 		return menu_idx;
 	}
 
-	public void setMenuIdx(int menuIdx) {
+	public void setMenuIdx(int menuIdx, int menu_idx) {
 		this.menu_idx = menu_idx;
 	}
 
@@ -40,7 +40,7 @@ public class MenuDTO {
 		return rest_idx;
 	}
 
-	public void setRestIdx(int restIdx) {
+	public void setRestIdx(int restIdx, int rest_idx) {
 		this.rest_idx = rest_idx;
 	}
 
@@ -48,7 +48,7 @@ public class MenuDTO {
 		return menu_nm;
 	}
 
-	public void setMenuNm(String menuNm) {
+	public void setMenuNm(String menuNm, String menu_nm) {
 		this.menu_nm = menu_nm;
 	}
 
@@ -56,7 +56,7 @@ public class MenuDTO {
 		return menu_type;
 	}
 
-	public void setMenuType(String menuType) {
+	public void setMenuType(String menuType, String menu_type) {
 		this.menu_type = menu_type;
 	}
 
@@ -64,7 +64,7 @@ public class MenuDTO {
 		return menu_price;
 	}
 
-	public void setMenuPrice(Integer menuPrice) {
+	public void setMenuPrice(Integer menuPrice, Integer menu_price) {
 		this.menu_price = menu_price;
 	}
 
@@ -72,7 +72,7 @@ public class MenuDTO {
 		return menu_img;
 	}
 
-	public void setMenuImg(String menuImg) {
+	public void setMenuImg(String menuImg, String menu_img) {
 		this.menu_img = menu_img;
 	}
 

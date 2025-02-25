@@ -8,15 +8,17 @@ import com.errorbros.entity.MenuDTO;
 
 @Mapper
 public interface MenuMapper {
-	MenuDTO getMenuIdx(int menu_idx);
 
-	List<MenuDTO> getAllMenus();
+	public List<MenuDTO> getAllMenus();
 
-	List<MenuDTO> getMenusRestIdx(int rest_idx);
+	public List<MenuDTO> getMenusRestIdx(int rest_idx);
 
-	void insertMenu(MenuDTO menu);
+	public void insertMenu(MenuDTO menu);
 
-	void updateMenu(MenuDTO menu);
+	public void updateMenu(MenuDTO menu);
 
-	void deleteMenu(int menu_idx);
+	public void deleteMenu(int menu_idx);
+
+	// 특정 메뉴 번호(menu_idx)에 해당하는 메뉴 정보를 조회하는 메서드
+	public MenuDTO getMenuIdx(int menu_idx);
 }
