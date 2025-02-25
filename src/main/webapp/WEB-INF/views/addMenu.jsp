@@ -144,7 +144,7 @@
     <div class="center-container">
     <div class="menu-box" id="menu-box">
         <h1>메뉴 추가</h1>
-        <form action="insertMenu" method="post">
+        <form action="insertMenu?rest_idx=${param.rest_idx }" method="get">
             <label for="restIdx">휴게소 번호:</label>
             <input type="number" id="rest_idx" name="rest_idx" value=${param.rest_idx } readonly="readonly"/><br />
             <label for="menuNm">메뉴 이름:</label>

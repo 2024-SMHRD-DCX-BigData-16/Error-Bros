@@ -10,12 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import com.errorbros.entity.HugesoDTO;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.errorbros.entity.MenuDTO;
@@ -64,10 +58,10 @@ public class MenuController {
 	}
 
 	// 메뉴 추가 처리
-	@PostMapping("/insertMenu")
-	public String addMenu(MenuDTO menu) {
+	@GetMapping("/insertMenu")
+	public String addMenu(MenuDTO menu, @RequestParam("rest_idx") int rest_idx) {
 		menuMapper.insertMenu(menu);
-		return "redirect:/Menu"; // 메뉴 목록 페이지로 리다이렉트
+		return "redirect:/goMenu?rest_idx=" + rest_idx; // 메뉴 목록 페이지로 리다이렉트
 	}
 
 	// 메뉴 수정 페이지 이동
