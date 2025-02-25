@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.errorbros.entity.HugesoDTO;
-import com.errorbros.entity.MenuDTO;
 import com.errorbros.mapper.HugesoMapper;
 
 @Controller
@@ -57,18 +56,6 @@ public class HugesoController {
 		System.out.println("선택한 휴게소 정보 : " + hugeso.toString());
 		session.setAttribute("hugesoInfo", hugeso);
 		return "Hu";
-	}
-
-	// 휴게소 메뉴
-	// 메뉴 불러와서 세션 저장 후 메뉴페이지로
-	@RequestMapping("/showMenu")
-	public String showMenu(HttpSession session) {
-		int restIdx = ((HugesoDTO) session.getAttribute("hugesoInfo")).getRest_idx();
-		System.out.println("휴게소 번호" + restIdx);
-		MenuDTO menuInfo = hugesoMapper.showMenu(restIdx);
-		System.out.println(menuInfo.toString());
-		session.setAttribute("hugesoInfo", menuInfo);
-		return "Menu?" + "Menu_nm=" + menuInfo.getMenu_nm();
 	}
 
 	// 휴게소 리스트 출력

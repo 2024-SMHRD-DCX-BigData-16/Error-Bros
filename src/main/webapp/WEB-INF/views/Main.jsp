@@ -263,7 +263,7 @@ body {
 							<c:forEach items="${hugesoList}" var="hugeso" end="15" >
 								<tr>
 									<td>${hugeso.rest_nm}</td>
-									<td><a href="goMenu"><button class="order-btn">음식
+									<td><a href="goMenu?rest_idx=${hugeso.rest_idx}"><button class="order-btn">음식
 												주문하기</button></a></td>
 									<td><a href="showHugeso?rest_idx=${hugeso.rest_idx}"><button
 												class="info-btn">휴게소 정보보기</button></a></td>

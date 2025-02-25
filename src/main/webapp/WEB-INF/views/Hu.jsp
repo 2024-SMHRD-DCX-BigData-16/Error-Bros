@@ -339,7 +339,7 @@
 
         <!-- 음식 주문 버튼 -->
         <div class="buttons" id="buttons">
-                <a href="goMenu"><button class="order-btn">음식 주문하기</button></a>
+                <a href="goMenu?rest_idx=${hugesoInfo.rest_idx}"><button class="order-btn">음식 주문하기</button></a>
 
             </div>
     </div>
