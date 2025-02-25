@@ -1,186 +1,198 @@
 <%@page import="com.errorbros.entity.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>휴게소 정보</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>휴게소 정보</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #f8f9fa;
-        }
+body {
+	font-family: Arial, sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #f8f9fa;
+}
 
-        /* 상단바 */
-        .top-bar {
-            background-color: rgb(51, 199, 17);
-            text-align: right;
-            padding: 8px 20px;
-            font-size: 14px;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
+/* 상단바 */
+.top-bar {
+	background-color: rgb(51, 199, 17);
+	text-align: right;
+	padding: 8px 20px;
+	font-size: 14px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
 
-        .top-bar a {
-            color: red;
-            text-decoration: none;
-            margin-left: 15px;
-        }
+.top-bar a {
+	color: red;
+	text-decoration: none;
+	margin-left: 15px;
+}
 
-        /* 내비게이션 */
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 20px;
-            position: relative;
-            width: 100%;
-            margin-top: 40px;
-        }
+/* 내비게이션 */
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 15px 20px;
+	position: relative;
+	width: 100%;
+	margin-top: 40px;
+}
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: rgb(199, 126, 17);
-            text-align: center;
-        }
+.logo {
+	font-size: 24px;
+	font-weight: bold;
+	color: rgb(199, 126, 17);
+	text-align: center;
+}
 
-        /* 카테고리 메뉴 */
-        .menu {
-            display: flex;
-            justify-content: left;
-            padding: 10px 20px;
-            border-top: 1px solid blue;
-            width: 100%;
-        }
+/* 카테고리 메뉴 */
+.menu {
+	display: flex;
+	justify-content: left;
+	padding: 10px 20px;
+	border-top: 1px solid blue;
+	width: 100%;
+}
 
-        .menu a {
-            margin-right: 20px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
+.menu a {
+	margin-right: 20px;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
 
-        /* 음식 리스트 스타일 */
-        .food-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
+/* 음식 리스트 스타일 */
+.food-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 20px;
+}
 
-        .food-item {
-            background: white;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 150px;
-            border: 1px solid #ddd;
-        }
+.food-item {
+	background: white;
+	padding: 15px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	width: 150px;
+	border: 1px solid #ddd;
+}
 
-        .food-item img {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
+.food-item img {
+	width: 100%;
+	height: 100px;
+	object-fit: cover;
+	border-radius: 5px;
+}
 
-        .food-item p {
-            margin: 5px 0;
-            font-size: 14px;
-        }
+.food-item p {
+	margin: 5px 0;
+	font-size: 14px;
+}
 
-        .food-item button {
-            margin-top: 5px;
-            background-color: blue;
-            color: white;
-            border: none;
-            padding: 5px;
-            cursor: pointer;
-            border-radius: 3px;
-        }
+.food-item button {
+	margin-top: 5px;
+	background-color: blue;
+	color: white;
+	border: none;
+	padding: 5px;
+	cursor: pointer;
+	border-radius: 3px;
+}
 
-		.food-item button.admin-btn {
-            background-color: #f0f0f0;
-            color: #333;
-            border: 1px solid #ccc;
-            padding: 5px 10px;
-            margin: 5px;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-        
-        /* 음식 주문 버튼 */
-        .order-btn {
-            background-color: blue;
-            padding: 10px 15px;
-            font-size: 16px;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            white-space: nowrap; /* 버튼이 너무 길어지는 걸 방지 */
-        }
+.food-item button.admin-btn {
+	background-color: #f0f0f0;
+	color: #333;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	margin: 5px;
+	cursor: pointer;
+	border-radius: 3px;
+}
 
-        .order-container {
-            position: fixed;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            background-color: orange;
-            padding: 15px;
-            font-size: 16px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+/* 음식 주문 버튼 */
+.order-btn {
+	background-color: blue;
+	padding: 10px 15px;
+	font-size: 16px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	white-space: nowrap; /* 버튼이 너무 길어지는 걸 방지 */
+}
 
+.order-container {
+	position: fixed;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 90%;
+	background-color: orange;
+	padding: 15px;
+	font-size: 16px;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 5px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-        .total-price {
-            font-weight: bold;
-            font-size: 18px;
-            color: white;
-        }
-    </style>
+.total-price {
+	font-weight: bold;
+	font-size: 18px;
+	color: white;
+}
+</style>
 </head>
 
 <body>
 
-    <!-- 상단바 -->
-    <div class="top-bar">
-        <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
-        <% if (loginMember!= null) { %>
-            <span><%= loginMember.getMem_nm() %>님 환영합니다.</span>
-            <a href="logOut">로그아웃</a>
-            <a href="goMypage">마이페이지</a>
-            <% if ("admin".equals(loginMember.getMem_id())) { %> <a href="goAdmin">관리하기</a> <% } %>
-        <% } else { %>
-            <a href="goLogin">로그인</a>
-            <a href="goJoin">회원가입</a>
-        <% } %>
-    </div>
+	<!-- 상단바 -->
+	<div class="top-bar">
+		<%
+		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+		%>
+		<%
+		if (loginMember != null) {
+		%>
+		<span><%=loginMember.getMem_nm()%>님 환영합니다.</span> <a href="logOut">로그아웃</a>
+		<a href="goMypage">마이페이지</a>
+		<%
+		if ("admin".equals(loginMember.getMem_id())) {
+		%>
+		<a href="goAdmin">관리하기</a>
+		<%
+		}
+		%>
+		<%
+		} else {
+		%>
+		<a href="goLogin">로그인</a> <a href="goJoin">회원가입</a>
+		<%
+		}
+		%>
+	</div>
 
+<<<<<<< HEAD
     <!-- 내비게이션 -->
     <div class="nav">
         <div class="logo">404</div>
@@ -195,7 +207,6 @@
             <a href="addMenu?rest_idx=${param.rest_idx}" style="position: absolute; right: 20px;">메뉴 추가하기</a>
         <% } %>
     </div>
-
 
     <!-- 음식 목록 -->
     <div class="food-container" id="foodContainer">
@@ -213,11 +224,47 @@
             </div>
         </c:forEach>
     </div>
+	<div class="order-container">
+		<span class="total-price">총 가격: 0원</span>
+		<button class="order-btn" onclick="placeOrder()">음식 주문하기</button>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+        
+    let selectedFoods = [];
 
-    <div class="order-container">
-        <span class="total-price">총 가격: 0원</span>
-        <button class="order-btn" onclick="placeOrder()">음식 주문하기</button>
-    </div>
+    function selectFood(name, price, button) {
+        let foodIndex = selectedFoods.findIndex(food => food.name === name);
+
+        if (foodIndex === -1) {
+            selectedFoods.push({name, price});
+            button.style.backgroundColor = "gray";
+            button.textContent = "선택됨";
+        } else {
+            selectedFoods.splice(foodIndex, 1);
+            button.style.backgroundColor = "blue";
+            button.textContent = "선택";
+        }
+
+        updateTotalPrice();
+    }
+
+    function updateTotalPrice() {
+        let totalPrice = selectedFoods.reduce((sum, food) => sum + food.price, 0);
+        document.querySelector(".total-price").textContent = `총 가격: ${totalPrice.toLocaleString()}원`;
+    }
+
+    function placeOrder() {
+        if (selectedFoods.length === 0) {
+            alert("음식을 선택해주세요!");
+            return;
+        }
+
+        let queryString = selectedFoods.map(food => `name=${food.name}&price=${food.price}`).join("&");
+        window.location.href = `payment.html?${queryString}`;
+    }
+        
+    </script>
 
 
 

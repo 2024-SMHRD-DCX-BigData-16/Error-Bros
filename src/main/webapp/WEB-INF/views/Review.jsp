@@ -187,22 +187,24 @@ body {
 		<a href="goMain">휴게소 찾기</a> <a href="goReview">리뷰게시판</a>
 	</div>
 
-
+	<% String rest_idx= (String)request.getParameter("rest_idx"); %>
 	<div class="center-container">
 		<div class="review-wrapper" id="review-wrapper">
 			<h2>리뷰 작성</h2>
-			<form id="reviewForm">
-				<label for="reviewContent">리뷰 내용:</label><br>
-				<textarea id="reviewContent" name="reviewContent" rows="4" cols="50"
+			<form id="reviewForm" action="">
+			<input type="hidden" id="rest_idx" name="rest_idx" value="${param.rest_idx }" readonly="readonly">
+			<input type="hidden" id="rest_idx" name="rest_idx" value="${loginMember.mem_id }" readonly="readonly">
+				<label for="review_content">리뷰 내용:</label><br>
+				<textarea id="review_content" name="review_content" rows="4" cols="50"
 					required></textarea>
-				<br> <br> <label for="reviewRating">평점:</label>
+				<br> <br> <label for="review_ratings">평점:</label>
 				<div id="starRating" class="star-rating">
 					<span class="star" data-rating="1"></span> <span class="star"
 						data-rating="2"></span> <span class="star" data-rating="3"></span>
 					<span class="star" data-rating="4"></span> <span class="star"
 						data-rating="5"></span>
 				</div>
-				<br> <input type="hidden" id="reviewRating" name="reviewRating"
+				<br> <input type="hidden" id="review_ratings" name="review_ratings"
 					value="0"> <br>
 				<button type="submit">리뷰 등록</button>
 			</form>

@@ -43,4 +43,10 @@ public interface HugesoMapper {
 	public List<HugesoDTO> searchRestArea(String keyword, int page, int pageSize);
 
 	public int getTotalCount(String keyword);
+	
+	// 리뷰 목록 가져오기
+	public List<ReviewDTO> getReviewsByRestIdx(int rest_idx);
+	
+	// 리뷰 삭제
+	public int deleteReview(int reviewIdx);
 }

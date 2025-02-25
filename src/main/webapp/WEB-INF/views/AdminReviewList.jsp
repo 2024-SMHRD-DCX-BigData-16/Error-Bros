@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Error Search</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 * {
 	margin: 0;
@@ -42,6 +43,7 @@ body {
 	color: red;
 	text-decoration: none;
 	margin-left: 15px;
+	cursor: pointer;
 }
 
 /* 내비게이션 */
@@ -82,30 +84,32 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start; /* Align items to the top */
 	flex-grow: 1;
+	width: 80%; /* Set a maximum width for the table */
+	margin-top: 100px;
+	/* Add some top margin to account for the top bar and nav */
 }
 
-/* 기존 스타일 유지 */
-.rest-table {
-	width: 80%;
-	margin-top: 20px;
+table {
+	width: 100%;
 	border-collapse: collapse;
+	margin-top: 20px;
 }
 
-.rest-table th, .rest-table td {
+th, td {
 	border: 1px solid #ddd;
 	padding: 8px;
 	text-align: left;
 }
 
-.rest-table th {
+th {
 	background-color: #f2f2f2;
 }
 
 .pagination {
 	display: flex;
-	justify-content: center; /* 가운데 정렬 */
+	justify-content: center;
 	margin-top: 20px;
 }
 
@@ -122,14 +126,16 @@ body {
 	background-color: #007bff;
 	color: white;
 }
+
+.back-button {
+	margin-top: 20px;
+}
 </style>
 </head>
-
 <body>
 
 	<!-- 상단바 -->
 	<div class="top-bar">
-
 		<%
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		%>
@@ -154,6 +160,7 @@ body {
 		%>
 	</div>
 
+
 	<!-- 내비게이션 -->
 	<div class="nav">
 		<div class="logo">404</div>
@@ -165,59 +172,77 @@ body {
 	</div>
 
 	<div class="center-container">
-        <h1>휴게소 관리</h1>
-        <div>
-            <a href="goAddRestArea"><button class="addRestArea">휴게소 추가</button></a>
-        </div>
+		<h1>휴게소 리뷰 목록</h1>
 
-        <table class="rest-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>이름</th>
-                    <th>주소</th>
-                    <th>편의시설</th>
-                    <th>리뷰</th>
-                    <th>메뉴</th>
-                    <th>수정</th>
-                    <th>삭제</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="hugeso" items="${adminhugesoList}">
-                    <tr>
-                        <td>${hugeso.rest_idx}</td>
-                        <td>${hugeso.rest_nm}</td>
-                        <td>${hugeso.rest_addr}</td>
-                        <td>${hugeso.rest_facilities}</td>
-                        <td><a href="goAdminReviewList?rest_idx=${hugeso.rest_idx}"><button class="AdminReview">리뷰 관리</button></a></td>
-                        <td><a href="goAdminMenu?rest_idx=${hugeso.rest_idx}"><button class="AdminMenu">메뉴 관리</button></a></td>
-                        <td><a href="goUpdateRestArea?rest_idx=${hugeso.rest_idx}"><button class="addrestarea">수정</button></a></td>
-                        <td><a href="deleteRestArea?rest_idx=${hugeso.rest_idx}"><button >삭제</button></td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+		<table>
+			<thead>
+				<tr>
+					<th>리뷰 인덱스</th>
+					<th>휴게소 인덱스</th>
+					<th>회원 아이디</th>
+					<th>리뷰 내용</th>
+					<th>리뷰 좋아요</th>
+					<th>리뷰 평점</th>
+					<th>작성일</th>
+					<th>리뷰 삭제</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="review" items="${AdminReviewList}">
+					<tr>					
+						<td>${review.review_idx}</td>
+						<td>${review.rest_idx}</td>
+						<td>${review.mem_id}</td>
+						<td>${review.review_content}</td>
+						<td>${review.review_like}</td>
+						<td>${review.review_ratings}</td>
+						<td>${review.created_at}</td>
+						<td>
+							<button onclick="deleteReview(${review.review_idx})">삭제</button>
+						</td>
+						<%-- 삭제 버튼 추가 --%>
+					</tr>
+				</c:forEach>
+				<c:if test="${empty AdminReviewList}">
+					<tr>
+						<td colspan="5">작성된 리뷰가 없습니다.</td>
+					</tr>
+				</c:if>
+			</tbody>
+		</table>
 
-        <div class="pagination">
-            <c:if test="${adminHugesoListpage > 1}">
-                <a href="hugesoList?page=${adminHugesoListpage - 1}">이전</a>
-            </c:if>
+		<div class="pagination">
+			<%-- 페이지네이션 필요시 추가 --%>
+		</div>
 
-            <c:forEach var="i" begin="1" end="${(adminHugesoTotalCount + 9) / 10}">
-                <a href="hugesoList?page=${i}" ${adminHugesoListpage == i ? 'class="active"' : ''}>${i}</a>
-            </c:forEach>
-
-            <c:if test="${adminHugesoListpage < (adminHugesoTotalCount + 9) / 10}">
-                <a href="hugesoList?page=${adminHugesoListpage + 1}">다음</a>
-            </c:if>
-        </div>
-
-    </div>
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+		<div class="back-button">
+			<a href="showHugeso?rest_idx=${rest_idx}">휴게소 정보 페이지로 돌아가기</a>
+		</div>
+	</div>
 
 </body>
 
+<script>
+  function deleteReview(reviewIdx) {
+    if (confirm("리뷰를 삭제하시겠습니까?")) {
+      // AJAX를 사용하여 리뷰 삭제 요청
+      $.ajax({
+        url: "deleteReview", // 리뷰 삭제 요청을 처리하는 컨트롤러 메서드
+        type: "POST",
+        data: { reviewIdx: reviewIdx }, // 삭제할 리뷰의 reviewIdx 전달
+        success: function(response) {
+          if (response === "success") {
+            alert("리뷰가 삭제되었습니다.");
+            location.reload(); // 리뷰 목록 페이지 새로고침
+          } else {
+            alert("리뷰 삭제에 실패했습니다.");
+          }
+        },
+        error: function() {
+          alert("서버 오류가 발생했습니다.");
+        }
+      });
+    }
+  }
+</script>
 </html>
