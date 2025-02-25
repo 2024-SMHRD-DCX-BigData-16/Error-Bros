@@ -190,8 +190,9 @@
     <div class="menu">
         <a href="goMain">휴게소 찾기</a>
         <a href="goReview">리뷰게시판</a>
-        <% if (loginMember != null && "admin".equals(loginMember.getMem_id())) { %>
-            <a href="addMenu" style="position: absolute; right: 20px;">메뉴 추가하기</a>
+        <% if (loginMember != null && "admin".equals(loginMember.getMem_id())) {
+        	String rest_idx= (String)request.getParameter("rest_idx");%>
+            <a href="addMenu?rest_idx=${param.rest_idx}" style="position: absolute; right: 20px;">메뉴 추가하기</a>
         <% } %>
     </div>
 

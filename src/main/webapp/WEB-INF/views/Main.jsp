@@ -260,7 +260,7 @@ body {
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${hugesoList}" var="hugeso" end="15" >
+							<c:forEach items="${hugesoList}" var="hugeso" end="13" >
 								<tr>
 									<td>${hugeso.rest_nm}</td>
 									<td><a href="goMenu?rest_idx=${hugeso.rest_idx}"><button class="order-btn">음식

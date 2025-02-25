@@ -61,7 +61,7 @@ public class MenuController {
 	@PostMapping("/insertMenu")
 	public String addMenu(MenuDTO menu) {
 		menuMapper.insertMenu(menu);
-		return "redirect:/getAllMenu"; // 메뉴 목록 페이지로 리다이렉트
+		return "redirect:/Menu"; // 메뉴 목록 페이지로 리다이렉트
 	}
 
 	// 메뉴 수정 페이지 이동

@@ -83,6 +83,7 @@
             width: 300px;
         }
         label {
+        	text-align: center;
             margin-bottom: 5px;
         }
         input[type="text"], input[type="number"] {
@@ -98,6 +99,12 @@
             border: none;
             border-radius: 3px;
             cursor: pointer;
+        }
+        select{
+         	padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -119,8 +126,10 @@
 
     <div class="menu">
         <a href="goMain">휴게소 찾기</a> <a href="goReview">리뷰게시판</a>
+        <% String rest_idx= (String)request.getParameter("rest_idx"); %>
         <% if (loginMember!= null && "admin".equals(loginMember.getMem_id())) { %>
-            <a href="addMenu" style="position: absolute; right: 20px;">메뉴 추가하기</a>
+            <a href="goMenu?rest_idx=${param.rest_idx }"  style="text-align: right;">메뉴 리스트로 돌아가기</a>
+            <a href="addMenu" style="text-align: right; ">메뉴 추가하기</a>
         <% } %>
     </div>
 
@@ -128,15 +137,21 @@
         <h1>메뉴 추가</h1>
         <form action="insertMenu" method="post">
             <label for="restIdx">휴게소 번호:</label>
-            <input type="number" id="restIdx" name="restIdx"  readonly="readonly"/><br />
+            <input type="number" id="rest_idx" name="rest_idx" value=${param.rest_idx } readonly="readonly"/><br />
             <label for="menuNm">메뉴 이름:</label>
-            <input type="text" id="menuNm" name="menuNm" /><br />
+            <input type="text" id="menu_nm" name="menu_nm" /><br />
             <label for="menuType">메뉴 타입:</label>
-            <input type="text" id="menuType" name="menuType" /><br />
+            <select id="menu_type" name="menu_type">
+            	<option>한식
+            	<option>중식
+            	<option>양식
+            	<option>분식
+            	<option>일식
+            </select>
             <label for="menuPrice">메뉴 가격:</label>
-            <input type="number" id="menuPrice" name="menuPrice" /><br />
-            <label for="menuImg">메뉴 이미지 URL:</label>
-            <input type="text" id="menuImg" name="menuImg" /><br />
+            <input type="number" id="menu_price" name="menu_price" /><br />
+            <label for="menuImg">메뉴 이미지 :</label>
+            <input type="file" id="menu_img" name="menu_img" /><br />
             <input type="submit" value="추가" />
         </form>
     </div>
