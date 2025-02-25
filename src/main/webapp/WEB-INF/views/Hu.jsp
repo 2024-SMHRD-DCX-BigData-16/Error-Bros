@@ -1,231 +1,258 @@
 <%@page import="com.errorbros.entity.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>휴게소 정보</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>휴게소 정보</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #f8f9fa;
-        }
+body {
+	font-family: Arial, sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #f8f9fa;
+}
 
-        /* 상단바 */
-        .top-bar {
-            background-color: rgb(51, 199, 17);
-            text-align: right;
-            padding: 8px 20px;
-            font-size: 14px;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
+/* 상단바 */
+.top-bar {
+	background-color: rgb(51, 199, 17);
+	text-align: right;
+	padding: 8px 20px;
+	font-size: 14px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
 
-        .top-bar a {
-            color: red;
-            text-decoration: none;
-            margin-left: 15px;
-        }
+.top-bar a {
+	color: red;
+	text-decoration: none;
+	margin-left: 15px;
+}
 
-        /* 내비게이션 */
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 20px;
-            position: relative;
-            width: 100%;
-            margin-top: 40px;
-        }
+/* 내비게이션 */
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 15px 20px;
+	position: relative;
+	width: 100%;
+	margin-top: 40px;
+}
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: rgb(199, 126, 17);
-            text-align: center;
-        }
+.logo {
+	font-size: 24px;
+	font-weight: bold;
+	color: rgb(199, 126, 17);
+	text-align: center;
+}
 
-        /* 카테고리 메뉴 */
-        .menu {
-            display: flex;
-            justify-content: left;
-            padding: 10px 20px;
-            border-top: 1px solid blue;
-            width: 100%;
-        }
+/* 카테고리 메뉴 */
+.menu {
+	display: flex;
+	justify-content: left;
+	padding: 10px 20px;
+	border-top: 1px solid blue;
+	width: 100%;
+}
 
-        .menu a {
-            margin-right: 20px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
+.menu a {
+	margin-right: 20px;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
 
-        /* 휴게소 정보 컨테이너 */
-        .info-container {
-            width: 80%;
-            max-width: 800px;
-            background: white;
-            margin: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+/* 휴게소 정보 컨테이너 */
+.info-container {
+	width: 80%;
+	max-width: 800px;
+	background: white;
+	margin: 20px;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-        .info-title {
-            font-size: 28px;
-            font-weight: bold;
-            color: green;
-            margin-bottom: 10px;
-        }
+.info-title {
+	font-size: 28px;
+	font-weight: bold;
+	color: green;
+	margin-bottom: 10px;
+}
 
-        .map-photo-wrapper {
-            justify-content: space-between;
-            display: flex;
-            width: 100%;
-            align-items: center;
-            gap: 20px;
-            /* 간격 */
-        }
+.map-photo-wrapper {
+	justify-content: space-between;
+	display: flex;
+	width: 100%;
+	align-items: center;
+	gap: 20px;
+	/* 간격 */
+}
 
-        .map-container {
-            flex: 1;
-            height: 300px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-        }
+.map-container {
+	flex: 1;
+	height: 300px;
+	background-color: #ddd;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+}
 
-        .photo-container {
-            flex: 1;
-            height: 300px;
-            background: ;
-            border-radius: 10px;
-            background-color: #fff;
-        }
+.photo-container {
+	flex: 1;
+	height: 300px;
+	background:;
+	border-radius: 10px;
+	background-color: #fff;
+}
 
-        .info-details {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
+.info-details {
+	font-size: 16px;
+	margin-bottom: 20px;
+}
 
-        .info-details p {
-            margin-bottom: 5px;
-        }
+.info-details p {
+	margin-bottom: 5px;
+}
 
-        /* 리뷰 섹션 */
-        .review-section {
-            margin-top: 20px;
-        }
+/* 메인 컨테이너 */
+.center-container {
+	width: 80%;
+	margin: 20px auto;
+}
 
-        .review-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+/* 테이블 스타일 */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
 
-        .review-box {
-            background: #f1f1f1;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
+th, td {
+	padding: 12px 15px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
 
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+th {
+	background-color: #f2f2f2;
+	font-weight: bold;
+}
 
-        .left {
-            text-align: left;
-        }
+/* 주문 버튼 */
+.order-btn {
+	position: fixed;
+	bottom: 10px;
+	/* 화면 하단에서 10px 위 */
+	left: 50%;
+	transform: translateX(-50%);
+	max-width: auto;
+	width: 90%;
+	/* 버튼 너비 */
+	background-color: orange;
+	padding: 15px;
+	font-size: 16px;
+	color: white;
+	border: none;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 5px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-        .right {
-            text-align: right;
-            font-weight: bold;
-        }
+/* Pagination 스타일 */
+.pagination {
+	display: flex;
+	justify-content: center;
+}
 
-        .review-text {
-            margin-top: 5px;
-        }
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	border: 1px solid #ddd;
+	margin: 0 4px;
+}
 
-        /* 주문 버튼 */
-        .order-btn {
-            position: fixed;
-            bottom: 10px;
-            /* 화면 하단에서 10px 위 */
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: auto;
-            width: 90%;
-            /* 버튼 너비 */
-            background-color: orange;
-            padding: 15px;
-            font-size: 16px;
-            color: white;
-            border: none;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+	border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+</style>
 </head>
 
 <body>
 
-    <!-- 상단바 -->
-    <div class="top-bar">
-        <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
-        <% if (loginMember!= null) { %>
-            <span><%= loginMember.getMem_nm() %>님 환영합니다.</span>
-            <a href="logOut">로그아웃</a>
-            <a href="goMypage">마이페이지</a>
-            <% if ("admin".equals(loginMember.getMem_id())) { %> <a href="goAdmin">관리하기</a> <% } %> <% } else { %> <a href="goLogin">로그인</a>
-            <a href="goJoin">회원가입</a>
-            <% } %>
-    </div>
+	<!-- 상단바 -->
+	<div class="top-bar">
+		<%
+		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+		%>
+		<%
+		if (loginMember != null) {
+		%>
+		<span><%=loginMember.getMem_nm()%>님 환영합니다.</span> <a href="logOut">로그아웃</a>
+		<a href="goMypage">마이페이지</a>
+		<%
+		if ("admin".equals(loginMember.getMem_id())) {
+		%>
+		<a href="goAdmin">관리하기</a>
+		<%
+		}
+		%>
+		<%
+		} else {
+		%>
+		<a href="goLogin">로그인</a> <a href="goJoin">회원가입</a>
+		<%
+		}
+		%>
+	</div>
 
 
-    <!-- 내비게이션 -->
-    <div class="nav">
-        <div class="logo">404</div>
-    </div>
+	<!-- 내비게이션 -->
+	<div class="nav">
+		<div class="logo">404</div>
+	</div>
 
-    <!-- 카테고리 메뉴 -->
-    <div class="menu">
-        <a href="goMain">휴게소 찾기</a>
-        <a href="goReview">리뷰게시판</a>
-    </div>
+	<!-- 카테고리 메뉴 -->
+	<div class="menu">
+		<a href="goMain">휴게소 찾기</a>
+	</div>
 
-    <!-- 휴게소 정보 컨테이너 -->
-    <div class="info-container">
-        <div class="info-title">${hugesoInfo.rest_nm }</div>
+	<!-- 휴게소 정보 컨테이너 -->
+	<div class="info-container">
+		<div class="info-title">${hugesoInfo.rest_nm }</div>
 
-        <!-- 지도 + 사진을 가로로 배치하는 컨테이너 -->
-        <div class="map-photo-wrapper">
-            <!-- 지도 -->
-               <div id="map" style="width:750px;height:350px;"></div>
+		<!-- 지도 + 사진을 가로로 배치하는 컨테이너 -->
+		<div class="map-photo-wrapper">
+			<!-- 지도 -->
+			<div id="map" style="width: 750px; height: 350px;"></div>
 
-	<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=766824df2f4642d0c1ee9b9d357b44a4"></script>
-	<script>
+			<script
+				src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=766824df2f4642d0c1ee9b9d357b44a4"></script>
+			<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = {
 		        center: new kakao.maps.LatLng(${hugesoInfo.lat}, ${hugesoInfo.lon}), // 지도의 중심좌표
@@ -260,89 +287,70 @@
 		});
 
 	</script>
-            </div>
+		</div>
 
-            <!-- 휴게소 사진 -->
-            <div class="photo-container"></div>
-        </div>
+		<!-- 휴게소 사진 -->
+		<div class="photo-container"></div>
+	</div>
 
-        <!-- 휴게소 정보 -->
-        <div class="info-details">
-            <p><strong>주소:</strong> ${hugesoInfo.rest_addr }</p>
-            <p><strong>편의시설:</strong> ${hugesoInfo.rest_facilities }</p>
-        </div>
+	<!-- 휴게소 정보 -->
+	<div class="info-details">
+		<p>
+			<strong>주소:</strong> ${hugesoInfo.rest_addr }
+		</p>
+		<p>
+			<strong>편의시설:</strong> ${hugesoInfo.rest_facilities }
+		</p>
+		<p>
+			<a href="goReview">리뷰 작성</a>
+		</p>
+	</div>
 
-        <!-- 리뷰 섹션 -->
-        <div class="review-section">
-            <div class="review-title">리뷰 후기</div>
-            <div id="review-container">
-                <!-- 여기에 리뷰가 동적으로 추가될 예정 -->
-            </div>
-        </div>
+	<div class="center-container">
+		<h1>휴게소 리뷰 목록</h1>
 
-        <!-- 스크립트 추가 -->
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                let reviewData = [
-                    { username: "사용자1", rating: "4.5", date: "2025-02-20", place: "정안 휴게소", review: "깔끔하고 음식이 맛있어요!" },
-                    { username: "사용자2", rating: "3.8", date: "2025-02-18", place: "정안 휴게소", review: "시설이 좋지만 사람이 많아요." },
-                    { username: "사용자3", rating: "4.0", date: "2025-02-17", place: "정안 휴게소", review: "음식이 맛있어요!" },
-                    { username: "사용자4", rating: "4.2", date: "2025-02-16", place: "정안 휴게소", review: "커피가 맛있어요." },
-                    { username: "사용자5", rating: "3.9", date: "2025-02-15", place: "정안 휴게소", review: "시설이 깨끗해요." },
-                    { username: "사용자6", rating: "4.7", date: "2025-02-14", place: "정안 휴게소", review: "뷰가 예뻐요." },
-                    { username: "사용자7", rating: "4.3", date: "2025-02-13", place: "정안 휴게소", review: "주차장이 넓어요." },
-                    { username: "사용자8", rating: "4.1", date: "2025-02-12", place: "정안 휴게소", review: "음식이 다양해요." },
-                    { username: "사용자9", rating: "4.5", date: "2025-02-11", place: "정안 휴게소", review: "편의점이 있어서 좋아요." }
-                ];
+		<table>
+			<thead>
+				<tr>
+					<th>회원 아이디</th>
+					<th>리뷰 내용</th>
+					<th>리뷰 평점</th>
+					<th>작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="review" items="${ReviewList}">
+					<tr>
+						<td>${review.mem_id}</td>
+						<td>${review.review_content}</td>
+						<td>${review.review_ratings}</td>
+						<td>${review.created_at}</td>
+					</tr>
+				</c:forEach>
+				<c:if test="${empty ReviewList}">
+					<tr>
+						<td colspan="5">작성된 리뷰가 없습니다.</td>
+					</tr>
+				</c:if>
+			</tbody>
+		</table>
 
-                let reviewContainer = document.getElementById("review-container");
-                let reviewsPerPage = 4; // 한 번에 3개씩 보여줌
-                let currentPage = 0;
+		<div class="pagination">
+			<%-- 페이지네이션 필요시 추가 --%>
+		</div>
+	</div>
 
-                function loadReviews() {
-                    let start = currentPage * reviewsPerPage;
-                    let end = start + reviewsPerPage;
-                    let reviews = reviewData.slice(start, end);
 
-                    reviews.forEach(review => {
-                        let reviewBox = document.createElement("div");
-                        reviewBox.classList.add("review-box");
-                        reviewBox.innerHTML = `
-                <div class="review-header">
-                    <div class="left">
-                        <strong>${review.username}</strong> | ⭐ ${review.rating} | 📅 ${review.date}
-                    </div>
-                    <div class="right">
-                        📍 ${review.place}
-                    </div>
-                </div>
-                <hr>
-                <p class="review-text">💬 ${review.review}</p>
-            `;
-                        reviewContainer.appendChild(reviewBox);
-                    });
+	<!-- 스크립트 추가 -->
+	<script>
+            
+        </script>
 
-                    currentPage++;
-                }
-
-                // 스크롤 이벤트 감지 (무한 스크롤)
-                window.addEventListener("scroll", function () {
-                    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
-                        loadReviews();
-                    }
-                });
-
-                // 초기 3개 로드
-                loadReviews();
-            });
-        </script>	
-
-        <!-- 음식 주문 버튼 -->
-        <div class="buttons" id="buttons">
-                <a href="goMenu?rest_idx=${hugesoInfo.rest_idx}"><button class="order-btn">음식 주문하기</button></a>
-
-            </div>
-    </div>
+	<div class="buttons" id="buttons">
+		<a href="goMenu?rest_idx=${hugesoInfo.rest_idx}"><button
+				class="order-btn">음식 주문하기</button></a>
+	</div>
+	</div>
 
 </body>
 

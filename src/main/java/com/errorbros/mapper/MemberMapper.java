@@ -43,5 +43,7 @@ public interface MemberMapper {
 
 	// 회원 아이디로 회원 정보를 삭제
 	public int deleteMember(String mem_id);
+	
+	
 
 }

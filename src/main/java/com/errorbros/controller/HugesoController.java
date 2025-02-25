@@ -6,12 +6,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.errorbros.entity.HugesoDTO;
+import com.errorbros.entity.ReviewDTO;
 import com.errorbros.mapper.HugesoMapper;
 
 @Controller
@@ -50,8 +52,12 @@ public class HugesoController {
 
 	// 선택한 휴게소 페이지 열기
 	@GetMapping("/showHugeso")
-	public String showHugeso(@RequestParam("rest_idx") String rest_idx, HttpSession session) {
+	public String showHugeso(@RequestParam("rest_idx") String rest_idx, Model model, HttpSession session) {
 		System.out.println("선택한 휴게소 인덱스 : " + rest_idx);
+		int Rest_idx = Integer.parseInt(rest_idx);
+		List<ReviewDTO> AdminReviewList = hugesoMapper.getReviewsByRestIdx(Rest_idx); // Mapper에 추가해야 함
+		System.out.println("리뷰 개수 : " + AdminReviewList.size());
+		model.addAttribute("ReviewList", AdminReviewList); // ReviewList 받는값
 		HugesoDTO hugeso = hugesoMapper.showHugeso(rest_idx);
 		System.out.println("선택한 휴게소 정보 : " + hugeso.toString());
 		session.setAttribute("hugesoInfo", hugeso);
