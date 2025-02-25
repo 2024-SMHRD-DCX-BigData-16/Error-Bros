@@ -191,7 +191,7 @@ body {
                         <td>${hugeso.rest_addr}</td>
                         <td>${hugeso.rest_facilities}</td>
                         <td><button onclick="location.href='reviewList?rest_idx=${hugeso.rest_idx}'">리뷰</button></td>
-                        <td><button onclick="location.href='menuList?rest_idx=${hugeso.rest_idx}'">메뉴</button></td>
+                        <td><a href="goAdminMenu?rest_idx=${hugeso.rest_idx}"><button class="AdminMenu">메뉴 관리</button></a></td>
                         <td><a href="goUpdateRestArea?rest_idx=${hugeso.rest_idx}"><button class="addrestarea">수정</button></a></td>
                         <td><a href="deleteRestArea?rest_idx=${hugeso.rest_idx}"><button >삭제</button></td>
                     </tr>

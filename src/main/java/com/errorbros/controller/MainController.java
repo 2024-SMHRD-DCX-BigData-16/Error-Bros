@@ -22,12 +22,6 @@ public class MainController {
 		return "Hu";
 	}
 
-	@RequestMapping("/goMenu")
-	public String goMenu() {
-
-		return "Menu";
-	}
-
 	@RequestMapping("/goReview")
 	public String goReview() {
 

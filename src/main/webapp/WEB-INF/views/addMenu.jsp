@@ -137,7 +137,7 @@
         <h1>메뉴 추가</h1>
         <form action="insertMenu" method="post">
             <label for="restIdx">휴게소 번호:</label>
-            <input type="number" id="restIdx" name="restIdx" /><br />
+            <input type="number" id="restIdx" name="restIdx"  readonly="readonly"/><br />
             <label for="menuNm">메뉴 이름:</label>
             <input type="text" id="menuNm" name="menuNm" /><br />
             <label for="menuType">메뉴 타입:</label>

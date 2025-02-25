@@ -2,17 +2,20 @@ package com.errorbros.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import com.errorbros.entity.HugesoDTO;
 import com.errorbros.entity.MenuDTO;
 import com.errorbros.mapper.MenuMapper;
 
@@ -30,11 +33,26 @@ public class MenuController {
 		return "Menu"; // Menu.jsp로 이동
 	}
 
-	// 특정 휴게소의 메뉴 목록 조회
-	@GetMapping("/getMenusRestIdx/{rest_idx}")
-	@ResponseBody
-	public List<MenuDTO> getMenusRestIdx(@PathVariable int rest_idx) {
-	    return menuMapper.getMenusRestIdx(rest_idx);
+	// 해당 휴게소 메뉴 목록 조회
+	@RequestMapping("/goMenu")
+	public String goMenu(HttpSession session) {
+		HugesoDTO hugeso = (HugesoDTO) session.getAttribute("hugesoInfo");
+		int Rest_idx = hugeso.getRest_idx();
+		System.out.println("메뉴 불러오려는 휴게소 인덱스 : " + Rest_idx);
+		List<MenuDTO> menuList = menuMapper.getMenusRestIdx(Rest_idx);
+		System.out.println("해당 휴게소 총 메뉴 개수 : " + menuList.size());
+		session.setAttribute("Rest_idx", Rest_idx);
+		return "Menu";
+	}
+
+
+	@GetMapping("/goAdminMenu/{rest_idx}")
+	public String getMenusRestIdx(@RequestParam String rest_idx, Model model) {
+		int restIdx = Integer.parseInt(rest_idx);
+		List<MenuDTO> menuList = menuMapper.getMenusRestIdx(restIdx);
+		model.addAttribute("menuList", menuList);
+		System.out.println("로드된 메뉴 개수 : " + menuList.size());
+		return "Menu";
 	}
 
 	// 메뉴 추가 페이지 이동

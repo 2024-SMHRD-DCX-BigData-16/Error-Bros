@@ -209,21 +209,22 @@ body {
 		%>
 	</div>
 
-
-	<!-- 음식 목록 -->
-	<div class="food-container" id="foodContainer">
-		<c:forEach var="menu" items="${menuList}">
-			<div>
-				<p>음식 이름: ${menu.menu_nm}</p>
-				<p>가격: ${menu.price}</p>
-			</div>
-		</c:forEach>
-
-		<c:if test="${empty menuList}">
-			<p>등록된 음식이 없습니다.</p>
-		</c:if>
-	</div>
-
+    <!-- 음식 목록 -->
+    <div class="food-container" id="foodContainer">
+        <c:forEach var="menu" items="${menuList}">
+            <div class="food-item">
+                <p><strong>${menu.menu_nm}</strong></p>
+                <img src="${menu.menu_img}" alt="${menu.menu_nm}" />
+                <p>${menu.menuPrice}원</p>
+                <button onclick="selectFood('${menu.menu_nm}', ${menu.menu_price}, this)"
+                    style="background-color: blue; color: white;">선택</button>
+                <% if (loginMember!= null && "admin".equals(loginMember.getMem_id())) { %>
+                <button class="admin-btn" onclick="location.href='editMenu/${menu.menu_idx}'">수정</button>
+                <button class="admin-btn" onclick="location.href='deleteMenu/${menu.menu_idx}'">삭제</button>
+                <% } %>
+            </div>
+        </c:forEach>
+    </div>
 	<div class="order-container">
 		<span class="total-price">총 가격: 0원</span>
 		<button class="order-btn" onclick="placeOrder()">음식 주문하기</button>
@@ -265,7 +266,6 @@ body {
     }
         
     </script>
-
 
 
 

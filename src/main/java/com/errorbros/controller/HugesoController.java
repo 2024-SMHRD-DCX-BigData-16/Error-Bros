@@ -1,13 +1,10 @@
 package com.errorbros.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +40,9 @@ public class HugesoController {
 		String restNm = searchInput;
 		System.out.println("휴게소 검색 내용: " + restNm);
 		List<HugesoDTO> hugesoList = hugesoMapper.searchHugeso(restNm);
+		int totalCount = 0;
+		totalCount = hugesoList.size();
+		System.out.println("totalCount : " + totalCount);
 		System.out.println(hugesoList.toString());
 		session.setAttribute("hugesoList", hugesoList);
 		session.setAttribute("searchInput", searchInput);
@@ -68,12 +68,11 @@ public class HugesoController {
 		MenuDTO menuInfo = hugesoMapper.showMenu(restIdx);
 		System.out.println(menuInfo.toString());
 		session.setAttribute("hugesoInfo", menuInfo);
-		return "Menu";
+		return "Menu?" + "Menu_nm=" + menuInfo.getMenu_nm();
 	}
 
 	// 휴게소 리스트 출력
 	@GetMapping("/hugesoList")
-
 	public String hugesoList(@RequestParam(defaultValue = "1") int page, HttpSession session) {
 		int totalCount = hugesoMapper.getTotalHugesoCount();
 		List<HugesoDTO> adminhugesoList = hugesoMapper.getHugesoListWithPaging((page - 1) * 10);
@@ -121,22 +120,4 @@ public class HugesoController {
 		return "showRestAreaList";
 	}
 
-	// 검색 기능
-	@GetMapping("/searchRestArea")
-	public ResponseEntity<Map<String, Object>> searchRestArea(
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "page", defaultValue = "1") int page) {
-
-		int pageSize = 10; // 페이지당 보여줄 휴게소 수
-
-		List<HugesoDTO> restAreaList = hugesoMapper.searchRestArea(keyword, page, pageSize);
-		int totalCount = hugesoMapper.getTotalCount(keyword);
-		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
-
-		Map<String, Object> response = new HashMap<>();
-		response.put("restAreaList", restAreaList);
-		response.put("totalPages", totalPages);
-
-		return ResponseEntity.ok(response);
-	}
 }

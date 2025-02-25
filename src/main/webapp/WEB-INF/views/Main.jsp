@@ -260,7 +260,7 @@ body {
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${hugesoList}" var="hugeso">
+							<c:forEach items="${hugesoList}" var="hugeso" end="15" >
 								<tr>
 									<td>${hugeso.rest_nm}</td>
 									<td><a href="goMenu"><button class="order-btn">음식
@@ -271,20 +271,6 @@ body {
 							</c:forEach>
 						</tbody>
 					</table>
-					<div class="pagination">
-						<c:if test="${page > 1}">
-							<a href="hugesoList?page=${page - 1}">이전</a>
-						</c:if>
-
-						<c:forEach var="i" begin="1" end="${(totalCount + 9) / 10}">
-							<a href="hugesoList?page=${i}"
-								${page == i ? 'class="active"' : ''}>${i}</a>
-						</c:forEach>
-
-						<c:if test="${page < (totalCount + 9) / 10}">
-							<a href="hugesoList?page=${page + 1}">다음</a>
-						</c:if>
-					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="no-result-message">검색 결과가 없습니다.</div>
@@ -292,34 +278,6 @@ body {
 			</c:choose>
 		</div>
 	</div>
-	<div class="pagination">
-		<c:if test="${page > 1}">
-			<a href="hugesoList?page=${page - 1}">이전</a>
-		</c:if>
-
-		<c:forEach var="i" begin="1" end="${(totalCount + 9) / 10}">
-			<a href="hugesoList?page=${i}" ${page == i ? 'class="active"' : ''}>${i}</a>
-		</c:forEach>
-
-		<c:if test="${page < (totalCount + 9) / 10}">
-			<a href="hugesoList?page=${page + 1}">다음</a>
-		</c:if>
-	</div>
-	<script>
-		$(document).ready(function() {
-			// 페이지네이션 기능
-			$(document).on("click", ".page-link", function() {
-				var page = $(this).data("page");
-				searchRestArea(page);
-			});
-
-			function searchRestArea(page) {
-				var keyword = $("#searchInput").val();
-				// AJAX를 사용하여 검색 요청
-				//... (이전 답변에서 제공한 searchRestArea 함수 참조)...
-			}
-		});
-	</script>
 
 </body>
 </html>

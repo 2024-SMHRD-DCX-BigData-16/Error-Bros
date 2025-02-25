@@ -143,17 +143,21 @@ input[type="submit"] {
 		<h1>메뉴 수정</h1>
 		<form action="../updateMenu" method="post">
 			<input type="hidden" name="menuIdx" value="${menu.menuIdx}" /> <label
-				for="restIdx">휴게소 번호:</label> <input type="number" id="restIdx"
-				name="restIdx" value="${menu.restIdx}" /><br /> <label
-				for="menuNm">메뉴 이름:</label> <input type="text" id="menuNm"
-				name="menuNm" value="${menu.menuNm}" /><br /> <label
+				for="restIdx">휴게소 번호:</label> 
+			<input type="number" id="restIdx"
+				name="restIdx" value="${menu.restIdx}" /><br /> 
+			<label for="menuNm">메뉴 이름:</label> <input type="text" id="menuNm"
+				name="menuNm" value="${menu.menuNm}" /><br /> 
+			<label
 				for="menuType">메뉴 타입:</label> <input type="text" id="menuType"
-				name="menuType" value="${menu.menuType}" /><br /> <label
+				name="menuType" value="${menu.menuType}" /><br /> 
+			<label
 				for="menuPrice">메뉴 가격:</label> <input type="number" id="menuPrice"
-				name="menuPrice" value="${menu.menuPrice}" /><br /> <label
+				name="menuPrice" value="${menu.menuPrice}" /><br /> 
+			<label
 				for="menuImg">메뉴 이미지 URL:</label> <input type="text" id="menuImg"
-				name="menuImg" value="${menu.menuImg}" /><br /> <input
-				type="submit" value="수정" />
+				name="menuImg" value="${menu.menuImg}" /><br />
+			<input	type="submit" value="수정" />
 		</form>
 	</div>
 

@@ -18,7 +18,7 @@ public interface MenuMapper {
 	public void updateMenu(MenuDTO menu);
 
 	public void deleteMenu(int menu_idx);
-	
+
 	// 특정 메뉴 번호(menu_idx)에 해당하는 메뉴 정보를 조회하는 메서드
 	public MenuDTO getMenuIdx(int menu_idx);
 }
