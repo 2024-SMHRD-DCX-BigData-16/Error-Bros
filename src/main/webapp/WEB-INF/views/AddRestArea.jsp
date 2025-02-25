@@ -200,6 +200,7 @@ body {
     </div>
 
     <div class="center-container">
+    	
             <h2>휴게소 정보를 입력 하세요</h2>
     	<div class="review-wrapper" id="review-wrapper">
         <form class="update-form" name="addRestAreaForm" action="addRestArea" method="post">
@@ -215,6 +216,7 @@ body {
             <tr><td><input type="submit" value="휴게소 추가하기"></td></tr>
             </table>
         </form>
+        
         </div>
     </div>
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.errorbros.entity.MenuDTO;
 import com.errorbros.mapper.MenuMapper;
@@ -31,8 +32,9 @@ public class MenuController {
 
 	// 특정 휴게소의 메뉴 목록 조회
 	@GetMapping("/getMenusRestIdx/{rest_idx}")
+	@ResponseBody
 	public List<MenuDTO> getMenusRestIdx(@PathVariable int rest_idx) {
-		return menuMapper.getMenusRestIdx(rest_idx);
+	    return menuMapper.getMenusRestIdx(rest_idx);
 	}
 
 	// 메뉴 추가 페이지 이동

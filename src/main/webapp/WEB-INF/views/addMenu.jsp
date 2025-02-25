@@ -76,6 +76,14 @@
             justify-content: center;
             flex-grow: 1;
         }
+        
+        .menu-box {
+            padding: 100px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
         /* 폼 스타일 */
         form {
             display: flex;
@@ -125,6 +133,7 @@
     </div>
 
     <div class="center-container">
+    <div class="menu-box" id="menu-box">
         <h1>메뉴 추가</h1>
         <form action="insertMenu" method="post">
             <label for="restIdx">휴게소 번호:</label>
@@ -139,6 +148,7 @@
             <input type="text" id="menuImg" name="menuImg" /><br />
             <input type="submit" value="추가" />
         </form>
+        </div>
     </div>
 
     <script>
