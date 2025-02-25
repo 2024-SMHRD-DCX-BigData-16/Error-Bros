@@ -31,4 +31,9 @@
         DELETE FROM tb_menu WHERE menu_idx=#{menu_idx}
     </delete>
     
+    <!-- 메뉴정보 조회 -->
+    <select id="getMenuIdx" parameterType="int" resultType="com.errorbros.entity.MenuDTO">
+        SELECT * FROM tb_menu WHERE menu_idx = #{menu_idx}
+    </select>
+    
 </mapper>

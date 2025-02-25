@@ -200,16 +200,16 @@ body {
         </table>
 
         <div class="pagination">
-            <c:if test="${page > 1}">
-                <a href="hugesoList?page=${page - 1}">이전</a>
+            <c:if test="${adminHugesoListpage > 1}">
+                <a href="hugesoList?page=${adminHugesoListpage - 1}">이전</a>
             </c:if>
 
-            <c:forEach var="i" begin="1" end="${(totalCount + 9) / 10}">
-                <a href="hugesoList?page=${i}" ${page == i ? 'class="active"' : ''}>${i}</a>
+            <c:forEach var="i" begin="1" end="${(adminHugesoTotalCount + 9) / 10}">
+                <a href="hugesoList?page=${i}" ${adminHugesoListpage == i ? 'class="active"' : ''}>${i}</a>
             </c:forEach>
 
-            <c:if test="${page < (totalCount + 9) / 10}">
-                <a href="hugesoList?page=${page + 1}">다음</a>
+            <c:if test="${adminHugesoListpage < (adminHugesoTotalCount + 9) / 10}">
+                <a href="hugesoList?page=${adminHugesoListpage + 1}">다음</a>
             </c:if>
         </div>
 

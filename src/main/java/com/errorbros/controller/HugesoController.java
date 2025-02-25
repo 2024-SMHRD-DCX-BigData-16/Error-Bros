@@ -78,8 +78,8 @@ public class HugesoController {
 		int totalCount = hugesoMapper.getTotalHugesoCount();
 		List<HugesoDTO> adminhugesoList = hugesoMapper.getHugesoListWithPaging((page - 1) * 10);
 		session.setAttribute("adminhugesoList", adminhugesoList);
-		session.setAttribute("page", page);
-		session.setAttribute("totalCount", totalCount);
+		session.setAttribute("adminHugesoListpage", page);
+		session.setAttribute("adminHugesoTotalCount", totalCount);
 		return "showRestAreaList";
 	}
 
