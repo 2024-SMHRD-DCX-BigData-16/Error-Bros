@@ -1,6 +1,7 @@
 <%@page import="com.errorbros.entity.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 
@@ -129,41 +130,28 @@ body {
 	margin-bottom: 5px;
 }
 
-/* 리뷰 섹션 */
-.review-section {
-	margin-top: 20px;
+/* 메인 컨테이너 */
+.center-container {
+	width: 80%;
+	margin: 20px auto;
 }
 
-.review-title {
-	font-size: 20px;
-	font-weight: bold;
-	margin-bottom: 10px;
+/* 테이블 스타일 */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
 }
 
-.review-box {
-	background: #f1f1f1;
-	padding: 10px;
-	border-radius: 5px;
-	margin-bottom: 10px;
-}
-
-.review-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.left {
+th, td {
+	padding: 12px 15px;
 	text-align: left;
+	border-bottom: 1px solid #ddd;
 }
 
-.right {
-	text-align: right;
+th {
+	background-color: #f2f2f2;
 	font-weight: bold;
-}
-
-.review-text {
-	margin-top: 5px;
 }
 
 /* 주문 버튼 */
@@ -185,6 +173,31 @@ body {
 	cursor: pointer;
 	border-radius: 5px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Pagination 스타일 */
+.pagination {
+	display: flex;
+	justify-content: center;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	border: 1px solid #ddd;
+	margin: 0 4px;
+}
+
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+	border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
 }
 </style>
 </head>
@@ -293,61 +306,44 @@ body {
 		</p>
 	</div>
 
-	<div class="review-section">
-		<div class="review-title">리뷰 후기</div>
-		<div id="review-container"></div>
+	<div class="center-container">
+		<h1>휴게소 리뷰 목록</h1>
+
+		<table>
+			<thead>
+				<tr>
+					<th>회원 아이디</th>
+					<th>리뷰 내용</th>
+					<th>리뷰 평점</th>
+					<th>작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="review" items="${ReviewList}">
+					<tr>
+						<td>${review.mem_id}</td>
+						<td>${review.review_content}</td>
+						<td>${review.review_ratings}</td>
+						<td>${review.created_at}</td>
+					</tr>
+				</c:forEach>
+				<c:if test="${empty ReviewList}">
+					<tr>
+						<td colspan="5">작성된 리뷰가 없습니다.</td>
+					</tr>
+				</c:if>
+			</tbody>
+		</table>
+
+		<div class="pagination">
+			<%-- 페이지네이션 필요시 추가 --%>
+		</div>
 	</div>
+
 
 	<!-- 스크립트 추가 -->
 	<script>
-            let reviewContainer = document.getElementById("review-container");
-            let reviewsPerPage = 4; // 한 번에 4개씩 보여줌
-            let currentPage = 0;
-            let reviewData = []; // 리뷰 데이터를 저장할 배열
-
-            function loadReviews() {
-                let start = currentPage * reviewsPerPage;
-                let end = start + reviewsPerPage;
-                let reviews = reviewData.slice(start, end);
-
-                reviews.forEach(review => {
-                    let reviewBox = document.createElement("div");
-                    reviewBox.classList.add("review-box");
-                    reviewBox.innerHTML = `
-                        <div class="review-header">
-                            <div class="left">
-                                <strong>${review.memId}</strong> | ⭐ ${review.reviewRatings} | 📅 ${review.createdAt}
-                            </div>
-                        </div>
-                        <hr>
-                        <p class="review-text">💬 ${review.reviewContent}</p>
-                    `;
-                    reviewContainer.appendChild(reviewBox);
-                });
-
-                currentPage++;
-            }
-
-            // 스크롤 이벤트 감지 (무한 스크롤)
-            window.addEventListener("scroll", function() {
-                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
-                    loadReviews();
-                }
-            });
-
-            // 초기 리뷰 로드
-            $.ajax({
-                url: "getReviews?rest_idx=${hugesoInfo.rest_idx}", // 리뷰 데이터를 가져오는 URL
-                type: "GET",
-                dataType: "json", // JSON 형식으로 데이터 받기
-                success: function(data) {
-                    reviewData = data; // reviewData 변수에 리뷰 데이터 저장
-                    loadReviews(); // 리뷰 목록 표시
-                },
-                error: function() {
-                    alert("리뷰 데이터를 가져오는 데 실패했습니다.");
-                }
-            });
+            
         </script>
 
 	<div class="buttons" id="buttons">

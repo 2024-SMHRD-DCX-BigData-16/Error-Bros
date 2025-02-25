@@ -53,6 +53,7 @@ public class ReviewController {
 		return "AdminReviewList";
 	}
 
+
 	// 메뉴 삭제
 	@PostMapping("/deleteReview")
 	public String deleteReview(@RequestParam("reviewIdx") int reviewIdx) {
