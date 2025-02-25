@@ -61,6 +61,13 @@ public class MainController {
 		return "Login";
 	}
 
+	// 마이페이지
+	@RequestMapping("/goMypage")
+	public String goMypage() {
+
+		return "UserPage";
+	}
+
 	@RequestMapping("/goUpdateMember")
 	public String goUpdateMember() {
 
@@ -100,6 +107,13 @@ public class MainController {
 	public String godeleteRestArea() {
 
 		return "deleteRestArea";
+	}
+
+	// 결제내역 리스트
+	@RequestMapping("/goUserPayList")
+	public String goUserPayList() {
+
+		return "UserPayList";
 	}
 
 }
