@@ -53,7 +53,6 @@ public class ReviewController {
 	}
 
 
-	// 메뉴 삭제
 	@GetMapping("/deleteReview")
 	public String deleteReview(@RequestParam("rest_idx") int rest_idx, @RequestParam("review_idx") int review_idx) {
 		System.out.println("삭제하려는 휴게소 인덱스 : " + rest_idx);

@@ -192,107 +192,103 @@ body {
 		%>
 	</div>
 
-<<<<<<< HEAD
-    <!-- 내비게이션 -->
-    <div class="nav">
-        <div class="logo">404</div>
-    </div>
+	<<<<<<< HEAD
+	<!-- 내비게이션 -->
+	<div class="nav">
+		<div class="logo">404</div>
+	</div>
 
-    <!-- 카테고리 메뉴 -->
-    <div class="menu">
-        <a href="goMain">휴게소 찾기</a>
-        <a href="goReview">리뷰게시판</a>
-        <% if (loginMember != null && "admin".equals(loginMember.getMem_id())) {
-        	String rest_idx= (String)request.getParameter("rest_idx");%>
-            <a href="addMenu?rest_idx=${param.rest_idx}" style="position: absolute; right: 20px;">메뉴 추가하기</a>
-        <% } %>
-    </div>
+	<!-- 카테고리 메뉴 -->
+	<div class="menu">
+		<a href="goMain">휴게소 찾기</a> <a href="goReview">리뷰게시판</a>
+		<%
+		if (loginMember != null && "admin".equals(loginMember.getMem_id())) {
+			String rest_idx = (String) request.getParameter("rest_idx");
+		%>
+		<a href="addMenu?rest_idx=${param.rest_idx}"
+			style="position: absolute; right: 20px;">메뉴 추가하기</a>
+		<%
+		}
+		%>
+	</div>
 
-    <!-- 음식 목록 -->
-    <div class="food-container" id="foodContainer">
-        <c:forEach var="menu" items="${menuList}">
-            <div class="food-item">
-                <p><strong>${menu.menu_nm}</strong></p>
-                <img src="${menu.menu_img}" alt="${menu.menu_nm}" />
-                <p>${menu.menuPrice}원</p>
-                <button onclick="selectFood('${menu.menu_nm}', ${menu.menu_price}, this)"
-                    style="background-color: blue; color: white;">선택</button>
-                <% if (loginMember!= null && "admin".equals(loginMember.getMem_id())) { %>
-                <button class="admin-btn" onclick="location.href='editMenu/${menu.menu_idx}'">수정</button>
-                <button class="admin-btn" onclick="location.href='deleteMenu/${menu.menu_idx}'">삭제</button>
-                <% } %>
-            </div>
-        </c:forEach>
-    </div>
+	<!-- 음식 목록 -->
+	<div class="food-container" id="foodContainer">
+		<c:forEach var="menu" items="${menuList}">
+			<div class="food-item">
+				<p>
+					<strong>${menu.menu_nm}</strong>
+				</p>
+				<img src="${menu.menu_img}" alt="${menu.menu_nm}" />
+				<p>${menu.menu_price}원</p>
+				<button
+					onclick="selectFood('${menu.menu_nm}', ${menu.menu_price}, this)"
+					style="background-color: blue; color: white;">선택</button>
+				<%
+				if (loginMember != null && "admin".equals(loginMember.getMem_id())) {
+				%>
+				<button class="admin-btn"
+					onclick="location.href='editMenu/${menu.menu_idx}'">수정</button>
+				<button class="admin-btn"
+					onclick="location.href='deleteMenu/${menu.menu_idx}'">삭제</button>
+				<%
+				}
+				%>
+			</div>
+		</c:forEach>
+	</div>
+
 	<div class="order-container">
-		<span class="total-price">총 가격: 0원</span>
+		<span class="total-price" id="totalPriceDisplay">총 가격: 0원</span>
 		<button class="order-btn" onclick="placeOrder()">음식 주문하기</button>
 	</div>
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-        
-    let selectedFoods = [];
+    let totalPrice = 0; // 총 가격 변수
 
-    function selectFood(name, price, button) {
-        let foodIndex = selectedFoods.findIndex(food => food.name === name);
+    function selectFood(menuName, menuPrice, button) {
+        // 선택된 메뉴 정보 (필요에 따라 사용)
+        console.log("선택된 메뉴:", menuName, menuPrice);
 
-        if (foodIndex === -1) {
-            selectedFoods.push({name, price});
-            button.style.backgroundColor = "gray";
-            button.textContent = "선택됨";
+        // 총 가격 업데이트
+        totalPrice += menuPrice;
+        $("#totalPriceDisplay").text("총 가격: " + totalPrice + "원");
+
+        // 선택 효과 (선택/취소 토글)
+        if (button.style.backgroundColor === "blue") {
+            button.style.backgroundColor = "gray"; // 선택 취소
+            button.style.color = "black";
         } else {
-            selectedFoods.splice(foodIndex, 1);
-            button.style.backgroundColor = "blue";
-            button.textContent = "선택";
+            button.style.backgroundColor = "blue"; // 선택
+            button.style.color = "white";
         }
-
-        updateTotalPrice();
-    }
-
-    function updateTotalPrice() {
-        let totalPrice = selectedFoods.reduce((sum, food) => sum + food.price, 0);
-        document.querySelector(".total-price").textContent = `총 가격: ${totalPrice.toLocaleString()}원`;
     }
 
     function placeOrder() {
-        if (selectedFoods.length === 0) {
-            alert("음식을 선택해주세요!");
+        if (totalPrice === 0) {
+            alert("음식을 선택해주세요.");
             return;
         }
+        // 주문 처리 로직 (예: 서버에 주문 정보 전송)
+        alert("총 " + totalPrice + "원 주문 완료!");
+        // 주문 후 초기화 (선택 취소, 총 가격 0으로 초기화 등)
+        totalPrice = 0;
+        $("#totalPriceDisplay").text("총 가격: 0원");
+        // 모든 선택된 버튼의 스타일 초기화
+        $(".food-item button").css("background-color", "blue");
+        $(".food-item button").css("color", "white");
 
-        let queryString = selectedFoods.map(food => `name=${food.name}&price=${food.price}`).join("&");
-        window.location.href = `payment.html?${queryString}`;
+        // 추가적으로 필요한 로직 (예: 주문 내역 저장, 페이지 이동 등)
     }
+        
+ 
         
     </script>
 
 
 
 </body>
-
-<!-- 카카오 페이 기능 -->
-<script type="text/javascript">
-    // 카카오페이 결제 팝업창 연결
-    $(function() {
-        $("#btn-kakao-pay-ready").click(function(e) {
-            // 아래 데이터 외에도 필요한 데이터를 원하는 대로 담고, Controller에서 @RequestBody로 받으면 됨
-            let data = {
-                name: '상품명',    // 카카오페이에 보낼 대표 상품명
-                totalPrice: ${totalPrice.toLocaleString()}// 총 결제금액
-            };
-          
-            $.ajax({
-                type: 'POST',
-                url: '/order/pay/ready',
-                data: JSON.stringify(data),
-                contentType: 'application/json',
-                success: function(response) {
-                    location.href = response.next_redirect_pc_url;
-                }
-            });
-        });
-    });
-</script>
 
 
 </html>
