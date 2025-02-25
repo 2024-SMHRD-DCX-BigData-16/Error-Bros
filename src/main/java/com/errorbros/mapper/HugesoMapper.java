@@ -39,4 +39,8 @@ public interface HugesoMapper {
 
 	// 전체 휴게소 개수 반환
 	public int getTotalHugesoCount();
+
+	public List<HugesoDTO> searchRestArea(String keyword, int page, int pageSize);
+
+	public int getTotalCount(String keyword);
 }

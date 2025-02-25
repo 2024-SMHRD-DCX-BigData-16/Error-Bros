@@ -45,9 +45,11 @@
 	<!-- 휴게소 추가 -->
 	<insert id="insertHugeso"
 		parameterType="com.errorbros.entity.HugesoDTO">
-		INSERT INTO tb_restarea (rest_nm, rest_addr, lat, lon, parking_lot, 
+		INSERT INTO tb_restarea (rest_nm, rest_addr, lat, lon,
+		parking_lot,
 		rest_facilities, rest_phone, rest_img)
-		VALUES (#{rest_nm}, #{rest_addr}, #{lat}, #{lon}, #{parking_lot}, 
+		VALUES (#{rest_nm}, #{rest_addr}, #{lat},
+		#{lon}, #{parking_lot},
 		#{rest_facilities}, #{rest_phone}, #{rest_img})
 	</insert>
 
@@ -56,8 +58,10 @@
 		parameterType="com.errorbros.entity.HugesoDTO">
 		UPDATE tb_restarea
 		SET rest_nm=#{rest_nm},
-		rest_addr=#{rest_addr}, lat=#{lat}, lon=#{lon},parking_lot=#{parking_lot}
-		rest_facilities=#{rest_facilities},rest_phone=#{rest_phone} rest_img=#{rest_img}
+		rest_addr=#{rest_addr}, lat=#{lat},
+		lon=#{lon},parking_lot=#{parking_lot}
+		rest_facilities=#{rest_facilities},rest_phone=#{rest_phone}
+		rest_img=#{rest_img}
 		WHERE
 		rest_idx=#{rest_idx}
 	</update>
@@ -89,6 +93,24 @@
 		tb_restarea;
 	</select>
 
+	<select id="searchRestArea" parameterType="map"
+		resultType="com.errorbros.entity.HugesoDTO">
+		SELECT *
+		FROM tb_restarea
+		WHERE rest_nm LIKE CONCAT('%', #{keyword}, '%')
+		OR rest_addr LIKE CONCAT('%', #{keyword}, '%')
+		OR rest_facilities LIKE CONCAT('%', #{keyword}, '%')
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+
+	<select id="getTotalCount" parameterType="String"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM tb_restarea
+		WHERE rest_nm LIKE CONCAT('%', #{keyword}, '%')
+		OR rest_addr LIKE CONCAT('%', #{keyword}, '%')
+		OR rest_facilities LIKE CONCAT('%', #{keyword}, '%')
+	</select>
 
 
 

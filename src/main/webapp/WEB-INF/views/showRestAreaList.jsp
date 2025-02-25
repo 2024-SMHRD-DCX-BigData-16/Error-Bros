@@ -103,25 +103,6 @@ body {
 	background-color: #f2f2f2;
 }
 
-.pagination {
-	display: flex;
-	justify-content: center; /* 가운데 정렬 */
-	margin-top: 20px;
-}
-
-.pagination a {
-	display: inline-block;
-	padding: 5px 10px;
-	margin: 2px;
-	border: 1px solid #ccc;
-	text-decoration: none;
-	color: #333;
-}
-
-.pagination a.active {
-	background-color: #007bff;
-	color: white;
-}
 </style>
 </head>
 
@@ -167,7 +148,7 @@ body {
 	<div class="center-container">
         <h1>휴게소 관리</h1>
         <div>
-            <a href="goAddRestArea"><button class="addRestArea">휴게소 추가</button></a>
+            <a href="goaddRestArea"><button class="addrestarea">휴게소 추가</button></a>
         </div>
 
         <table class="rest-table">
@@ -198,20 +179,6 @@ body {
                 </c:forEach>
             </tbody>
         </table>
-
-        <div class="pagination">
-            <c:if test="${page > 1}">
-                <a href="hugesoList?page=${page - 1}">이전</a>
-            </c:if>
-
-            <c:forEach var="i" begin="1" end="${(totalCount + 9) / 10}">
-                <a href="hugesoList?page=${i}" ${page == i ? 'class="active"' : ''}>${i}</a>
-            </c:forEach>
-
-            <c:if test="${page < (totalCount + 9) / 10}">
-                <a href="hugesoList?page=${page + 1}">다음</a>
-            </c:if>
-        </div>
 
     </div>
 
