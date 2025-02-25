@@ -1,10 +1,16 @@
 package com.errorbros.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.errorbros.entity.HugesoDTO;
 import com.errorbros.entity.MemberDTO;
@@ -36,4 +42,25 @@ public class ReviewController {
 		}
 		return null;
 	}
+
+	// 리뷰 목록 조회
+	@GetMapping("/AdminReviewList")
+	public String reviewList(@RequestParam("rest_idx") int rest_idx, Model model) {
+		List<ReviewDTO> AdminReviewList = hugesoMapper.getReviewsByRestIdx(rest_idx); // Mapper에 추가해야 함
+		model.addAttribute("AdminReviewList", AdminReviewList);
+		model.addAttribute("rest_idx", rest_idx); 
+		return "AdminReviewList"; 
+	}
+
+	// 메뉴 삭제
+	@PostMapping("/deleteReview")
+	public String deleteReview(@RequestParam("reviewIdx") int reviewIdx) {
+		int result = hugesoMapper.deleteReview(reviewIdx); 
+		if (result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+
 }
