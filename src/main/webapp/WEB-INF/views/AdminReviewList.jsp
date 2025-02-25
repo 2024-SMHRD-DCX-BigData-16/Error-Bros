@@ -198,7 +198,9 @@ th {
 						<td>${review.review_ratings}</td>
 						<td>${review.created_at}</td>
 						<td>
-							<button onclick="deleteReview(${review.review_idx})">삭제</button>
+							<a href="deleteReview?rest_idx=${review.rest_idx}&review_idx=${review.review_idx}">
+							<button type="button">삭제</button>
+							</a>
 						</td>
 						<%-- 삭제 버튼 추가 --%>
 					</tr>
@@ -214,7 +216,12 @@ th {
 		<div class="pagination">
 			<%-- 페이지네이션 필요시 추가 --%>
 		</div>
-
+		<% if ("admin".equals(loginMember.getMem_id())) {%>
+		<div class="back-button">
+		<a href="hugesoList">휴게소 관리 리스트로 돌아가기</a>
+		</div>
+		<%}%>
+		
 		<div class="back-button">
 			<a href="showHugeso?rest_idx=${rest_idx}">휴게소 정보 페이지로 돌아가기</a>
 		</div>
@@ -222,27 +229,4 @@ th {
 
 </body>
 
-<script>
-  function deleteReview(reviewIdx) {
-    if (confirm("리뷰를 삭제하시겠습니까?")) {
-      // AJAX를 사용하여 리뷰 삭제 요청
-      $.ajax({
-        url: "deleteReview", // 리뷰 삭제 요청을 처리하는 컨트롤러 메서드
-        type: "POST",
-        data: { reviewIdx: reviewIdx }, // 삭제할 리뷰의 reviewIdx 전달
-        success: function(response) {
-          if (response === "success") {
-            alert("리뷰가 삭제되었습니다.");
-            location.reload(); // 리뷰 목록 페이지 새로고침
-          } else {
-            alert("리뷰 삭제에 실패했습니다.");
-          }
-        },
-        error: function() {
-          alert("서버 오류가 발생했습니다.");
-        }
-      });
-    }
-  }
-</script>
 </html>
