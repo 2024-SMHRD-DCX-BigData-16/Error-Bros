@@ -1,10 +1,13 @@
 package com.errorbros.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -118,4 +121,22 @@ public class HugesoController {
 		return "showRestAreaList";
 	}
 
+	// 검색 기능
+	@GetMapping("/searchRestArea")
+	public ResponseEntity<Map<String, Object>> searchRestArea(
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "page", defaultValue = "1") int page) {
+
+		int pageSize = 10; // 페이지당 보여줄 휴게소 수
+
+		List<HugesoDTO> restAreaList = hugesoMapper.searchRestArea(keyword, page, pageSize);
+		int totalCount = hugesoMapper.getTotalCount(keyword);
+		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
+
+		Map<String, Object> response = new HashMap<>();
+		response.put("restAreaList", restAreaList);
+		response.put("totalPages", totalPages);
+
+		return ResponseEntity.ok(response);
+	}
 }
