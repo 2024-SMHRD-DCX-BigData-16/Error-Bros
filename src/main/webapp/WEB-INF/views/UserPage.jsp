@@ -162,7 +162,6 @@
             </div>
             <div>
             <a href="goUserPayList"><button class="show-restarealist">결제 내역 확인</button></a>
-                
             </div>
         </div>
     </div>
