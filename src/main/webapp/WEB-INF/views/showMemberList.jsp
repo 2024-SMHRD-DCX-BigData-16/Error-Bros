@@ -159,8 +159,8 @@
                                 <fmt:formatDate value="${member.mem_birthdate}" pattern="yyyy-MM-dd" />
                             </td> <%-- JSTL fmt 사용 --%>
                                 <td>${member.mem_gender}</td>
-                                 <td><a href="updateMember?mem_id=${member.mem_id} }"><button>수정</button></a></td>
-                                <td><a href="deleteMember?mem_id=${member.mem_id} }"><button>삭제</button></a></td>
+                                 <td><a href="updateMember?mem_id=${member.mem_id}"><button>수정</button></a></td>
+                                <td><a href="deleteMember?mem_id=${member.mem_id}"><button>삭제</button></a></td>
                         </tr>
                 </c:forEach>
             </tbody>
