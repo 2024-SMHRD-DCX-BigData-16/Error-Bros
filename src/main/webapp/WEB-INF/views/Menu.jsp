@@ -162,6 +162,7 @@ body {
 	color: white;
 }
 </style>
+		<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 </head>
 
 <body>
@@ -240,48 +241,146 @@ body {
 
 	<div class="order-container">
 		<span class="total-price" id="totalPriceDisplay">총 가격: 0원</span>
-		<button class="order-btn" onclick="placeOrder()">음식 주문하기</button>
+		<button class="order-btn" id="payButton">음식 주문하기</button>
+
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-    let totalPrice = 0; // 총 가격 변수
+	let totalPrice = 0; // 총 가격 변수
+	let selectedMenus = {}; // 선택된 메뉴 목록 (객체로 변경)
 
-    function selectFood(menuName, menuPrice, button) {
-        // 선택된 메뉴 정보 (필요에 따라 사용)
-        console.log("선택된 메뉴:", menuName, menuPrice);
+	function selectFood(menuName, menuPrice, button) {
+	    // 선택된 메뉴 정보 (필요에 따라 사용)
+	    console.log("선택된 메뉴:", menuName, menuPrice);
 
-        // 총 가격 업데이트
-        totalPrice += menuPrice;
-        $("#totalPriceDisplay").text("총 가격: " + totalPrice + "원");
+	    // 선택 효과 (선택/취소 토글)
+	    if (selectedMenus[menuName]) {
+	        // 선택 취소
+	        button.style.backgroundColor = "blue";
+	        button.style.color = "white";
 
-        // 선택 효과 (선택/취소 토글)
-        if (button.style.backgroundColor === "blue") {
-            button.style.backgroundColor = "gray"; // 선택 취소
-            button.style.color = "black";
-        } else {
-            button.style.backgroundColor = "blue"; // 선택
-            button.style.color = "white";
-        }
-    }
+	        totalPrice -= menuPrice;
+	        delete selectedMenus[menuName]; // 메뉴 목록에서 제거
+	    } else {
+	        // 선택
+	        button.style.backgroundColor = "gray";
+	        button.style.color = "black";
 
-    function placeOrder() {
-        if (totalPrice === 0) {
-            alert("음식을 선택해주세요.");
-            return;
-        }
-        // 주문 처리 로직 (예: 서버에 주문 정보 전송)
-        alert("총 " + totalPrice + "원 주문 완료!");
-        // 주문 후 초기화 (선택 취소, 총 가격 0으로 초기화 등)
-        totalPrice = 0;
-        $("#totalPriceDisplay").text("총 가격: 0원");
-        // 모든 선택된 버튼의 스타일 초기화
-        $(".food-item button").css("background-color", "blue");
-        $(".food-item button").css("color", "white");
+	        totalPrice += menuPrice;
+	        selectedMenus[menuName] = menuPrice; // 메뉴 목록에 추가
+	    }
 
-        // 추가적으로 필요한 로직 (예: 주문 내역 저장, 페이지 이동 등)
-    }
-        
+	    // 총 가격 업데이트
+	    $("#totalPriceDisplay").text("총 가격: " + totalPrice + "원");
+	}
+
+	function placeOrder() {
+	    if (totalPrice === 0) {
+	        alert("음식을 선택해주세요.");
+	        return;
+	    }
+
+	    // 서버에 주문 정보 전송 (AJAX 사용 예시)
+	    $.ajax({
+	        url: "/order", // 주문 처리 URL
+	        type: "POST",
+	        contentType: "application/json",
+	        data: JSON.stringify({
+	            totalPrice: totalPrice,
+	            menus: Object.keys(selectedMenus).map(name => ({
+	                name: name,
+	                price: selectedMenus[name],
+	            })), // 선택된 메뉴 목록을 서버로 전송
+	        }),
+	        success: function (response) {
+	            alert("주문이 완료되었습니다.");
+	            // 주문 완료 후 처리 (예: 주문 내역 표시)
+	        },
+	        error: function (error) {
+	            console.error(error);
+	            alert("주문 처리 중 오류가 발생했습니다.");
+	        },
+	        complete: function () {
+	            // 주문 후 초기화
+	            totalPrice = 0;
+	            selectedMenus = {};
+	            $("#totalPriceDisplay").text("총 가격: 0원");
+
+	            // 모든 선택된 버튼의 스타일 초기화
+	            $(".food-item button").css("background-color", "blue");
+	            $(".food-item button").css("color", "white");
+	        },
+	    });
+
+	    // 추가적으로 필요한 로직 (예: 주문 내역 저장, 페이지 이동 등)
+	}
+
+
+	let uuid = self.crypto.randomUUID();
+	console.log(uuid);
+	IMP.init("imp66154156");
+	sessionStorage.setItem('uuid', uuid);
+	let storedUuid = sessionStorage.getItem('uuid');
+	console.log('세션에 저장된 UUID:', storedUuid);
+	const button = document.querySelector("#payButton");
+
+	const onClickPay = async () => {
+	    // 선택된 메뉴 이름들을 "메뉴1, 메뉴2" 형식으로 결합
+	    const menuNames = Object.keys(selectedMenus).join(", ");
+	    
+		/* // newMerchantUid 요청하여 order_id 받기
+		const response = await fetch('/controller/newMerchantUid', {
+		    method: 'GET',
+		});
+
+		
+		const data = await response.json();
+		console.log('생성된 order_id:', data.orderId); */
+
+	    IMP.request_pay(
+	        {
+	            channelKey: "channel-key-b9f4d268-bf41-4bdd-ba4d-1c5d1a65284f",
+	            pay_method: "card",
+	            merchant_uid: storedUuid, // 주문 고유 번호
+	            name: menuNames, // 선택한 메뉴 이름들
+	            amount: totalPrice, // 총 가격
+	            buyer_email: `${loginMember.mem_email}`, // 세션 이메일 사용
+	            buyer_name: `${loginMember.mem_id}`, // 세션 이름 사용
+	            buyer_tel: `${loginMember.mem_phone}`, // 세션 폰번호 사용
+	            m_redirect_url: "http://localhost:8089/controller/payment/redirect" // 모바일 리다이렉트 URL 추가
+	        },
+	        async (response) => {
+	            if (response.error_code != null) {
+	                return alert(`결제에 실패하였습니다. 에러 내용: ${response.error_msg}`);
+	            }
+
+	            // PC 환경: 결제 성공 시 서버에 결제 정보 전달하여 검증
+	            const notified = await fetch(`http://localhost:8089/controller/payment/complete`, {
+	                method: "POST",
+	                headers: { "Content-Type": "application/json" },
+	                body: JSON.stringify({
+	                    imp_uid: response.imp_uid,
+	                    merchant_uid: response.merchant_uid,
+	                    pay_method: "card",
+	    	            name: menuNames, // 선택한 메뉴 이름들
+	    	            amount: totalPrice, // 총 가격
+	    	            buyer_email: `${loginMember.mem_email}`, // 세션 이메일 사용
+	    	            buyer_name: `${loginMember.mem_id}`, // 세션 이름 사용
+	    	            buyer_tel: `${loginMember.mem_phone}` // 세션 폰번호 사용
+	                }),
+	            });
+				console.log(notified)
+	            if (notified.ok) {
+	                window.location.href = "/controller/goMain";
+	            } else {
+	                window.location.href = "/controller/goMenu?rest_idx="+${hugesoInfo.rest_idx};
+	            }
+	        }
+	    );
+	};
+
+	button.addEventListener("click", onClickPay);
  
         
     </script>

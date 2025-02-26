@@ -65,9 +65,10 @@ public class MemberController {
 	@PostMapping("/loginMember")
 	public String memberJoin(@RequestParam("login_id") String mem_id, @RequestParam("login_pw") String mem_pw,
 			HttpSession session) {
+		MemberDTO loginMember = null;
 		System.out.println("아이디 : " + mem_id + ", 비번 : " + mem_pw);
 		try {
-			MemberDTO loginMember = new MemberDTO(mem_id, mem_pw);
+			loginMember = new MemberDTO(mem_id, mem_pw);
 			System.out.println(loginMember.toString());
 			loginMember = memberMapper.memberLogIn(loginMember);
 			System.out.println(loginMember.toString() + "로그인 정보");
@@ -75,22 +76,13 @@ public class MemberController {
 			System.out.println("로그인 실패");
 			return "Login";
 		}
-		MemberDTO loginMember = new MemberDTO(mem_id, mem_pw);
-		System.out.println(loginMember.toString());
-		loginMember = memberMapper.memberLogIn(loginMember);
-		System.out.println(loginMember.toString() + "로그인 정보");
-		if (loginMember.getMem_nm() == null) {
-			// 로그인 실패
-			session.removeAttribute("tb_member");
-			System.out.println("로그인 실패");
-			return "Login";
-		} else {
-			// 로그인 성공
-			session.setAttribute("loginMember", loginMember);
-			System.out.println("로그인 성공 + 페이지 이동");
-			System.out.println("로그인 정보 : " + loginMember);
-			return "Main";
-		}
+
+		// 로그인 성공
+		session.setAttribute("loginMember", loginMember);
+		System.out.println("로그인 성공 + 페이지 이동");
+		System.out.println("로그인 정보 : " + loginMember);
+		return "Main";
+
 	}
 
 	// 로그 아웃

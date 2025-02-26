@@ -22,7 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.errorbros.controller" />
-	<context:component-scan base-package="com.errorbros.service" />
+	<context:component-scan base-package="com.errorbros.entity" />
 	
 	
 </beans:beans>
