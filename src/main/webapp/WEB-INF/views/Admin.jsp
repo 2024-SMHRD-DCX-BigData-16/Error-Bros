@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Search</title>
     <style>
+<<<<<<< HEAD
         * {
             margin: 0;
             padding: 0;
@@ -124,11 +125,18 @@
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
             /* 그림자 원래대로 */
         }
+=======
+
+>>>>>>> a5779b3 (커밋메세지)
     </style>
 </head>
 
 <body>
+<<<<<<< HEAD
 
+=======
+<jsp:include page="Head.jsp" />
+>>>>>>> a5779b3 (커밋메세지)
       <!-- 상단바 -->
     <div class="top-bar">
         <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>

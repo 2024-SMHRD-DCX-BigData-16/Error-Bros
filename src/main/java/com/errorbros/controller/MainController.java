@@ -11,6 +11,14 @@ public class MainController {
 		return "Main";
 	}
 
+<<<<<<< HEAD
+=======
+	@RequestMapping("/goHead")
+	public String goHead() {
+		return "Head";
+	}
+
+>>>>>>> a5779b3 (커밋메세지)
 	@RequestMapping("/goMain")
 	public String goMain() {
 		return "Main";

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Search</title>
     <style>
+<<<<<<< HEAD
         * {
             margin: 0;
             padding: 0;
@@ -166,6 +167,9 @@
             background-color: #5a6268;
             /* 호버 시 색상 변경 */
         }
+=======
+ 
+>>>>>>> a5779b3 (커밋메세지)
     </style>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -210,7 +214,11 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 
+=======
+<jsp:include page="Head.jsp" />
+>>>>>>> a5779b3 (커밋메세지)
     <!-- 상단바 -->
     <div class="top-bar">
         <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>

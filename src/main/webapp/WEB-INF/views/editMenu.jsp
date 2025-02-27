@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Error Search - 메뉴 수정</title>
 <style>
+<<<<<<< HEAD
 * {
 	margin: 0;
 	padding: 0;
@@ -111,6 +112,13 @@ input[type="submit"] {
 </head>
 <body>
 
+=======
+
+</style>
+</head>
+<body>
+<jsp:include page="Head.jsp" />
+>>>>>>> a5779b3 (커밋메세지)
 	<div class="top-bar">
         <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
         <% if (loginMember!= null) { %>

@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Search - 메뉴 추가</title>
+<<<<<<< HEAD
     <style>
         * {
             margin: 0;
@@ -118,6 +119,16 @@
 </head>
 <body>
 
+=======
+    
+<style>
+
+
+</style>
+</head>
+<body>
+<jsp:include page="Head.jsp" />
+>>>>>>> a5779b3 (커밋메세지)
     <div class="top-bar">
         <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
         <% if (loginMember!= null) { %>

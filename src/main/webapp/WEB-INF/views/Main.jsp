@@ -11,6 +11,7 @@
 <title>Error Search</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
+<<<<<<< HEAD
 * {
 	margin: 0;
 	padding: 0;
@@ -201,6 +202,15 @@ body {
 <body>
 
 	<!-- 상단바 -->
+=======
+
+
+</style>
+</head>
+<body>
+<jsp:include page="Head.jsp" />
+	<%-- <!-- 상단바 -->
+>>>>>>> a5779b3 (커밋메세지)
 	<div class="top-bar">
 		<%
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
@@ -235,7 +245,12 @@ body {
 	<!-- 카테고리 메뉴 -->
 	<div class="menu">
 		<a href="goMain">휴게소 찾기</a> <a href="goReview">리뷰게시판</a>
+<<<<<<< HEAD
 	</div>
+=======
+		<a href="goHead"><button>goHead</button></a> 
+	</div> --%>
+>>>>>>> a5779b3 (커밋메세지)
 
 	<!-- 중앙 휴게소 검색창 -->
 	<div class="center-container">
@@ -243,9 +258,21 @@ body {
 		<div class="search-container">
 			<div class="search-box">
 				<form action="searchHugeso" method="post">
+<<<<<<< HEAD
 					<input type="text" name="searchInput" id="searchInput"
 						placeholder="휴게소 검색" value="${sessionScope.searchInput}">
 					<button type="submit" class="search-btn">검색</button>
+=======
+			<table class="search-result-table">
+					<tr>
+						<td><input type="text" name="searchInput" id="searchInput"
+						placeholder="휴게소 검색" value="${sessionScope.searchInput}"></td>
+						<td><button type="submit" class="search-btn">검색</button></td>
+					</tr>
+			</table>
+
+
+>>>>>>> a5779b3 (커밋메세지)
 				</form>
 			</div>
 

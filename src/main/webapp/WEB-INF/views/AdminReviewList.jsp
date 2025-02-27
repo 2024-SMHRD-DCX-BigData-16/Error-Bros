@@ -11,6 +11,7 @@
 <title>Error Search</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
+<<<<<<< HEAD
 * {
 	margin: 0;
 	padding: 0;
@@ -134,6 +135,13 @@ th {
 </head>
 <body>
 
+=======
+
+</style>
+</head>
+<body>
+<jsp:include page="Head.jsp" />
+>>>>>>> a5779b3 (커밋메세지)
 	<!-- 상단바 -->
 	<div class="top-bar">
 		<%
