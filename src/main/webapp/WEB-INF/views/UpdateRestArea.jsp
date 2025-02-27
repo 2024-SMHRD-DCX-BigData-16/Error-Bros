@@ -17,7 +17,9 @@
 </head>
 
 <body>
+
 <jsp:include page="Head.jsp" />
+
    <!-- 상단바 -->
     <div class="top-bar">
         <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>

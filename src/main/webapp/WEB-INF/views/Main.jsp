@@ -15,9 +15,9 @@
 </style>
 </head>
 <body>
-<jsp:include page="Head.jsp" />
-	<%-- <!-- 상단바 -->
->>>>>>> a5779b3 (커밋메세지)
+	<jsp:include page="Head.jsp" />
+ <!-- 상단바 -->
+
 	<div class="top-bar">
 		<%
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
@@ -52,12 +52,9 @@
 	<!-- 카테고리 메뉴 -->
 	<div class="menu">
 		<a href="goMain">휴게소 찾기</a> <a href="goReview">리뷰게시판</a>
-<<<<<<< HEAD
 	</div>
-=======
 		<a href="goHead"><button>goHead</button></a> 
-	</div> --%>
->>>>>>> a5779b3 (커밋메세지)
+	</div> 
 
 	<!-- 중앙 휴게소 검색창 -->
 	<div class="center-container">
@@ -65,21 +62,19 @@
 		<div class="search-container">
 			<div class="search-box">
 				<form action="searchHugeso" method="post">
-<<<<<<< HEAD
-					<input type="text" name="searchInput" id="searchInput"
-						placeholder="휴게소 검색" value="${sessionScope.searchInput}">
+					<input type="text" name="searchInput"
+						id="searchInput" placeholder="휴게소 검색"
+						value="${sessionScope.searchInput}">
 					<button type="submit" class="search-btn">검색</button>
-=======
-			<table class="search-result-table">
-					<tr>
-						<td><input type="text" name="searchInput" id="searchInput"
-						placeholder="휴게소 검색" value="${sessionScope.searchInput}"></td>
-						<td><button type="submit" class="search-btn">검색</button></td>
-					</tr>
-			</table>
+				
+					<table class="search-result-table">
+						<tr>
+							<td><input type="text" name="searchInput" id="searchInput"
+								placeholder="휴게소 검색" value="${sessionScope.searchInput}"></td>
+							<td><button type="submit" class="search-btn">검색</button></td>
+						</tr>
+					</table>
 
-
->>>>>>> a5779b3 (커밋메세지)
 				</form>
 			</div>
 
@@ -94,11 +89,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${hugesoList}" var="hugeso" end="13" >
+							<c:forEach items="${hugesoList}" var="hugeso" end="13">
 								<tr>
 									<td>${hugeso.rest_nm}</td>
-									<td><a href="goMenu?rest_idx=${hugeso.rest_idx}"><button class="order-btn">음식
-												주문하기</button></a></td>
+									<td><a href="goMenu?rest_idx=${hugeso.rest_idx}"><button
+												class="order-btn">음식 주문하기</button></a></td>
 									<td><a href="showHugeso?rest_idx=${hugeso.rest_idx}"><button
 												class="info-btn">휴게소 정보보기</button></a></td>
 								</tr>

@@ -12,13 +12,19 @@ public class MainController {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> a5779b38f480cd3e686851fc3126270b53985bfe
 	@RequestMapping("/goHead")
 	public String goHead() {
 		return "Head";
 	}
 
+<<<<<<< HEAD
 >>>>>>> a5779b3 (커밋메세지)
+=======
+>>>>>>> a5779b38f480cd3e686851fc3126270b53985bfe
 	@RequestMapping("/goMain")
 	public String goMain() {
 		return "Main";

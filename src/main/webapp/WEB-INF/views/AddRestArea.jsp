@@ -17,7 +17,7 @@
 
 <body>
 <jsp:include page="Head.jsp" />
->>>>>>> a5779b3 (커밋메세지)
+
     <!-- 상단바 -->
     <div class="top-bar">
         <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>

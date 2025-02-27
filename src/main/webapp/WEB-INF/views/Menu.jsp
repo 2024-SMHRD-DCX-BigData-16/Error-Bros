@@ -16,7 +16,9 @@
 </head>
 
 <body>
+
 <jsp:include page="Head.jsp" />
+
 	<!-- 상단바 -->
 	<div class="top-bar">
 		<%
@@ -43,7 +45,7 @@
 		%>
 	</div>
 
-	<<<<<<< HEAD
+
 	<!-- 내비게이션 -->
 	<div class="nav">
 		<div class="logo">404</div>

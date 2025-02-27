@@ -1,13 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-<<<<<<< HEAD
-Built-By: Administrator
-=======
 Built-By: smhrd
->>>>>>> 42562a9804506f5e271d8aeed3a9d830e0d537b5
-=======
-Built-By: smhrd
->>>>>>> a5779b3 (커밋메세지)
 Build-Jdk: 11.0.25
 Created-By: Maven Integration for Eclipse
 
