@@ -8,7 +8,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Search</title>
     <style>
+    
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  gap: 20px;
+}
 
+.admin-panel {
+  display: flex;
+  gap: 20px;
+}
+
+.member-list, .show-restarealist {
+  background-color: #f2f2f2; /* 배경색과 동일한 색상 */
+  color: #333; /* 글자색 */
+  border: 1px solid #ccc; /* 테두리 추가 */
+  padding: 15px 30px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 감소 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member-list:hover, .show-restarealist:hover {
+  border: 1px solid #aaa; /* 호버 시 테두리 색상 변경 */
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15); /* 호버 시 그림자 효과 증가 */
+  transform: translateY(-2px); /* 호버 시 살짝 위로 이동 */
+}
 
     </style>
 </head>

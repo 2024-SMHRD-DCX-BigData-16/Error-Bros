@@ -32,6 +32,7 @@ public class MemberController {
 		System.out.println(joinResult);
 		if (joinResult > 0) {
 			System.out.println("회원가입 성공");
+			session.setAttribute("mem_id", tb_member.getMem_id());
 			return "JoinResult";
 		} else {
 			System.out.println("회원 가입 실패");
