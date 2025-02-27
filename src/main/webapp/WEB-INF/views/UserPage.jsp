@@ -8,127 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Search</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #fff;
-        }
-
-        /* 상단바 */
-        .top-bar {
-            background-color: rgb(51, 199, 17);
-            text-align: right;
-            padding: 8px 20px;
-            font-size: 14px;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
-
-        .top-bar a {
-            color: red;
-            text-decoration: none;
-            margin-left: 15px;
-        }
-
-        /* 내비게이션 */
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 20px;
-            position: relative;
-            width: 100%;
-            margin-top: 40px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: rgb(199, 126, 17);
-            text-align: center;
-        }
-
-        /* 카테고리 메뉴 */
-        .menu {
-            display: flex;
-            justify-content: left;
-            padding: 10px 20px;
-            border-top: 1px solid blue;
-            width: 100%;
-        }
-
-        .menu a {
-            margin-right: 20px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
-
-        .center-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex-grow: 1;
-        }
-
-        .admin-panel {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .admin-panel button {
-            margin: 10px;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            /* 더 둥글게 */
-            background-color: #3498db;
-            /* 세련된 파란색 */
-            color: white;
-            font-size: 18px;
-            font-weight: 500;
-            /* 약간 더 두껍게 */
-            cursor: pointer;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            /* 그림자 효과 */
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            /* 클릭 시 효과 추가 */
-        }
-
-        .admin-panel button:hover {
-            background-color: #2980b9;
-            /* 약간 더 진한 파란색 */
-            transform: translateY(-2px);
-            /* 위로 살짝 이동 */
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-            /* 그림자 더 진하게 */
-        }
-
-        .admin-panel button:active {
-            transform: translateY(0);
-            /* 클릭 시 원래 위치로 */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            /* 그림자 원래대로 */
-        }
+  
     </style>
 </head>
 
 <body>
-
+<jsp:include page="Head.jsp" />
       <!-- 상단바 -->
     <div class="top-bar">
         <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>

@@ -9,120 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Search</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #fff;
-        }
-
-        /* 상단바 */
-        .top-bar {
-            background-color: rgb(51, 199, 17);
-            text-align: right;
-            padding: 8px 20px;
-            font-size: 14px;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
-
-        .top-bar a {
-            color: red;
-            text-decoration: none;
-            margin-left: 15px;
-        }
-
-        /* 내비게이션 */
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 20px;
-            position: relative;
-            width: 100%;
-            margin-top: 40px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: rgb(199, 126, 17);
-            text-align: center;
-        }
-
-        /* 카테고리 메뉴 */
-        .menu {
-            display: flex;
-            justify-content: left;
-            padding: 10px 20px;
-            border-top: 1px solid blue;
-            width: 100%;
-        }
-
-        .menu a {
-            margin-right: 20px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
-
-        /* 중앙 휴게소 검색 텍스트 */
-        .center-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex-grow: 1;
-        }
-
-        .welcome-message {
-            font-size: 3em;
-            color: #333;
-            /* 텍스트 색상 변경 */
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease-in-out;
-            /* 애니메이션 추가 */
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(20);
-            }
-        }
-
-        .user-info {
-            font-size: 1.5em;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .additional-info {
-            font-size: 1.2em;
-            color: #999;
-            text-align: center;
-        }
     </style>
 </head>
 
 <body>
-
+<jsp:include page="Head.jsp" />
      <!-- 상단바 -->
     <div class="top-bar">
         <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>

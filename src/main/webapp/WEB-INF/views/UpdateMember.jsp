@@ -11,58 +11,11 @@
     <title>Error Search</title>
     <style>
 
-        .center-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex-grow: 1;
-        }
-
-        .update-form {
-            width: 150%;
-            max-width: 500px;
-            padding: 30px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .update-form h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .update-form input,
-        .update-form select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .update-form button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            border: none;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .update-form button:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 
 <body>
-
+<jsp:include page="Head.jsp" />
     <!-- 상단바 -->
     <div class="top-bar">
         <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
