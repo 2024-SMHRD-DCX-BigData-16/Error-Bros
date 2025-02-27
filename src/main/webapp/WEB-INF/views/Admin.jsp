@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Search</title>
     <style>
+<<<<<<< HEAD
     
 .center-container {
   display: flex;
@@ -43,6 +44,9 @@
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15); /* 호버 시 그림자 효과 증가 */
   transform: translateY(-2px); /* 호버 시 살짝 위로 이동 */
 }
+=======
+
+>>>>>>> a80d6be62ee9efe15b7a83d498aad3e51b0b215f
 
     </style>
 </head>

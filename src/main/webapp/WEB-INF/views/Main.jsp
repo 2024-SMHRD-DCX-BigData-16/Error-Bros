@@ -90,7 +90,11 @@ body, html {
  
 }
 .search-result-table {
+<<<<<<< HEAD
     background-color: rgba(0, 0, 1, 0.85); /* 흰색 + 70% 불투명 */
+=======
+    background-color: rgba(255, 255, 255, 0.9); /* 흰색 + 70% 불투명 */
+>>>>>>> a80d6be62ee9efe15b7a83d498aad3e51b0b215f
 }
 </style>
 </head>

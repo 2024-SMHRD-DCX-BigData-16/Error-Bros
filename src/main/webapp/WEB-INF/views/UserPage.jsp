@@ -1,5 +1,6 @@
 <%@page import="com.errorbros.entity.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,10 +45,23 @@
   transform: translateY(-2px); /* 호버 시 살짝 위로 이동 */
 }
 </style>
+=======
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Search</title>
+    <style>
+    
+    </style>
+>>>>>>> a80d6be62ee9efe15b7a83d498aad3e51b0b215f
 </head>
 
 <body>
 
+<<<<<<< HEAD
 	<jsp:include page="Head.jsp" />
 	<%
 	MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
@@ -71,6 +85,27 @@
 	<script>
 		
 	</script>
+=======
+   	<jsp:include page="Head.jsp" />
+        <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>
+
+
+    <div class="center-container">
+    <h1>${loginMember.mem_id }님 환영합니다</h1>
+        <div class="admin-panel">
+            <div>
+            <a href="goUpdateMember"><button class="member-list">개인 정보 수정</button></a>
+            </div>
+            <div>
+            <a href="goUserPayList"><button class="show-restarealist">결제 내역 확인</button></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+>>>>>>> a80d6be62ee9efe15b7a83d498aad3e51b0b215f
 </body>
 
 </html>

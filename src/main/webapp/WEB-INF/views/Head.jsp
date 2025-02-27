@@ -34,8 +34,13 @@
 							<ul>
 								<li class="search">
 									<a class="fa-search" href="#search">Search</a>
+<<<<<<< HEAD
 									<form id="search" method="post" action="searchHugeso">
 										<input type="text" name="searchInput" placeholder="휴게소 검색">
+=======
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+>>>>>>> a80d6be62ee9efe15b7a83d498aad3e51b0b215f
 									</form>
 								</li>
 								<li class="menu">
@@ -45,6 +50,7 @@
 						</nav>
 					</header>
 					
+<<<<<<< HEAD
 					<section id="menu">
 
 						<!-- Search -->
@@ -104,6 +110,10 @@
 			<script src="resources/assets/js/breakpoints.min.js"></script>
 			<script src="resources/assets/js/util.js"></script>
 			<script src="resources/assets/js/main.js"></script>
+=======
+
+
+>>>>>>> a80d6be62ee9efe15b7a83d498aad3e51b0b215f
 
 </body>
 </html>

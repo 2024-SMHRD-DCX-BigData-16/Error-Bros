@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
+=======
+>>>>>>> a80d6be62ee9efe15b7a83d498aad3e51b0b215f
 <%@page import="com.errorbros.entity.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -11,6 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>휴게소 정보</title>
 <style>
+<<<<<<< HEAD
 .food-container {
    display: grid;
    grid-template-columns: repeat(4, 1fr);
@@ -119,6 +123,9 @@
    font-size: 16px;
    color: white;
 }
+=======
+
+>>>>>>> a80d6be62ee9efe15b7a83d498aad3e51b0b215f
 </style>
 		<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 </head>
@@ -299,7 +306,11 @@
 	            if (notified.ok) {
 	                window.location.href = "/controller/goMain";
 	            } else {
+<<<<<<< HEAD
 	                window.location.href = `/controller/goMenu?rest_idx=${param.rest_idx}`;
+=======
+	                window.location.href = "/controller/goMenu?rest_idx="+${hugesoInfo.rest_idx};
+>>>>>>> a80d6be62ee9efe15b7a83d498aad3e51b0b215f
 	            }
 	        }
 	    );
