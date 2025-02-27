@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.errorbros.mapper.MenuMapper">
+
+
+	<!-- 전체 메뉴 조회 -->
+	<select id="getAllMenus"
+		resultType="com.errorbros.entity.MenuDTO">
+		SELECT * FROM tb_menu
+	</select>
+
+	<!-- 특정 휴게소의 메뉴 조회 -->
+	<select id="getMenusRestIdx" parameterType="int"
+		resultType="com.errorbros.entity.MenuDTO">
+		SELECT * FROM tb_menu WHERE rest_idx = #{rest_idx}
+	</select>
+
+	<!-- 메뉴 추가 -->
+	<insert id="insertMenu"
+		parameterType="com.errorbros.entity.MenuDTO">
+		INSERT INTO tb_menu (rest_idx, menu_nm, menu_type, menu_price, menu_img)
+		VALUES (#{rest_idx}, #{menu_nm}, #{menu_type}, #{menu_price},
+		#{menu_img})
+	</insert>
+
+	<!-- 메뉴 수정 -->
+	<update id="updateMenu"
+		parameterType="com.errorbros.entity.MenuDTO">
+		UPDATE tb_menu
+		SET menu_nm=#{menu_nm}, menu_type=#{menu_type}, menu_price=#{menu_price},
+		menu_img=#{menu_img}
+		WHERE menu_idx=#{menu_idx}
+	</update>
+
+	<!-- 메뉴 삭제 -->
+	<delete id="deleteMenu" parameterType="int">
+		DELETE FROM tb_menu WHERE menu_idx=#{menu_idx}
+	</delete>
+
+	<!-- 메뉴정보 조회 -->
+	<select id="getMenuIdx" parameterType="int"
+		resultType="com.errorbros.entity.MenuDTO">
+		SELECT * FROM tb_menu WHERE menu_idx = #{menu_idx}
+	</select>
+
+</mapper>

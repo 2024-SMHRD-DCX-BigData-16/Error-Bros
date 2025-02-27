@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.errorbros.mapper.HugesoMapper">
+
+	<select id="searchHugeso" parameterType="String"
+		resultType="com.errorbros.entity.HugesoDTO">
+		SELECT *
+		FROM tb_restarea
+		where rest_nm like CONCAT('%',
+		#{restNm}, '%')
+	</select>
+
+	<select id="showHugeso" parameterType="String"
+		resultType="com.errorbros.entity.HugesoDTO">
+		SELECT *
+		FROM tb_restarea
+		where rest_idx = #{rest_idx}
+	</select>
+
+
+	<select id="showMenu" parameterType="int"
+		resultType="com.errorbros.entity.MenuDTO">
+		select *
+		from tb_menu
+		where rest_idx = #{restIdx}
+	</select>
+
+	<insert id="insertReview"
+		parameterType="com.errorbros.entity.ReviewDTO">
+		INSERT INTO tb_review (rest_idx, mem_id, review_content,
+		review_like,
+		review_ratings, created_at)
+		VALUES (#{rest_idx}, #{mem_id},
+		#{review_content}, 0, #{review_ratings},
+		NOW());
+	</insert>
+
+
+	<!-- 모든 휴게소 조회 -->
+	<select id="getAllHugesos"
+		resultType="com.errorbros.entity.HugesoDTO">
+		SELECT * FROM tb_restarea
+	</select>
+
+	<!-- 휴게소 추가 -->
+	<insert id="insertHugeso"
+		parameterType="com.errorbros.entity.HugesoDTO">
+		INSERT INTO tb_restarea (rest_nm, rest_addr, lat, lon,
+		parking_lot,
+		rest_facilities, rest_phone, rest_img)
+		VALUES (#{rest_nm},
+		#{rest_addr}, #{lat},
+		#{lon}, #{parking_lot},
+		#{rest_facilities},
+		#{rest_phone}, #{rest_img})
+	</insert>
+
+	<!-- 휴게소 수정 -->
+	<update id="updateHugeso"
+		parameterType="com.errorbros.entity.HugesoDTO">
+		UPDATE tb_restarea
+		SET rest_nm=#{rest_nm},
+		rest_addr=#{rest_addr}, lat=#{lat},
+		lon=#{lon},parking_lot=#{parking_lot}
+		rest_facilities=#{rest_facilities},rest_phone=#{rest_phone}
+		rest_img=#{rest_img}
+		WHERE
+		rest_idx=#{rest_idx}
+	</update>
+
+	<!-- 휴게소 삭제 -->
+	<delete id="deleteHugeso" parameterType="int">
+		DELETE FROM tb_restarea
+		WHERE rest_idx=#{rest_idx}
+	</delete>
+
+	<!-- 휴게소 테이블 데이터 조회 -->
+	<select id="getAllHugeso"
+		resultType="com.errorbros.entity.HugesoDTO">
+		SELECT *
+		FROM tb_restarea
+	</select>
+
+	<select id="getHugesoListWithPaging"
+		resultType="com.errorbros.entity.HugesoDTO">
+		SELECT *
+		FROM tb_restarea
+		ORDER BY rest_idx
+		LIMIT #{page}, 10;
+	</select>
+
+	<select id="getTotalHugesoCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		tb_restarea;
+	</select>
+
+	<select id="searchRestArea" parameterType="map"
+		resultType="com.errorbros.entity.HugesoDTO">
+		SELECT *
+		FROM tb_restarea
+		WHERE rest_nm LIKE CONCAT('%',
+		#{keyword}, '%')
+		OR rest_addr LIKE CONCAT('%', #{keyword}, '%')
+		OR
+		rest_facilities LIKE CONCAT('%', #{keyword}, '%')
+		LIMIT #{startRow},
+		#{pageSize}
+	</select>
+
+	<select id="getTotalCount" parameterType="String"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM tb_restarea
+		WHERE rest_nm LIKE
+		CONCAT('%', #{keyword}, '%')
+		OR rest_addr LIKE CONCAT('%', #{keyword},
+		'%')
+		OR rest_facilities LIKE CONCAT('%', #{keyword}, '%')
+	</select>
+
+	<!-- 리뷰 목록 가져오기 -->
+	<select id="getReviewsByRestIdx" parameterType="int"
+		resultType="com.errorbros.entity.ReviewDTO">
+		SELECT *
+		FROM tb_review
+		WHERE rest_idx = #{rest_idx}
+	</select>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM tb_review
+		WHERE review_idx = #{reviewIdx}
+	</delete>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
