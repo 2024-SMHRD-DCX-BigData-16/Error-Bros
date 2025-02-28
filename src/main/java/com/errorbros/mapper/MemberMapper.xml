@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.errorbros.mapper.MemberMapper">
+	
+	<!-- 회원가입 -->
+	<insert id="memberInsert" parameterType="com.errorbros.entity.MemberDTO" >
+		insert into tb_member values(#{mem_id}, #{mem_pw}, #{mem_nm}, #{mem_phone}, #{mem_email}, #{mem_birthdate}, #{mem_gender}, #{mem_role}, NOW());
+	</insert>
+
+	<!-- 로그인 -->
+	<select id="memberLogIn" parameterType="com.errorbros.entity.MemberDTO" resultType="com.errorbros.entity.MemberDTO">
+			select * from tb_member where mem_id=#{mem_id} and mem_pw=#{mem_pw};
+	</select>
+	
+	<!-- 중복아이디 확인 -->
+	<select id="idCheck" parameterType="String" resultType="com.errorbros.entity.MemberDTO">
+		select * from tb_member where mem_id=#{mem_id};
+	</select>
+	
+	<!-- 중복이메일 확인 -->
+	<select id="emailCheck" parameterType="String" resultType="com.errorbros.entity.MemberDTO">
+  		select * from tb_member where mem_email=#{mem_email};
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findId" resultType="com.errorbros.entity.MemberDTO">
+	    SELECT mem_id FROM tb_member WHERE mem_nm = #{mem_nm} AND mem_email = #{mem_email};
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findPw" resultType="com.errorbros.entity.MemberDTO">
+	    SELECT mem_pw FROM tb_member WHERE mem_id=#{mem_id} AND mem_nm = #{mem_nm} AND mem_email = #{mem_email};
+	</select>
+	
+	<!-- 회원정보수정 -->
+	<update id="updateMember" parameterType="com.errorbros.entity.MemberDTO">
+		update tb_member set mem_pw = #{mem_pw}, mem_phone = #{mem_phone} mem_email=#{mem_email}, mem_birthdate=#{mem_birthdate}, mem_gender=#{mem_gender} 
+		where mem_id=#{mem_id} and mem_pw=#{mem_pw};
+	</update>
+
+	<!-- 회원정보삭제 -->
+	<delete id="deleteMember" parameterType="String">
+    DELETE FROM tb_member WHERE mem_id = #{mem_id}
+	</delete>
+	
+	<!-- 관리자용 -->
+	<!-- 전체 회원 리스트 불러오기 -->
+	
+	<select id="getAllMembers" parameterType="com.errorbros.entity.MemberDTO" resultType="com.errorbros.entity.MemberDTO">
+			select * 
+			from tb_member ;
+	</select>
+	
+	<select id="getMemberById" parameterType="com.errorbros.entity.MemberDTO" resultType="com.errorbros.entity.MemberDTO">
+			select * from tb_member where mem_id=#{mem_id};
+	</select>
+	
+	<!-- 관리자 기능 - 회원 추가 -->
+	<insert id="insertMember" parameterType="com.errorbros.entity.MemberDTO" >
+		insert into tb_member values(#{mem_id}, #{mem_pw}, #{mem_nm}, #{mem_phone}, #{mem_email}, #{mem_birthdate}, #{mem_gender}, #{mem_role}, NOW());
+	</insert>
+
+
+</mapper>
+	
