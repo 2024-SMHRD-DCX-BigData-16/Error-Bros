@@ -12,42 +12,58 @@
     <title>Error Search</title>
 <style>
 .center-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 300px;
-  gap: 20px;
+	width: 30%;
+	margin: 20px auto;
+	background-color: #e9e9e9;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.admin-panel {
-  display: flex;
-  gap: 20px;
+h2 {
+	text-align: center;
+	margin-bottom: 20px;
 }
 
-.member-list, .show-restarealist {
-  background-color: #f2f2f2; /* 배경색과 동일한 색상 */
-  color: #333; /* 글자색 */
-  border: 1px solid #ccc; /* 테두리 추가 */
-  padding: 15px 30px;
-  font-size: 18px;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 감소 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.input-table {
+	width: 100%;
 }
 
-.member-list:hover, .show-restarealist:hover {
-  border: 1px solid #aaa; /* 호버 시 테두리 색상 변경 */
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15); /* 호버 시 그림자 효과 증가 */
-  transform: translateY(-2px); /* 호버 시 살짝 위로 이동 */
+.input-table td {
+	padding: 10px;
 }
 
+.input-table input[type="text"], .input-table input[type="number"],
+	.input-table input[type="file"] {
+	width: calc(100% - 22px);
+	padding: 8px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
 
-    </style>
+.input-table input[type="submit"] {
+	background-color: #e9e9e9;
+	width: 100%;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+}
+
+.input-table input[type="submit"]:hover {
+	background-color: #0056b3;
+}
+</style>
 </head>
 
 <body>

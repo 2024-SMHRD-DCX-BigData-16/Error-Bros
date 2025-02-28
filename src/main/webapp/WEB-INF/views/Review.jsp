@@ -10,7 +10,97 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Error Search</title>
 <style>
+.center-container {
+	width: 80%;
+	max-width: 600px;
+	margin: 20px auto;
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#review-wrapper label {
+	display: block;
+	margin-bottom: 8px;
+}
+
+#review-wrapper textarea {
+	width: calc(100% - 22px);
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-sizing: border-box;
+	resize: vertical;
+}
+
+.center-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 1;
+}
+
+.star-rating {
+	font-size: 24px;
+	color: lightgray;
+	cursor: pointer;
+	display: flex;
+}
+
+.star {
+	font-size: 2rem;
+	color: lightgray;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	width: 30px;
+}
+
+.star::before {
+	content: '\2605';
+	position: absolute;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+	color: lightgray;
+}
+
+.star.full::before {
+	color: gold;
+}
+
+.star.half::before {
+	content: '\2605';
+	position: absolute;
+	width: 50%;
+	color: gold;
+	overflow: hidden;
+}
+
+button[type="submit"] {
+	background-color: #e9e9e9;
+	color: #000; /* 변경 */
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+button[type="submit"]:hover {
+	background-color: #e9e9e9;
+}
 </style>
 </head>
 

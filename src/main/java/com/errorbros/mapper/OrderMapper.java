@@ -1,5 +1,7 @@
 package com.errorbros.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.errorbros.entity.Order;
@@ -11,4 +13,7 @@ public interface OrderMapper {
 
 	public String generateNewOrderId();
 
+	public List<Order> UserOrderList(String member_id);
+
+	public List<Order> searchPayListByMem_id(String member_id);
 }

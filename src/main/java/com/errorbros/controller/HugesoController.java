@@ -1,26 +1,33 @@
 package com.errorbros.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.errorbros.entity.HugesoDTO;
 import com.errorbros.entity.ReviewDTO;
 import com.errorbros.mapper.HugesoMapper;
+import com.errorbros.mapper.OrderMapper;
 
 @Controller
 public class HugesoController {
 
 	@Autowired
 	HugesoMapper hugesoMapper;
+	@Autowired
+	OrderMapper orderMapper;
 
 	// 휴게소 정보 로드
 //	@PostMapping("/searchHugeso")
@@ -75,6 +82,44 @@ public class HugesoController {
 		session.setAttribute("adminHugesoListpage", page);
 		session.setAttribute("adminHugesoTotalCount", totalCount);
 		return "showRestAreaList";
+	}
+
+	@PostMapping("/Uprest_waiting") // POST 요청으로 변경
+	@ResponseBody
+	public ResponseEntity<?> Uprest_waiting(@RequestBody Map<String, String> requestData, HttpSession session) {
+		String rest_idx = requestData.get("rest_idx"); // JSON에서 rest_idx 추출
+		if (rest_idx == null || rest_idx.isEmpty()) {
+			return ResponseEntity.badRequest().body("rest_idx 값이 없습니다.");
+		}
+
+		int result = hugesoMapper.Uprest_waiting(rest_idx); // DB 업데이트 실행
+
+		if (result > 0) {
+			System.out.println("대기 + 성공 : " + rest_idx);
+			return ResponseEntity.ok(true); // JSON 형태의 응답 반환
+		} else {
+			System.out.println("대기 + 실패 : " + rest_idx);
+			return ResponseEntity.ok(false);
+		}
+	}
+
+	@PostMapping("/Downrest_waiting") // POST 요청으로 변경
+	@ResponseBody
+	public ResponseEntity<?> Downrest_waiting(@RequestBody Map<String, String> requestData, HttpSession session) {
+		String rest_idx = requestData.get("rest_idx"); // JSON에서 rest_idx 추출
+		if (rest_idx == null || rest_idx.isEmpty()) {
+			return ResponseEntity.badRequest().body("rest_idx 값이 없습니다.");
+		}
+
+		int result = hugesoMapper.Downrest_waiting(rest_idx); // DB 업데이트 실행
+
+		if (result > 0) {
+			System.out.println("대기 + 성공 : " + rest_idx);
+			return ResponseEntity.ok(true); // JSON 형태의 응답 반환
+		} else {
+			System.out.println("대기 + 실패 : " + rest_idx);
+			return ResponseEntity.ok(false);
+		}
 	}
 
 	// 휴게소 삭제

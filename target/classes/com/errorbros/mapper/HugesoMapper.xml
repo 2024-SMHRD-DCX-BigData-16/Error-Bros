@@ -134,7 +134,16 @@
 	</delete>
 
 
-
+	<update id="Uprest_waiting">
+		UPDATE tb_restarea
+		SET rest_waiting = rest_waiting + 1
+		WHERE rest_idx = #{rest_idx} ;
+	</update>
+	<update id="Downrest_waiting">
+		UPDATE tb_restarea
+		SET rest_waiting = rest_waiting - 1
+		WHERE rest_idx = 1 ;
+	</update>
 
 
 

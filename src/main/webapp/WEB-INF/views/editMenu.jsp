@@ -9,8 +9,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Error Search - 메뉴 수정</title>
 <style>
+.center-container {
+	width: 80%;
+	max-width: 600px;
+	margin: 20px auto;
+	background-color: #e9e9e9;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+h1 {
+	text-align: center;
+	margin-bottom: 30px;
+	color: #333;
+}
 
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+label {
+	margin-bottom: 8px;
+	color: #555;
+}
+
+input[type="text"], input[type="number"], select {
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-sizing: border-box;
+	font-size: 16px;
+	background-color: #f0f0f0;
+}
+
+input[type="submit"] {
+	background-color: #e9e9e9;
+	color: #fff;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+	background-color: #e9e9e9;
+}
 </style>
 </head>
 <body>

@@ -4,25 +4,13 @@
 
 <!-- 주문 내역 저장 -->
 	<insert id="memberInsert" parameterType="com.errorbros.entity.Order" >
-		INSERT INTO tb_order (
-        order_id,
-        member_id,
-        order_date,
-        order_amount,
-        order_status,
-        pay_method,
-        order_menu,
-        imp_uid
+		 INSERT INTO tb_order (
+        order_id, mem_id, rest_idx, order_date, order_amount, 
+        order_status, pay_method, order_menu
     ) VALUES (
-        #{order_id},
-        #{member_id},
-        #{order_date},
-        #{order_amount},
-        #{order_status},
-        #{pay_method},
-        #{order_menu},
-        #{imp_uid}
-    )
+        #{order_id}, #{mem_id}, #{rest_idx}, NOW(), 
+        #{order_amount}, #{order_status}, #{pay_method}, #{order_menu}
+    );
 	</insert>
 	
 	 <select id="generateNewOrderId" >
@@ -37,5 +25,14 @@
             SELECT CONCAT(@today, LPAD(@newIndex, 5, '0')) AS orderId;
         ]]>
     </select>
+    
+    <select id="UserOrderList" >
+    	select * from tb_order where memder_id = #{member_id} 
+    </select>
+    <select id="searchPayListByMem_id" resultType="com.errorbros.entity.Order">
+    	select * from tb_order where mem_id = #{mem_id} 
+    </select>
+    
+    
 	
 </mapper>

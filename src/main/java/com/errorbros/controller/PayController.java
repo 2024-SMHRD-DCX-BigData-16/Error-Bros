@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,38 +25,75 @@ public class PayController {
 		this.orderMapper = orderMapper;
 	}
 
+	@PostMapping("/insertPay") // POST 요청으로 변경
+	@ResponseBody
+	public ResponseEntity<?> insertPay(@RequestBody Map<String, String> requestData, HttpSession session) {
+		String rest_idx = requestData.get("rest_idx"); // JSON에서 rest_idx 추출
+		String merchant_uid = requestData.get("merchant_uid");
+		String mem_id = requestData.get("buyer_name");
+		int order_amount = Integer.parseInt(requestData.get("amount"));
+		String order_status = "결제완료";
+		String pay_method = requestData.get("pay_method");
+		String order_menu = requestData.get("name");
+
+		Order order = new Order();
+		order.setOrder_id(merchant_uid);
+		order.setMem_id(mem_id);
+		order.setOrder_amount(order_amount);
+		order.setOrder_status(order_status);
+		order.setPay_method(pay_method);
+		order.setOrder_menu(order_menu);
+		if (rest_idx == null || rest_idx.isEmpty()) {
+			return ResponseEntity.badRequest().body("rest_idx 값이 없습니다.");
+		}
+
+		int result = orderMapper.insertOrder(order); // DB 업데이트 실행
+
+		if (result > 0) {
+			System.out.println("대기 + 성공 : " + rest_idx);
+			return ResponseEntity.ok(true); // JSON 형태의 응답 반환
+		} else {
+			System.out.println("대기 + 실패 : " + rest_idx);
+			return ResponseEntity.ok(false);
+		}
+	}
+
 	@PostMapping("/payment/complete")
 	@ResponseBody
-	public String completePayment(@RequestBody Map<String, String> paymentData, HttpSession session) {
-		String imp_uid = paymentData.get("imp_uid");
-		String merchant_uid = paymentData.get("merchant_uid");
-		String mem_id = paymentData.get("buyer_name");
-		int order_amount = Integer.parseInt(paymentData.get("amount"));
-		String order_status = "결제완료";
-		String pay_method = paymentData.get("pay_method");
-		String order_menu = paymentData.get("name");
+	public boolean completePayment(@RequestBody Map<String, String> paymentData, HttpSession session) {
+		try {
+			String imp_uid = paymentData.get("imp_uid");
+			String merchant_uid = paymentData.get("merchant_uid");
+			String mem_id = paymentData.get("buyer_name");
+			int order_amount = Integer.parseInt(paymentData.get("amount"));
+			String order_status = "결제완료";
+			String pay_method = paymentData.get("pay_method");
+			String order_menu = paymentData.get("name");
 
-		// 주문 정보 객체 생성
-		Order order = new Order();
-		order.setImp_uid(imp_uid);
-		order.setOrder_id(merchant_uid);
-		order.setMember_id(mem_id);
-		// order.setOrder_date(new Date()); db에 저장될때 now()로 값 입력
-		order.setOrder_amount(order_amount); // 예시
-		order.setOrder_status(order_status); // 실제 결제 상태 확인 필요
-		order.setPay_method(pay_method); // 예시
-		order.setOrder_menu(order_menu); // 예시
-		System.out.println("db에 저장할 주문 정보 : " + order.toString());
+			Order order = new Order();
+			order.setOrder_id(merchant_uid);
+			order.setMem_id(mem_id);
+			order.setOrder_amount(order_amount);
+			order.setOrder_status(order_status);
+			order.setPay_method(pay_method);
+			order.setOrder_menu(order_menu);
 
-		// 주문 정보 저장 (Service 없이 직접 처리)
-		int cnt = orderMapper.insertOrder(order);
-		if (cnt > 0) {
-			System.out.println("주문 db저장됨 : " + order.toString());
-			return "success";
-		} else {
-			System.out.println("주문 db저장 실패: ");
-			return "fail";
+			System.out.println("주문 정보: " + order);
 
+			int cnt = orderMapper.insertOrder(order);
+			if (cnt > 0) {
+				System.out.println("주문 DB 저장 성공: " + order);
+				return true;
+			} else {
+				System.out.println("주문 DB 저장 실패");
+				return false;
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("금액 변환 오류: " + e.getMessage());
+			return false;
+		} catch (Exception e) {
+			System.out.println("주문 처리 오류: " + e.getMessage());
+			return false;
 		}
 	}
 

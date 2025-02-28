@@ -90,8 +90,13 @@ body, html {
  
 }
 .search-result-table {
-    background-color: rgba(255, 255, 255, 0.9); /* 흰색 + 70% 불투명 */
+    background-color: rgba(0, 0, 1, 0.85); /* 흰색 + 70% 불투명 */
+    border-left: 1px solid rgb(50, 50, 50); 
+    border-right: 1px solid rgb(50, 50, 50); 
 }
+.search-btn {
+    color: #AAAAAA !important;
+    }
 </style>
 </head>
 <body>
@@ -113,7 +118,7 @@ body, html {
 					                           <%--  value="${sessionScope.searchInput}" --%>
 					                            ></td>
 						                            <td>
-						                          			<button type="submit" class="search-btn">검색</button>
+						                          			<button type="submit" class="search-btn" >검색</button>
 						                            </td>
 					                        </tr>
 					                </table>

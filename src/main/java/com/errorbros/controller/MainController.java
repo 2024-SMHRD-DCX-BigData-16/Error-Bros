@@ -1,5 +1,7 @@
 package com.errorbros.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.errorbros.entity.MemberDTO;
+import com.errorbros.entity.Order;
 import com.errorbros.mapper.MemberMapper;
+import com.errorbros.mapper.OrderMapper;
 
 @Controller
 public class MainController {
 	@Autowired
 	private MemberMapper memberMapper;
+
+	@Autowired
+	private OrderMapper orderMapper;
 
 	@RequestMapping("/")
 	public String main() {
@@ -80,6 +87,18 @@ public class MainController {
 	public String goMypage() {
 
 		return "UserPage";
+	}
+
+	@RequestMapping("/goUserPay")
+	public String goUserPay(HttpSession session) {
+		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+		System.out.println("결제 내역 확인 인원 : " + loginMember.toString());
+		String member_id = loginMember.getMem_id();
+		System.out.println("결제 내역 확인 인원 member_id : " + member_id);
+		List<Order> paymentList = orderMapper.searchPayListByMem_id(member_id);
+		System.out.println("해당 인원 결제 내역 수 : " + paymentList.size());
+		session.setAttribute("paymentList", paymentList);
+		return "UserPay";
 	}
 
 	@RequestMapping("/goUpdateMember")

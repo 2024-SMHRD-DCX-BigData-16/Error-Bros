@@ -148,7 +148,7 @@
 				<p>${menu.menu_price}원</p>
 				<button
 					onclick="selectFood('${menu.menu_nm}', ${menu.menu_price}, this)"
-					style="background-color: wheat; color: white;">선택</button>
+					style="background-color: #bdbdbd; color: white;">선택</button>
 				<%
 				if (loginMember != null && "admin".equals(loginMember.getMem_id())) {
 				%>
@@ -177,26 +177,25 @@
 	let selectedMenus = {}; // 선택된 메뉴 목록 (객체로 변경)
 
 	function selectFood(menuName, menuPrice, button) {
-	    // 선택된 메뉴 정보 (필요에 따라 사용)
-	    console.log("선택된 메뉴:", menuName, menuPrice);
+	       // 선택된 메뉴 정보 (필요에 따라 사용)
+	       console.log("선택된 메뉴:", menuName, menuPrice);
 
-	    // 선택 효과 (선택/취소 토글)
-	    if (selectedMenus[menuName]) {
-	        // 선택 취소
-	        button.style.backgroundColor = "blue";
-	        button.style.color = "white";
-
-	        totalPrice -= menuPrice;
-	        delete selectedMenus[menuName]; // 메뉴 목록에서 제거
-	    } else {
-	        // 선택
-	        button.style.backgroundColor = "gray";
-	        button.style.color = "black";
-
-	        totalPrice += menuPrice;
-	        selectedMenus[menuName] = menuPrice; // 메뉴 목록에 추가
-	    }
-
+	       // 선택 효과 (선택/취소 토글)
+	       if (selectedMenus[menuName]) {
+	           // 선택 취소
+	           button.style.backgroundColor = "#bdbdbd";
+	           button.style.color = "white";
+	           button.textContent = "선택";
+	           totalPrice -= menuPrice;
+	           delete selectedMenus[menuName]; // 메뉴 목록에서 제거
+	       } else {
+	           // 선택
+	           button.style.backgroundColor = "wheat";
+	           button.style.color = "black";
+	           button.textContent = "선택됨";
+	           totalPrice += menuPrice;
+	           selectedMenus[menuName] = menuPrice; // 메뉴 목록에 추가
+	       }
 	    // 총 가격 업데이트
 	    $("#totalPriceDisplay").text("총 가격: " + totalPrice + "원");
 	}
@@ -234,7 +233,7 @@
 	            $("#totalPriceDisplay").text("총 가격: 0원");
 
 	            // 모든 선택된 버튼의 스타일 초기화
-	            $(".food-item button").css("background-color", "blue");
+	            $(".food-item button").css("background-color", "#e0e0e0");
 	            $(".food-item button").css("color", "white");
 	        },
 	    });
@@ -250,11 +249,13 @@
 	let storedUuid = sessionStorage.getItem('uuid');
 	console.log('세션에 저장된 UUID:', storedUuid);
 	const button = document.querySelector("#payButton");
-
+	const restIdx = "<%= request.getParameter("rest_idx") %>";
+	
+	
 	const onClickPay = async () => {
 	    // 선택된 메뉴 이름들을 "메뉴1, 메뉴2" 형식으로 결합
 	    const menuNames = Object.keys(selectedMenus).join(", ");
-	    
+	    updateRestWaiting(restIdx)
 		/* // newMerchantUid 요청하여 order_id 받기
 		const response = await fetch('/controller/newMerchantUid', {
 		    method: 'GET',
@@ -267,48 +268,92 @@
 	    IMP.request_pay(
 	        {
 	            channelKey: "channel-key-b9f4d268-bf41-4bdd-ba4d-1c5d1a65284f",
-	            pay_method: "card",
 	            merchant_uid: storedUuid, // 주문 고유 번호
+	            pay_method: "card",
 	            name: menuNames, // 선택한 메뉴 이름들
 	            amount: totalPrice, // 총 가격
 	            buyer_email: `${loginMember.mem_email}`, // 세션 이메일 사용
 	            buyer_name: `${loginMember.mem_id}`, // 세션 이름 사용
 	            buyer_tel: `${loginMember.mem_phone}`, // 세션 폰번호 사용
-	            m_redirect_url: "http://localhost:8089/controller/payment/redirect" // 모바일 리다이렉트 URL 추가
-	        },
-	        async (response) => {
-	            if (response.error_code != null) {
-	                return alert(`결제에 실패하였습니다. 에러 내용: ${response.error_msg}`);
-	            }
-
-	            // PC 환경: 결제 성공 시 서버에 결제 정보 전달하여 검증
-	            const notified = await fetch(`http://localhost:8089/controller/payment/complete`, {
-	                method: "POST",
-	                headers: { "Content-Type": "application/json" },
-	                body: JSON.stringify({
-	                    imp_uid: response.imp_uid,
-	                    merchant_uid: response.merchant_uid,
-	                    pay_method: "card",
-	    	            name: menuNames, // 선택한 메뉴 이름들
-	    	            amount: totalPrice, // 총 가격
-	    	            buyer_email: `${loginMember.mem_email}`, // 세션 이메일 사용
-	    	            buyer_name: `${loginMember.mem_id}`, // 세션 이름 사용
-	    	            buyer_tel: `${loginMember.mem_phone}` // 세션 폰번호 사용
-	                }),
-	            });
-				console.log(notified)
-	            if (notified.ok) {
-	                window.location.href = "/controller/goMain";
+	            m_redirect_url: "http://localhost:8089/controller/payment/redirect", // 모바일 리다이렉트 URL 추가
+	            	notice_url: "https://9531-125-244-144-206.ngrok-free.app"
+	        }, function(rsp) {
+	            if ( rsp.success ) {
+	            	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+	            	jQuery.ajax({
+	            		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+	            		type: 'POST',
+	            		dataType: 'json',
+	            		data: {
+	        	    		imp_uid : rsp.imp_uid
+	        	    		//기타 필요한 데이터가 있으면 추가 전달
+	            		}
+	            	}).done(function(data) {
+	            		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+	            		if ( everythings_fine ) {
+	            			var msg = '결제가 완료되었습니다.';
+	            			msg += '\n고유ID : ' + rsp.imp_uid;
+	            			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+	            			msg += '\결제 금액 : ' + rsp.paid_amount;
+	            			msg += '카드 승인번호 : ' + rsp.apply_num;
+	            			
+	            			alert(msg);
+	            		} else {
+	            			//[3] 아직 제대로 결제가 되지 않았습니다.
+	            			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+	            		}
+	            	});
 	            } else {
-	                window.location.href = `/controller/goMenu?rest_idx=${param.rest_idx}`;
+	                var msg = '결제에 실패하였습니다.';
+	                msg += '에러내용 : ' + rsp.error_msg;
+	                
+	                alert(msg);
 	            }
 	        }
 	    );
 	};
 
 	button.addEventListener("click", onClickPay);
- 
-        
+	function updateRestWaiting(restIdx) {
+	    fetch('/controller/Uprest_waiting', {
+	        method: 'POST',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	        body: JSON.stringify({ rest_idx: restIdx }) // JSON 형태로 서버에 데이터 전달
+	    })
+	    .then(response => response.json())
+	    .then(data => {
+	        if (data) {
+	            console.log('업데이트 성공!');
+	        } else {
+	            console.log('업데이트 실패!');
+	        }
+	    })
+	    .catch(error => {
+	        console.error('요청 중 오류 발생:', error);
+	    });
+	}
+	function updateRestWaiting(restIdx) {
+	    fetch('/controller/Uprest_waiting', {
+	        method: 'POST',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	        body: JSON.stringify({ rest_idx: restIdx }) // JSON 형태로 서버에 데이터 전달
+	    })
+	    .then(response => response.json())
+	    .then(data => {
+	        if (data) {
+	            console.log('업데이트 성공!');
+	        } else {
+	            console.log('업데이트 실패!');
+	        }
+	    })
+	    .catch(error => {
+	        console.error('요청 중 오류 발생:', error);
+	    });
+	}    
     </script>
 
 

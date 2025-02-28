@@ -11,10 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Search</title>
    <style>
- body {
-    font-family: sans-serif;
-    background-color: #f2f2f2; 
-}
 .center-container {
 	width: 80%;
 	margin: 20px auto;
@@ -59,21 +55,13 @@ button:hover {
 }
 
 a {
-	text-decoration: none; /* 링크 밑줄 제거 */
+	text-decoration: none; 
  } 
 
-#머리 th {
-    text-align: center;       /* 가로 중앙 정렬 */
-    vertical-align: middle;   /* 세로 중앙 정렬 */       
+#머리 th, #머리 td, #몸 td{
+    text-align: center;      
+    vertical-align: middle;        
 }
-#머리 td {
-    text-align: center;       /* 가로 중앙 정렬 */
-    vertical-align: middle;   /* 세로 중앙 정렬 */
-} 
-#몸 td {
-    text-align: center;       /* 가로 중앙 정렬 */
-    vertical-align: middle;   /* 세로 중앙 정렬 */
-} 
 </style>
 </head>
 

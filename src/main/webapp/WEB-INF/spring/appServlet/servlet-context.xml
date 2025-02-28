@@ -23,6 +23,7 @@
 	
 	<context:component-scan base-package="com.errorbros.controller" />
 	<context:component-scan base-package="com.errorbros.entity" />
+	<context:component-scan base-package="com.errorbros.service " />
 	
 	
 </beans:beans>

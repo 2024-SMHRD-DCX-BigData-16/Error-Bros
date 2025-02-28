@@ -11,7 +11,79 @@
 
     
 <style>
+.center-container {
+	width: 30%;
+	margin: 80px auto 30px auto;
+	background-color: #e9e9e9;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+h1 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.menu-box {
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.menu-box label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.menu-box input[type="number"], .menu-box input[type="text"], .menu-box select
+	{
+	width: calc(100% - 22px);
+	padding: 8px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	background-color: #f0f0f0;
+	border: 1px solid #ddd;
+}
+
+.menu-box input[type="submit"] {
+	width: 50%;
+	background-color: #f0f0f0;
+	color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	display: flex; /* Flexbox 레이아웃 적용 */
+	align-items: center; /* 세로 가운데 정렬 */
+	justify-content: center; /* 가로 가운데 정렬 */
+}
+
+.menu-box input[type="submit"]:hover {
+	background-color: #e9e9e9;
+}
+
+.menu {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.menu a {
+	display: inline-block;
+	margin: 0 10px;
+	padding: 8px 15px;
+	background-color: #f0f0f0;
+	color: #333;
+	border: none;
+	border-radius: 5px;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+}
+
+.menu a:hover {
+	background-color: #e0e0e0;
+}
 
 </style>
 </head>

@@ -12,11 +12,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <style>
-body {
-	font-family: sans-serif;
-	background-color: #f2f2f2;
-}
-
 .center-container {
 	width: 80%;
 	margin: 20px auto;
@@ -104,7 +99,7 @@ body {
 }
 
 .order-btn:hover, .info-btn:hover {
-	background-color: #e0e0e0;
+	background-color: #e9e9e9;
 }
 
 .no-result-message {

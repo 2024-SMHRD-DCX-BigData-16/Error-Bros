@@ -23,15 +23,15 @@ body {
 }
 
 .center-container {
-    width: 80%;
-    max-width: 600px;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex; 
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    min-height: calc(100vh - 100px); 
+	width: 80%;
+	max-width: 600px;
+	padding: 20px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: calc(100vh - 100px);
 }
 
 .update-form {
