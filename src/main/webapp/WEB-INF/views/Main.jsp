@@ -82,21 +82,37 @@ body, html {
 }
 
 #video-container .video-content .inner a {
-  color: #fff;
-  text-decoration: underline;
+  color: #fff !important;
+  text-decoration: underline !important;
 }
 
 #video-container .video-content .inner .scroll-icon {
  
 }
 .search-result-table {
-    background-color: rgba(0, 0, 1, 0.85); /* 흰색 + 70% 불투명 */
-    border-left: 1px solid rgb(50, 50, 50); 
-    border-right: 1px solid rgb(50, 50, 50); 
+    background-color: rgba(0, 0, 1, 0.85) !important; /* 흰색 + 70% 불투명 */
+    border-left: 1px solid rgb(50, 50, 50) !important; 
+    border-right: 1px solid rgb(50, 50, 50) !important; 
 }
 .search-btn {
     color: #AAAAAA !important;
     }
+.search-result-table td {
+    height: 45px;
+    vertical-align: middle;
+}
+
+.search-result-table input[type="text"],
+.search-btn {
+    height: 45px; /* 기존 td 높이와 동일하게 맞춤 */
+}
+th, td {
+   border: 1px solid #ddddddb7 !important;
+   padding: 8px !important;
+   text-align: center !important;
+   vertical-align: middle !important;
+}
+
 </style>
 </head>
 <body>
@@ -107,14 +123,13 @@ body, html {
             <div class="inner">
               <h1>Welcome to <em>Go Stop</em></h1>
               		<!-- 중앙 휴게소 검색창 -->
-					<div class="center-container">
 						<div class="search-container">
 							<div class="search-box">
 								<form action="searchHugeso" method="post">
 					           	     <table class="search-result-table">
 					                        <tr>
 					                            <td><input type="text" name="searchInput" id="searchInput"
-					                            placeholder="휴게소 검색" 
+					                            placeholder="휴게소명" 
 					                           <%--  value="${sessionScope.searchInput}" --%>
 					                            ></td>
 						                            <td>
@@ -124,7 +139,6 @@ body, html {
 					                </table>
 								</form>
 							</div>
-						</div>
 	                </div> 
         	</div>
         </div>

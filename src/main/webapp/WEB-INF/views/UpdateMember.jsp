@@ -93,8 +93,8 @@ body {
             <input type="password" name="mem_pw_confirm" placeholder="새 비밀번호 확인" required>
             <input type="text" name="mem_phone" value="${loginMember.mem_phone }" placeholder="전화번호" required>
             <input type="email" id="mem_email" name="mem_email" value="${loginMember.mem_email }" placeholder="이메일" required>
-            <button type="button" onclick="checkDuplicateEmail()" class="check-button">이메일 중복 확인</button><br>
-            <span id="emailMessage" class="message"></span><br>
+            <button type="button" onclick="checkDuplicateEmail()" class="check-button">이메일 중복 확인</button>
+            <span id="emailMessage" class="message"></span>
             <input type="date"  name="mem_birthdate"  value="${loginMember.mem_birthdate }" required>
             <select name="mem_gender"  value="${loginMember.mem_gender }" >
                 <option value="M">남성</option>

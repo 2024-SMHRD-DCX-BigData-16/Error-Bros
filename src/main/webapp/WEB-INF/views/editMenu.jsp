@@ -78,13 +78,12 @@ input[type="submit"]:hover {
 	<div class="center-container">
 		<h1>메뉴 수정</h1>
 		<form action="updateMenu" method="post">
-			<input type="hidden" name="menuIdx" value="${menu.menu_idx}" /> <label
-				for="restIdx">휴게소 번호:</label> 
-			<input type="number" id="restIdx"
-				name="restIdx" value="${menu.rest_idx}" /><br /> 
-			<label for="menuNm">메뉴 이름:</label> <input type="text" id="menuNm"
-				name="menuNm" value="${menu.menu_nm}" /><br /> 
-			<label for="menuType">메뉴 타입:</label>
+			<input type="hidden" name="menu_idx" value="${menu.menu_idx}" /> 
+			<label	for="rest_idx">휴게소 번호:</label> 
+			<input type="number" id="rest_idx" name="rest_idx" value="${menu.rest_idx}" /><br /> 
+			<label for="menu_nm">메뉴 이름:</label> 
+			<input type="text" id="menu_nm" name="menu_nm" value="${menu.menu_nm}" /><br /> 
+			<label for="menu_type">메뉴 타입:</label>
             <select id="menu_type" name="menu_type">
             	<option>한식
             	<option>중식
@@ -93,11 +92,11 @@ input[type="submit"]:hover {
             	<option>일식
             </select>
 			<label
-				for="menuPrice">메뉴 가격:</label> <input type="number" id="menuPrice"
-				name="menuPrice" value="${menu.menu_price}" /><br /> 
+				for="menu_price">메뉴 가격:</label> <input type="number" id="menu_price"
+				name="menu_price" value="${menu.menu_price}" /><br /> 
 			<label
-				for="menuImg">메뉴 이미지 URL:</label> <input type="text" id="menuImg"
-				name="menuImg" value="${menu.menu_img}" /><br />
+				for="menu_img">메뉴 이미지 URL:</label> <input type="text" id="menu_img"
+				name="menu_img" value="${menu.menu_img}" /><br />
 			<input	type="submit" value="수정" />
 		</form>
 	</div>

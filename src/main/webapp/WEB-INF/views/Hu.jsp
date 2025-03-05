@@ -28,23 +28,40 @@
 
 .map-info-wrapper {
    display: flex;
-   justify-content: flex-start;;
+   justify-content: flex-start;
+}
+
+.map-box {
+   border: 1px solid #ddd;
+   padding: 10px;
+   border-radius: 8px;
+   margin-right: 10px; /* info-details와의 간격 추가 */
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-details-box {
+   border: 1px solid #ddd;
+   padding: 10px;
+   border-radius: 8px;
+   width: 40%;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   overflow: auto;
 }
 
 .info-details {
-    width: 40%;
-    margin-top: 55px; /* 지도의 높이를 고려하여 margin-top 조정 */
-    margin-left: 5%;
+   margin-top: 55px;
 }
 
 .center-container {
    width: 80%;
    margin: 20px auto;
    background-color: white;
-   border-radius: 8px;
+   border: 1px solid #ddd;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
    padding: 20px;
    text-align: center;
+   border-radius: 8px;
+    overflow: auto;
 }
 
 .center-container h1 {
@@ -77,6 +94,63 @@ th {
    cursor: pointer;
    font-size: 16px;
 }
+.map-box {
+    width: 50%; /* 가로의 50% 차지 */
+    height: auto; /* 높이는 내용에 맞게 자동 조절 */
+    left: 0; /* 왼쪽 정렬 */
+    top: 0; /* 필요에 따라 조정 가능 */
+    display: flex;
+    justify-content: center; /* 내부 요소 가운데 정렬 */
+    align-items: center;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    max-width: 750px; /* 최대 너비 제한 */
+    max-height: 350px; /* 최대 높이 제한 */
+    aspect-ratio: 750 / 350; /* 비율 유지 */
+}
+.buttons {
+    display: flex;
+    justify-content: left;
+    margin-top: 10px;
+    gap: 10px; /* 버튼 간격 조정 */
+}
+
+.buttons .order-btn {
+    background-color: #e0e0e0;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8vw; /* 화면 크기에 맞춰 글자 크기 조정 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+    display: flex; /* Flexbox 적용 */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 40px; /* 버튼 높이 고정 */
+}
+
+/* 작은 화면 (모바일) 대응 */
+@media (max-width: 600px) {
+    .buttons .order-btn {
+        font-size: 3vw; /* 화면이 작아지면 글자 크기 증가 */
+        height: 50px; /* 버튼 높이 조정 */
+        padding: 10px 15px;
+    }
+}
+
+/* 중간 크기 화면 (태블릿) 대응 */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .buttons .order-btn {
+        font-size: 2vw; /* 태블릿에서는 적절한 크기로 조정 */
+    }
+}
+
+
 </style>
 </head>
 
@@ -87,19 +161,28 @@ th {
       <div class="info-title">${hugesoInfo.rest_nm }</div>
 
       <div class="map-info-wrapper">
-         <div id="map" style="width: 750px; height: 350px;"></div>
+         <div class="map-box">
+            <div id="map" style="width: 750px; height: 350px;"></div>
+         </div>
 
-         <div class="info-details">
-            <p>
-               <strong>주소:</strong> ${hugesoInfo.rest_addr }
-            </p>
-            <p>
-               <strong>편의시설:</strong> ${hugesoInfo.rest_facilities }
-            </p>
-            <div class="buttons" id="buttons"
-               style="display: flex; justify-content: left; margin-top: 10px;">
-               <a href="goReview" class="order-btn" style="margin-right: 10px;">리뷰 작성</a> 
-               <a href="goMenu?rest_idx=${hugesoInfo.rest_idx}" class="order-btn">음식 주문하기</a>
+         <div class="info-details-box">
+            <div class="info-details">
+               <p>
+                  <strong>주소:</strong> ${hugesoInfo.rest_addr }
+               </p>
+               <p>
+                  <strong>편의시설:</strong><br> ${hugesoInfo.rest_facilities }
+               </p>
+               <p>
+                  <strong>음식 대기 순번:</strong> <span id="waitingNumber"
+                     style="font-weight: bold; color: #007bff; margin-left: 5px;">${hugesoInfo.rest_waiting }</span>
+               </p>
+               <div class="buttons" id="buttons"
+                  style="display: flex; justify-content: left; margin-top: 10px;">
+                  <a href="goReview?rest_idx=${hugesoInfo.rest_idx}" class="order-btn" style="margin-right: 10px;">리뷰
+                     작성</a><a href="goMenu?rest_idx=${hugesoInfo.rest_idx}"
+                     class="order-btn">음식 주문하기</a>
+               </div>
             </div>
          </div>
       </div>
@@ -143,7 +226,7 @@ th {
         var mapContainer = document.getElementById('map'),
             mapOption = {
                 center: new kakao.maps.LatLng(${hugesoInfo.lat}, ${hugesoInfo.lon}),
-                level: 3,
+                level: 7,
                 mapTypeId: kakao.maps.MapTypeId.ROADMAP
             };
         var map = new kakao.maps.Map(mapContainer, mapOption);
@@ -160,6 +243,7 @@ th {
         kakao.maps.event.addListener(marker, 'click', function () {
             alert('마커를 클릭했습니다!');
         });
+        
     </script>
 </body>
 

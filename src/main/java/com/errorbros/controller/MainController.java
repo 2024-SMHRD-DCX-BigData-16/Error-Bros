@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.errorbros.entity.HugesoDTO;
 import com.errorbros.entity.MemberDTO;
 import com.errorbros.entity.Order;
+import com.errorbros.mapper.HugesoMapper;
 import com.errorbros.mapper.MemberMapper;
 import com.errorbros.mapper.OrderMapper;
 
@@ -22,6 +24,9 @@ public class MainController {
 
 	@Autowired
 	private OrderMapper orderMapper;
+
+	@Autowired
+	private HugesoMapper hugesoMapper;
 
 	@RequestMapping("/")
 	public String main() {
@@ -153,9 +158,22 @@ public class MainController {
 
 	// 결제내역 리스트
 	@RequestMapping("/goUserPayList")
-	public String goUserPayList() {
+	public String goUserPayList(HttpSession session) {
 
 		return "UserPayList";
+	}
+
+	// 결제 완료 페이지
+	@RequestMapping("/goPaySuccess")
+	public String goPaySuccess(HttpSession session) {
+		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+		Order order = (Order) session.getAttribute("successorder");
+		System.out.println("order_id : " + order.getOrder_id());
+		System.out.println("주문 정보 : " + order.toString());
+		HugesoDTO hu = hugesoMapper.showHugeso(Integer.toString(order.getRest_idx()));
+		System.out.println(hu.toString());
+		session.setAttribute("hugesoInfo", hu);
+		return "PaySuccess";
 	}
 
 }

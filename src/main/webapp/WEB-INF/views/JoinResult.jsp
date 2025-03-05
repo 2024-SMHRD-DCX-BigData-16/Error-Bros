@@ -74,16 +74,15 @@ body {
             환영합니다!
         </div>
         <div class="user-info">
-            ${mem_id}님, 404에 오신 것을 환영합니다!
+            ${IMember.mem_nm}님, Go Stop에 오신 것을 환영합니다!
         </div>
         <div class="additional-info">
-            <p>이제 404의 다양한 서비스를 이용하실 수 있습니다.</p>
+            <p>이제 Go Stop의 다양한 서비스를 이용하실 수 있습니다.</p>
             <p>
                 <a href="goMain">메인으로 가기</a>
             </p>
         </div>
     </div>
-
     <script>
 
     </script>

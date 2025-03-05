@@ -96,6 +96,10 @@ body {
             <button type="button" onclick="checkDuplicateEmail()" class="check-button">이메일 중복 확인</button><br>
             <span id="emailMessage" class="message"></span><br>
             <input type="date"  name="mem_birthdate"  value="${uMember.mem_birthdate }" required>
+            <select name="mem_role"  value="${uMember.mem_role }" >
+                <option value="nomal">일반회원</option>
+                <option value="admin">관리자</option>
+            </select>
             <select name="mem_gender"  value="${uMember.mem_gender }" >
                 <option value="M">남성</option>
                 <option value="F">여성</option>

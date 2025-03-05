@@ -1,6 +1,6 @@
 package com.errorbros.entity;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,22 +14,15 @@ public class ReviewDTO {
 
 	// 리뷰 인덱스
 	private int review_idx;
-	// ���� ������ȣ
+
 	private int rest_idx;
 
-	// �ްԼ� ������ȣ
 	private String mem_id;
 
-	// ȸ�� ���̵�
 	private String review_content;
 
-	// ���� ����
-	private String review_like;
+	private double review_ratings; // 기본값 0 설정
 
-	// ���� ���ƿ�
-	private Integer review_ratings;
-
-	// ���� ����
-	private LocalDateTime created_at;
+	private Date created_at;
 
 }

@@ -142,8 +142,9 @@ public class MenuController {
 	// 메뉴 수정 처리
 	@PostMapping("/updateMenu")
 	public String updateMenu(MenuDTO menu) {
-		System.out.println("수정하려는 메뉴 정보 : " + menu);
+		System.out.println("수정하려는 메뉴 정보 : " + menu.toString());
 		int rest_idx = menu.getRest_idx();
+		System.out.println("메뉴수정하는 휴게소 인덱스" + rest_idx);
 		int result = menuMapper.updateMenu(menu);
 		if (result > 0) {
 

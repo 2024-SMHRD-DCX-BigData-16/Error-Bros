@@ -122,18 +122,18 @@
         <form class="signup-form" name="insertMember" action="insertMember" method="post">
             <h2>회원가입</h2>
             <input type="text" id="mem_id", name="mem_id" placeholder="아이디" required>
-            <button type="button" onclick="checkDuplicateId()">아이디 중복 확인</button><br>
+            <button type="button" onclick="checkDuplicateId()">아이디 중복 확인</button>
             <!-- 중복확인 버튼 -->
-            <span id="idMessage"></span><br>
+            <span id="idMessage"></span>
             <input type="password" name="mem_pw" placeholder="비밀번호" required>
             <input type="text" name="mem_nm" placeholder="이름" required>
             <input type="text" name="mem_phone" placeholder="전화번호" required>
             <input type="email" id="mem_email", name="mem_email" placeholder="이메일" required>
-            <button type="button" onclick="checkDuplicateEmail()">이메일 중복 확인</button><br>
+            <button type="button" onclick="checkDuplicateEmail()">이메일 중복 확인</button>
             <!-- 중복확인 버튼 -->
-            <span id="emailMessage"></span><br>
+            <span id="emailMessage"></span>
             <input type="date" name="mem_birthdate" required>
-            <input type="text" name="mem_role" placeholder="회원 역할" required>
+            <input type="hidden" name="mem_role" value="nomal" placeholder="회원 역할" required>
             <select name="mem_gender">
                 <option value="M">남성</option>
                 <option value="F">여성</option>

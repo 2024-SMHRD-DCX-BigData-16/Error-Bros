@@ -33,6 +33,9 @@ public class HugesoDTO {// 휴게소
 	// 휴게소 전화번호
 	private String rest_phone;
 
+	// 휴게소 대기 번호
+	private String rest_waiting;
+
 	// 휴게소 사진
 	private String rest_img;
 

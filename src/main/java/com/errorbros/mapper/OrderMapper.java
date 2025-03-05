@@ -16,4 +16,6 @@ public interface OrderMapper {
 	public List<Order> UserOrderList(String member_id);
 
 	public List<Order> searchPayListByMem_id(String member_id);
+
+	public Order orderSuccessByOrder_id(String order_id);
 }

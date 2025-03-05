@@ -58,6 +58,9 @@ body {
 .login-box button[type="submit"]:hover {
 	background-color: #e0e0e0;
 }
+.center-container{
+	width: 40% !important;
+}
 </style>
 </head>
 

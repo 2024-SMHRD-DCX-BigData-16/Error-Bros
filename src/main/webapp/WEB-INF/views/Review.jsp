@@ -1,4 +1,5 @@
 <%@page import="com.errorbros.entity.MemberDTO"%>
+<%@page import="com.errorbros.entity.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -112,9 +113,9 @@ button[type="submit"]:hover {
 	<div class="center-container">
 		<div class="review-wrapper" id="review-wrapper">
 			<h2>리뷰 작성</h2>
-			<form id="reviewForm" action="">
+			<form id="reviewForm" action="insertReview" method="post">
 			<input type="hidden" id="rest_idx" name="rest_idx" value="${param.rest_idx }" readonly="readonly">
-			<input type="hidden" id="rest_idx" name="rest_idx" value="${loginMember.mem_id }" readonly="readonly">
+			<input type="hidden" id="mem_id" name="mem_id" value="${loginMember.mem_id }" readonly="readonly">
 				<label for="review_content">리뷰 내용:</label><br>
 				<textarea id="review_content" name="review_content" rows="4" cols="50"
 					required></textarea>
@@ -135,7 +136,7 @@ button[type="submit"]:hover {
 	<script>
 	document.addEventListener("DOMContentLoaded", function () {
 	    const stars = document.querySelectorAll('#starRating .star');
-	    const reviewRatingInput = document.getElementById('reviewRating');
+	    const reviewRatingInput = document.getElementById('review_ratings'); // Hidden input
 	    let currentRating = 0;
 
 	    stars.forEach(star => {
@@ -163,7 +164,7 @@ button[type="submit"]:hover {
 	            }
 
 	            currentRating = rating;
-	            reviewRatingInput.value = rating;
+	            reviewRatingInput.value = rating; // Hidden input에 값 저장
 	            highlightStars(rating);
 	        });
 
@@ -184,13 +185,19 @@ button[type="submit"]:hover {
 	                star.classList.add('half');
 	            }
 	        });
+
+	        // Hidden input 값 업데이트
+	        reviewRatingInput.value = roundedRating;
 	    }
 
+	    // 기존 값이 있으면 반영
 	    if (reviewRatingInput.value > 0) {
 	        currentRating = parseFloat(reviewRatingInput.value);
 	        highlightStars(currentRating);
 	    }
 	});
+
+
     </script>
 </body>
 

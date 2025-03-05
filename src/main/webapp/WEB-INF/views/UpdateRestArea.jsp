@@ -97,8 +97,9 @@ button[type="submit"]:hover {
 
 		<div class="form-container">
 			<div class="review-wrapper" id="review-wrapper">
-				<form action="addRestArea" method="post"
+				<form action="updateRestArea" method="post"
 					enctype="multipart/form-data">
+					<input type="hidden" name="rest_idx" id="rest_idx" value="${selectedHugesoDTO.rest_idx }">
 					<table class="input-table">
 						<tr>
 							<td><label for="rest_nm">휴게소 이름:</label></td>
@@ -168,7 +169,7 @@ button[type="submit"]:hover {
 							// 추가적인 작업 (예: 서버에 데이터 전송)
 
 							// 폼 제출 전에 alert 메시지 표시
-							let confirmation = confirm("휴게소를 추가하시겠습니까?");
+							let confirmation = confirm("휴게소를 수정하시겠습니까?");
 							if (confirmation) {
 								alert("휴게소 추가 요청을 처리중입니다.");
 							} else {

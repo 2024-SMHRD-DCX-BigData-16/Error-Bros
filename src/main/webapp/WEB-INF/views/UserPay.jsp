@@ -45,6 +45,7 @@ tr:nth-child(even) {
 </head>
 <body>
 <jsp:include page="Head.jsp" />
+<div class="center-container">
 <div>
 	<h1>결제 내역</h1><a href="/controller/goMain">메인 페이지로 이동</a>
 </div>
@@ -62,16 +63,16 @@ tr:nth-child(even) {
 		<tbody>
 			<c:forEach var="payment" items="${paymentList}">
 				<tr>
-					<td>${payment.merchant_uid}</td>
-					<td>${payment.name}</td>
-					<td>${payment.amount}원</td>
-					<td>${payment.buyer_email}</td>
-					<td>${payment.buyer_name}</td>
-					<td>${payment.buyer_tel}</td>
+					<td>${payment.order_id}</td>
+					<td>${payment.order_menu}</td>
+					<td>${payment.order_amount}원</td>
+					<td>${loginMember.mem_email}</td>
+					<td>${loginMember.mem_nm}</td>
+					<td>${loginMember.mem_phone}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	
+</div>	
 </body>
 </html>

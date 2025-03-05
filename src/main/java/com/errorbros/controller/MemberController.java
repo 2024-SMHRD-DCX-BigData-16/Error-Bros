@@ -1,6 +1,5 @@
 package com.errorbros.controller;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -32,6 +31,7 @@ public class MemberController {
 		System.out.println(joinResult);
 		if (joinResult > 0) {
 			System.out.println("회원가입 성공");
+			session.setAttribute("IMember", tb_member); // 세션에 loginMember 저장
 			return "JoinResult";
 		} else {
 			System.out.println("회원 가입 실패");
@@ -145,57 +145,55 @@ public class MemberController {
 //
 //	}
 	@PostMapping("/updateMember")
-	public String updateMember(@RequestParam("mem_pw") String mem_pw, @RequestParam("mem_email") String mem_email,
-			@RequestParam("mem_phone") String mem_phone,
-			@RequestParam(value = "mem_birthdate", required = false) Date mem_birthdate, // required = false로 변경
-			@RequestParam(value = "mem_gender", required = false) String mem_gender, // required = false로 변경
-			HttpSession session) {
-
+	public String updateMember(MemberDTO umember, HttpSession session) {
+		System.out.println("회원 수정 정보 : " + umember.toString());
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		if (loginMember == null) {
-			return "redirect:/login";
+			return "redirect:/Login";
 		}
+		System.out.println("수정자 정보 : " + loginMember.toString());
 
 		// 관리자 계정 여부 확인
 		if (loginMember.getMem_role().equals("admin")) { // "admin"은 관리자 역할을 나타내는 값
 			MemberDTO member = new MemberDTO();
-			member.setMem_id(loginMember.getMem_id());
-			member.setMem_email(mem_email);
-			member.setMem_phone(mem_phone);
+			member.setMem_id(umember.getMem_id());
+			member.setMem_email(umember.getMem_email());
+			member.setMem_phone(umember.getMem_phone());
 
 			// 비밀번호 변경 여부 확인 및 처리
-			if (!mem_pw.equals(loginMember.getMem_pw())) {
-				member.setMem_pw(mem_pw);
+			if (!umember.getMem_id().equals(loginMember.getMem_pw())) {
+				member.setMem_pw(umember.getMem_pw());
 			} else {
 				member.setMem_pw(loginMember.getMem_pw());
 			}
 
 			// 관리자 계정일 경우에만 생년월일 및 남녀 정보 수정
-			member.setMem_birthdate(mem_birthdate);
-			member.setMem_gender(mem_gender);
+			member.setMem_birthdate(umember.getMem_birthdate());
+			member.setMem_role(umember.getMem_role());
+			member.setMem_gender(umember.getMem_gender());
 
 			int result = memberMapper.updateMember(member);
 
 			if (result > 0) {
-				loginMember.setMem_email(mem_email);
-				loginMember.setMem_phone(mem_phone);
-				loginMember.setMem_birthdate(mem_birthdate);
-				loginMember.setMem_gender(mem_gender);
-				session.setAttribute("loginMember", loginMember);
+				System.out.println("관리자가 회원 정보 수정 성공");
 				return "Main";
 			} else {
-				return "updateMember";
+				System.out.println("관리자가 회원 정보 수정 실패");
+				return "UpdateMember";
 			}
 		} else {
 			// 관리자 계정이 아닐 경우, 생년월일 및 남녀 정보는 수정하지 않고 다른 정보만 수정
 			MemberDTO member = new MemberDTO();
 			member.setMem_id(loginMember.getMem_id());
-			member.setMem_email(mem_email);
-			member.setMem_phone(mem_phone);
+			member.setMem_email(umember.getMem_email());
+			member.setMem_phone(umember.getMem_phone());
+			member.setMem_birthdate(umember.getMem_birthdate());
+			member.setMem_gender(umember.getMem_gender());
+			member.setMem_role("nomal");
 
 			// 비밀번호 변경 여부 확인 및 처리
-			if (!mem_pw.equals(loginMember.getMem_pw())) {
-				member.setMem_pw(mem_pw);
+			if (!umember.getMem_pw().equals(loginMember.getMem_pw())) {
+				member.setMem_pw(umember.getMem_pw());
 			} else {
 				member.setMem_pw(loginMember.getMem_pw());
 			}
@@ -203,12 +201,13 @@ public class MemberController {
 			int result = memberMapper.updateMember(member);
 
 			if (result > 0) {
-				loginMember.setMem_email(mem_email);
-				loginMember.setMem_phone(mem_phone);
+				loginMember.setMem_email(umember.getMem_email());
+				loginMember.setMem_phone(umember.getMem_phone());
 				session.setAttribute("loginMember", loginMember);
 				return "Main";
 			} else {
-				return "updateMember";
+				System.out.println("사용자가 회원 정보 수정 실패");
+				return "UpdateMember";
 			}
 		}
 
@@ -216,7 +215,6 @@ public class MemberController {
 
 	// admin 전체 회원 조회
 	@GetMapping("/goshowMemberList")
-
 	public String getAllMembers(HttpSession session) {
 		List<MemberDTO> allMember = memberMapper.getAllMembers();
 		session.setAttribute("allMember", allMember);
@@ -258,7 +256,7 @@ public class MemberController {
 			System.out.println("삭제 실패");
 
 		}
-		return "redirect:/showMemberList";
+		return "redirect:/goshowMemberList";
 	}
 
 }

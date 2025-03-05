@@ -11,11 +11,15 @@
 <title>휴게소 정보</title>
 <style>
 .food-container {
-   display: grid;
+   display: flex;
+   flex-wrap: wrap;
    grid-template-columns: repeat(4, 1fr);
    gap: 10px;
    margin-top: 20px; 
    padding-bottom: 80px;
+   align-content: space-around;	
+   justify-content: space-around;
+   flex-direction:row;
 }
 
 .food-item {
@@ -25,6 +29,7 @@
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
    text-align: center;
    border: 1px solid #ddd;
+   
 }
 
 .food-item img {
@@ -39,30 +44,14 @@
    font-size: 14px;
 }
 
-.food-item .select-btn {
-   margin-top: 5px;
-   background-color: blue;
-   color: white;
-   border: none;
-   padding: 5px 10px;
-   cursor: pointer;
-   border-radius: 3px;
-}
+
 
 .food-item .select-btn.selected {
    background-color: gray;
    color: black;
 }
 
-.food-item .admin-btn {
-   background-color: #f0f0f0;
-   color: #333;
-   border: 1px solid #ccc;
-   padding: 5px 10px;
-   margin: 5px;
-   cursor: pointer;
-   border-radius: 3px;
-}
+
 
 .order-btn {
     background-color: white;
@@ -118,6 +107,31 @@
    font-size: 16px;
    color: white;
 }
+.ang {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 내부 요소 간격 균등 배치 */
+    width: 100%; /* 가로 전체 차지 */
+    height: 5vh; /* 높이를 화면 높이의 5%로 설정 */
+    background-color: #f0f0f0; /* 배경색 추가 (가시성 확보) */
+    padding: 0 20px; /* 좌우 여백 추가 */
+    box-sizing: border-box; /* padding이 width에 포함되도록 설정 */
+}
+
+.ang a {
+    font-size: 1.2vw; /* 글자 크기를 화면 너비에 비례하여 조절 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+}
+.buttonHome {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.buttonHome button{
+	margin: 2px;
+}
+
+
 </style>
 		<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 </head>
@@ -125,20 +139,20 @@
 <body>
 
 	<jsp:include page="Head.jsp" />
-	
+	<div class="ang">
 		<% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		if (loginMember != null && "admin".equals(loginMember.getMem_id())) {
 			String rest_idx = (String) request.getParameter("rest_idx");
 		%>
 		<a href="addMenu?rest_idx=${param.rest_idx}"
-			style="position: absolute; right: 20px;">메뉴 추가하기</a>
+			>메뉴 추가하기</a>
 		<%
 		}
 		%>
+	<input type="hidden" id="hiddenmemid" value="${loginMember.mem_id}" >
 	</div>
-
 	<!-- 음식 목록 -->
-	<div class="food-container" id="foodContainer">
+	<%-- <div class="food-container" id="foodContainer">
 		<c:forEach var="menu" items="${menuList}">
 			<div class="food-item">
 				<p>
@@ -146,24 +160,47 @@
 				</p>
 				<img src="resources/menuimg/${menu.menu_img}.jpg" alt="${menu.menu_nm}" />
 				<p>${menu.menu_price}원</p>
-				<button
+				<div class="buttonHome">
+				<button class="selectFoodbutton"
 					onclick="selectFood('${menu.menu_nm}', ${menu.menu_price}, this)"
 					style="background-color: #bdbdbd; color: white;">선택</button>
 				<%
 				if (loginMember != null && "admin".equals(loginMember.getMem_id())) {
 				%>
-				<a href='goEditMenu?rest_idx=${param.rest_idx }&menu_idx=${menu.menu_idx}'>
-				<button class="admin-btn">수정</button>
-				</a>
-				<a href='deleteMenu?rest_idx=${param.rest_idx }&menu_idx=${menu.menu_idx}'>
-				<button class="admin-btn">삭제</button>
-				</a>
+				<button onclick="location.href='goEditMenu?rest_idx=${param.rest_idx }&menu_idx=${menu.menu_idx}' " class="admin-btn">수정</button>
+				
+				<button onclick="location.href='deleteMenu?rest_idx=${param.rest_idx }&menu_idx=${menu.menu_idx}' " class="admin-btn">삭제</button>
+				
+				</div>
 				<%
 				}
 				%>
 			</div>
 		</c:forEach>
-	</div>
+	</div> --%>
+	<div class="food-container" id="foodContainer">
+    <c:forEach var="menu" items="${menuList}">
+        <div class="food-item">
+            <p>
+                <strong>${menu.menu_nm}</strong>
+            </p>
+            <img src="resources/menuimg/${menu.menu_img}.jpg" alt="${menu.menu_nm}" />
+            <p>${menu.menu_price}원</p>
+            <div class="buttonHome">
+                <button class="selectFoodbutton"
+                    onclick="selectFood('${menu.menu_nm}', ${menu.menu_price}, this)"
+                    style="background-color: #bdbdbd; color: white;">선택</button>
+
+                <!-- 관리자일 경우에만 버튼 표시 -->
+                <c:if test="${loginMember != null && loginMember.mem_id eq 'admin'}">
+                    <button onclick="location.href='goEditMenu?rest_idx=${param.rest_idx}&menu_idx=${menu.menu_idx}'" class="admin-btn">수정</button>
+                    <button onclick="location.href='deleteMenu?rest_idx=${param.rest_idx}&menu_idx=${menu.menu_idx}'" class="admin-btn">삭제</button>
+                </c:if>
+            </div>
+        </div>
+    </c:forEach>
+</div>
+	
 
 	<div class="order-container">
 		<span class="total-price" id="totalPriceDisplay">총 가격: 0원</span>
@@ -250,17 +287,19 @@
 	console.log('세션에 저장된 UUID:', storedUuid);
 	const button = document.querySelector("#payButton");
 	const restIdx = "<%= request.getParameter("rest_idx") %>";
-	
-	
+	console.log(restIdx)
+	const hiddenmemid = document.getElementById("hiddenmemid").value;
+	console.log(hiddenmemid);
 	const onClickPay = async () => {
 	    // 선택된 메뉴 이름들을 "메뉴1, 메뉴2" 형식으로 결합
 	    const menuNames = Object.keys(selectedMenus).join(", ");
-	    updateRestWaiting(restIdx)
+	    updateRestWaiting(restIdx);
+	    insertPay();
 		/* // newMerchantUid 요청하여 order_id 받기
 		const response = await fetch('/controller/newMerchantUid', {
 		    method: 'GET',
 		});
-
+		
 		
 		const data = await response.json();
 		console.log('생성된 order_id:', data.orderId); */
@@ -279,6 +318,7 @@
 	            	notice_url: "https://9531-125-244-144-206.ngrok-free.app"
 	        }, function(rsp) {
 	            if ( rsp.success ) {
+	                window.location.href = "/controller/goPaySuccess";
 	            	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 	            	jQuery.ajax({
 	            		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
@@ -288,6 +328,7 @@
 	        	    		imp_uid : rsp.imp_uid
 	        	    		//기타 필요한 데이터가 있으면 추가 전달
 	            		}
+	            	
 	            	}).done(function(data) {
 	            		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 	            		if ( everythings_fine ) {
@@ -298,6 +339,9 @@
 	            			msg += '카드 승인번호 : ' + rsp.apply_num;
 	            			
 	            			alert(msg);
+	            		    setTimeout(function () {
+	            		        window.location.href = "/goPaySuccess";
+	            		    }, 500);  // 0.5초 후 페이지 이동
 	            		} else {
 	            			//[3] 아직 제대로 결제가 되지 않았습니다.
 	            			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
@@ -306,11 +350,12 @@
 	            } else {
 	                var msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
-	                
-	                alert(msg);
+	                window.location.href = "/controller/goMain";
 	            }
 	        }
+
 	    );
+
 	};
 
 	button.addEventListener("click", onClickPay);
@@ -354,6 +399,72 @@
 	        console.error('요청 중 오류 발생:', error);
 	    });
 	}    
+	/* function insertPay() {
+		const menuNames = Object.keys(selectedMenus).join(", ");
+		const Order = {
+				order_id :storedUuid ,
+				mem_id : hiddenmemid,
+				rest_idx : restIdx,
+				order_amount : totalPrice,
+				order_status : "결제 완료",
+				pay_method : "card",
+				order_menu : menuNames
+		};
+	    fetch('insertPay', {
+	        method: 'POST',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	        body: JSON.stringify(Order) // JSON 형태로 서버에 데이터 전달
+	    })
+	    .then(response => response.json())
+	    .then(data => {
+	        if (data) {
+	            console.log('업데이트 성공!');
+	        } else {
+	            console.log('업데이트 실패!');
+	        }
+	    })
+	    .catch(error => {
+	        console.error('요청 중 오류 발생:', error);
+	    });
+	}     */
+	function insertPay() {
+	    // 선택된 메뉴의 이름을 가져와 쉼표(,)로 구분하여 문자열로 만듦
+	    const menuNames = Object.keys(selectedMenus).join(", ");
+
+	    // 주문 정보를 JSON 객체로 생성
+	    const Order = {
+	        order_id: storedUuid,       // 주문 ID (고유한 식별자)
+	        mem_id: hiddenmemid,        // 회원 ID
+	        rest_idx: restIdx,          // 음식점 ID
+	        order_amount: totalPrice,   // 총 결제 금액
+	        order_status: "결제 완료",   // 주문 상태 (결제 완료)
+	        pay_method: "card",         // 결제 방식 (카드)
+	        order_menu: menuNames       // 주문한 메뉴 리스트 (쉼표로 구분된 문자열)
+	    };
+	    console.log(Order)
+	    // jQuery의 AJAX 요청을 사용하여 서버에 데이터 전송
+	    $.ajax({
+	        url: 'insertPay', // 서버의 엔드포인트 (컨트롤러에서 매핑된 URL과 일치해야 함)
+	        type: 'POST', // HTTP 메서드 (POST 요청)
+	        contentType: 'application/json', // 서버로 전송할 데이터의 형식을 JSON으로 지정
+	        data: JSON.stringify(Order), // JavaScript 객체를 JSON 문자열로 변환하여 전송
+	        dataType: 'json', // 서버에서 받을 응답 데이터 형식 (JSON)
+	        success: function(response) {
+	            // 요청이 성공적으로 완료되었을 때 실행되는 콜백 함수
+	            if (response) {
+	                console.log('업데이트 성공!'); // 성공 메시지 출력
+	            } else {
+	                console.log('업데이트 실패!'); // 실패 메시지 출력
+	            }
+	        },
+	        error: function(xhr, status, error) {
+	            // 요청 중 오류가 발생했을 때 실행되는 콜백 함수
+	            console.error('요청 중 오류 발생:', error); // 콘솔에 오류 메시지 출력
+	        }
+	    });
+	}
     </script>
 
 

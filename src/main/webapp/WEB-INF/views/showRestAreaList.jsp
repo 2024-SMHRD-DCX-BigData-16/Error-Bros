@@ -10,19 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Error Search</title>
 <style>
-body {
-	font-family: sans-serif;
-	background-color: #f2f2f2;
-}
 
-.center-container {
-	width: 80%;
-	margin: 20px auto;
-	background-color: #e9e9e9;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+
 
 h1 {
 	text-align: center;
@@ -34,15 +23,6 @@ h1 {
 	border-collapse: collapse;
 }
 
-th, td {
-	padding: 10px;
-	text-align: left;
-	border: 1px solid #ddd;
-}
-
-th {
-	background-color: #f5f5f5;
-}
 
 button {
 	background-color: #007bff;
@@ -60,6 +40,7 @@ button:hover {
 
 a {
 	text-decoration: none; /* 링크 밑줄 제거 */
+	text-decoration-line: none; !important
 }
 
 .pagination {

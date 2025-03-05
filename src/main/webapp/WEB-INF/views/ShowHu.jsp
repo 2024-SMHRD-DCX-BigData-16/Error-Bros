@@ -96,6 +96,7 @@
 	display: flex; /* Flexbox 레이아웃 적용 */
     align-items: center; /* 세로 가운데 정렬 */
     justify-content: center; /* 가로 가운데 정렬 */
+     margin: auto; /* 버튼이 셀 내부에서 가운데 정렬되도록 설정 */
 }
 
 .order-btn:hover, .info-btn:hover {

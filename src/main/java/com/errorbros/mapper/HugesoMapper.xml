@@ -28,10 +28,9 @@
 	<insert id="insertReview"
 		parameterType="com.errorbros.entity.ReviewDTO">
 		INSERT INTO tb_review (rest_idx, mem_id, review_content,
-		review_like,
 		review_ratings, created_at)
 		VALUES (#{rest_idx}, #{mem_id},
-		#{review_content}, 0, #{review_ratings},
+		#{review_content},  #{review_ratings},
 		NOW());
 	</insert>
 
@@ -46,13 +45,12 @@
 	<insert id="insertHugeso"
 		parameterType="com.errorbros.entity.HugesoDTO">
 		INSERT INTO tb_restarea (rest_nm, rest_addr, lat, lon,
-		parking_lot,
-		rest_facilities, rest_phone, rest_img)
+		parking_lot, rest_facilities, rest_phone, rest_waiting, rest_img)
 		VALUES (#{rest_nm},
 		#{rest_addr}, #{lat},
 		#{lon}, #{parking_lot},
 		#{rest_facilities},
-		#{rest_phone}, #{rest_img})
+		#{rest_phone},0, #{rest_img})
 	</insert>
 
 	<!-- 휴게소 수정 -->
@@ -60,10 +58,13 @@
 		parameterType="com.errorbros.entity.HugesoDTO">
 		UPDATE tb_restarea
 		SET rest_nm=#{rest_nm},
-		rest_addr=#{rest_addr}, lat=#{lat},
-		lon=#{lon},parking_lot=#{parking_lot}
-		rest_facilities=#{rest_facilities},rest_phone=#{rest_phone}
-		rest_img=#{rest_img}
+		rest_addr=#{rest_addr}, 
+		lat=#{lat},
+		lon=#{lon},
+		parking_lot=#{parking_lot},
+		rest_facilities=#{rest_facilities},
+		rest_phone=#{rest_phone},
+		rest_img=#{rest_img, jdbcType=NULL}
 		WHERE
 		rest_idx=#{rest_idx}
 	</update>

@@ -8,6 +8,42 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/assets/css/main.css" />
+
+<style type="text/css">
+.center-container {
+	width: 80%;
+	margin: 20px auto;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+}
+a{
+	text-decoration-line: none !important;
+
+}
+
+table {
+   width: 100% !important;
+   border-collapse: collapse !important;
+   margin-top: 20px !important;
+}
+
+th, td {
+   border: 1px solid #ddd !important;
+   padding: 8px !important;
+   text-align: center !important;
+   vertical-align: middle !important;
+}
+
+th {
+   background-color: #f5f5f5;
+}
+
+</style>
 </head>
 <body class="is-preload">
 <% MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember"); %>

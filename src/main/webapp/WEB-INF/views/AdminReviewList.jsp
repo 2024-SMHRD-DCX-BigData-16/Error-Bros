@@ -90,7 +90,6 @@ button:hover {
 					<th>휴게소 인덱스</th>
 					<th>회원 아이디</th>
 					<th>리뷰 내용</th>
-					<th>리뷰 좋아요</th>
 					<th>리뷰 평점</th>
 					<th>작성일</th>
 					<th>리뷰 삭제</th>
@@ -103,7 +102,6 @@ button:hover {
 						<td>${review.rest_idx}</td>
 						<td>${review.mem_id}</td>
 						<td>${review.review_content}</td>
-						<td>${review.review_like}</td>
 						<td>${review.review_ratings}</td>
 						<td>${review.created_at}</td>
 						<td>
@@ -116,7 +114,7 @@ button:hover {
 				</c:forEach>
 				<c:if test="${empty AdminReviewList}">
 					<tr>
-						<td colspan="5">작성된 리뷰가 없습니다.</td>
+						<td colspan="7">작성된 리뷰가 없습니다.</td>
 					</tr>
 				</c:if>
 			</tbody>

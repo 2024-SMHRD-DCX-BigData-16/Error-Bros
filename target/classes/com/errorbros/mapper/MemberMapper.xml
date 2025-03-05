@@ -34,7 +34,12 @@
 	
 	<!-- 회원정보수정 -->
 	<update id="updateMember" parameterType="com.errorbros.entity.MemberDTO">
-		update tb_member set mem_pw = #{mem_pw}, mem_phone = #{mem_phone} mem_email=#{mem_email}, mem_birthdate=#{mem_birthdate}, mem_gender=#{mem_gender} 
+		update tb_member set mem_pw = #{mem_pw}, 
+		mem_phone = #{mem_phone}, 
+		mem_email=#{mem_email}, 
+		mem_birthdate=#{mem_birthdate},
+		mem_role=#{mem_role}, 
+		mem_gender=#{mem_gender} 
 		where mem_id=#{mem_id} and mem_pw=#{mem_pw};
 	</update>
 
