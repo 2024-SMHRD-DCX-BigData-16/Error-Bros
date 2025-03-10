@@ -101,5 +101,55 @@
 
 ---
 
+**시작화면**  
+<img src="https://github.com/user-attachments/assets/9d9097ed-ac76-4db1-afaf-85f8e0768e5a" width="800" height="400"/>  
+
+**로그인 화면**  
+<img src="https://github.com/user-attachments/assets/afc09719-f609-424d-833f-9e4dab5fa0d3" width="800" height="400"/>  
+
+**마이페이지**  
+<img src="https://github.com/user-attachments/assets/59f1cef2-e5bf-4a94-9155-ce2544e848e0" width="800" height="400"/>  
+
+**휴게소 검색**  
+<img src="https://github.com/user-attachments/assets/e9fc0ae7-c610-4395-8401-848040e036a5" width="800" height="400"/>  
+
+**휴게소별 편의시설 정보 및 대기순번과 리뷰게시판**  
+<img src="https://github.com/user-attachments/assets/13e7e45b-7f04-4808-8484-8cbb89428c6f" width="800" height="400"/>  
+
+**회원정보 수정**  
+<img src="https://github.com/user-attachments/assets/61a7ccb5-6ccf-4aaf-8b32-beda90228c33" width="800" height="400"/>  
+
+**리뷰 작성**  
+<img src="https://github.com/user-attachments/assets/a371eab9-820a-44ae-aab0-6614161c2abd" width="800" height="400"/>  
+
+**관리자 페이지**  
+<img src="https://github.com/user-attachments/assets/3ed540d5-05bb-4980-8f72-52083b612d2c" width="800" height="400"/>  
+
+**회원 관리**  
+<img src="https://github.com/user-attachments/assets/bfeb973b-0d17-48d7-81a4-60a5f1461017" width="800" height="400"/>  
+
+**휴게소 관리**  
+<img src="https://github.com/user-attachments/assets/027d1a51-4222-4e7b-af66-5680539439da" width="800" height="400"/>  
+
+**리뷰 관리**  
+<img src="https://github.com/user-attachments/assets/11e9f10c-c90b-4eaf-b2b5-e2a1947eac7a" width="800" height="400"/>  
+
+**메뉴 선택 (관리자 로그인시 수정 삭제 버튼 나타남)**  
+<img src="https://github.com/user-attachments/assets/3b6592ab-5398-46e0-aded-2770fa0a5a20" width="800" height="400"/>  
+
+**메뉴 추가**  
+<img src="https://github.com/user-attachments/assets/36c68714-a0b7-40d8-ac2f-5af0c2a1c822" width="800" height="400"/>  
+
+**메뉴 수정**  
+<img src="https://github.com/user-attachments/assets/61850f94-05df-455c-befc-e10be2603d76" width="800" height="400"/>  
+
+**카카오페이 주문**  
+<img src="https://github.com/user-attachments/assets/082e9923-7487-4202-b8f4-58eaa6d17c5b" width="800" height="400"/>  
+
+**결제 내역**  
+<img src="https://github.com/user-attachments/assets/30b595b5-f4ff-4d26-8f79-429d6d8ff939" width="800" height="400"/>  
+
+
+
 
 
