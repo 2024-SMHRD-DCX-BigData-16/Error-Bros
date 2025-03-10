@@ -62,7 +62,8 @@
 
 ## 5. 시스템 아키텍처
 
-**구성도**
+**구성도**<br>
+<img src="https://github.com/user-attachments/assets/206cfc1d-b1b2-49bd-bf60-796c389062f4" width="800" height="400"/>
 ```md
 [사용자] → [웹 브라우저] → [Spring Boot 서버] → [MySQL DB]
 ```
