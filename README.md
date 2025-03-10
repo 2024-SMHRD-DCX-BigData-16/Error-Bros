@@ -100,6 +100,7 @@
 **비대면 서비스 강화를 통한 편의성 증대**
 
 ---
+## 9. 서비스 화면
 
 **시작화면**  
 <img src="https://github.com/user-attachments/assets/9d9097ed-ac76-4db1-afaf-85f8e0768e5a" width="800" height="400"/>  
