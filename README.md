@@ -34,25 +34,25 @@
 ---
 
 ### 4. 개발환경
-### 🌐 Frontend
+### Frontend
 <p align="left">
   <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
   <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 </p>
 
-### 🏗️ Backend
+### Backend
 <p align="left">
   <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 </p>
 
-### 🗄️ Database
+### Database
 <p align="left">
   <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
   <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
 </p>
 
-### 🔗 API
+### API
 <p align="left">
   <img src="https://img.shields.io/badge/kakao pay-FFCD00?style=for-the-badge&logo=kakaotalk&logoColor=black">
   <img src="https://img.shields.io/badge/kakao map-FFCD00?style=for-the-badge&logo=googlemaps&logoColor=white">
@@ -62,7 +62,7 @@
 
 ## 5. 시스템 아키텍처
 
-📌 **구성도**
+**구성도**
 ```md
 [사용자] → [웹 브라우저] → [Spring Boot 서버] → [MySQL DB]
 ```
@@ -87,17 +87,17 @@
 
 ## 7. 추가 예정 서비스
 
-✅ **사용자 위치 기반 휴게소 추천**<br>
-✅ **휴게소 주변 관광지 추천**<br>
-✅ **공공 API 활용한 최신 데이터 수집**
+**사용자 위치 기반 휴게소 추천**<br>
+**휴게소 주변 관광지 추천**<br>
+**공공 API 활용한 최신 데이터 수집**
 
 ---
 
 ## 8. 기대효과 및 활용 방안
 
-🚀 **고속도로 휴게소 이용객들에게 편리하고 효율적인 서비스 제공** <br>
-📈 **휴게소 운영 관리의 효율성 증대** <br>
-💡 **비대면 서비스 강화를 통한 편의성 증대**
+**고속도로 휴게소 이용객들에게 편리하고 효율적인 서비스 제공** <br>
+**휴게소 운영 관리의 효율성 증대** <br>
+**비대면 서비스 강화를 통한 편의성 증대**
 
 ---
 
